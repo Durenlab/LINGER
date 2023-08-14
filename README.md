@@ -7,6 +7,13 @@ torch: 1.13.1+cu117; numpy: 1.23.5; scipy: 1.10.1; pandas: 1.5.3; sklearn: 1.2.1
 ### Run
 #### step 0, install the package
 For the first step, we can download the code by
+```sh
+git clone https://github.com/Durenlab/LINGER.git
+cd LINGER
+```
+Then download the datasets:
+```sh
+wget https://drive.google.com/file/d/1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO/view?usp=sharing
+wget https://drive.google.com/file/d/1Rj7RbzY-8Tc8sRWJ_dfbsUlWTx9PFX1A/view?usp=sharing
 ```
 
-https://drive.google.com/file/d/1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO/view?usp=sharing
