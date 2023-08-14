@@ -17,7 +17,21 @@ wget https://drive.google.com/file/d/1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO/view?usp=
 wget https://drive.google.com/file/d/1Rj7RbzY-8Tc8sRWJ_dfbsUlWTx9PFX1A/view?usp=sharing
 ```
 #### Step2, gene regulatory network inference
+##### Input. We need to input the count matrix of single-cell RNA-seq and ATAC-seq, as well as the cluster annotations.
+1. sc RNA-seq. The row names are gene symbol; the column names are cell barcode; the values are the reads count, representing the gene expression. Here, we use 'RNA.txt' as the name of this file.
+2. sc ATAC-seq. The row names are regulatory element, for example chr1:191491-191736; the column names are cell barcode; the values are the reads count, representing the chromatin accessibility of regulatory element. Here, we use 'ATAC.txt' to represent this file.
+3. Cell annotation.  There is one column in the file, representing the cluster or cell type. Here, we use 'label.txt' to represent this file.
+```python
+import LL_net
+RNA_file='RNA.txt'
+labels='label.txt'
+ATAC_file='ATAC.txt'
+```
 ##### cell population level gene regulatory network
-1. TF-RE binding
-2. *cis*-regulatory
-3. *trans*-regulatory
+###### 
+5. TF-RE binding. The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding strength.
+```python
+LL_n.TF_RE_binding(RNA_file, ATAC_file, labels)
+```
+7. *cis*-regulatory
+8. *trans*-regulatory
