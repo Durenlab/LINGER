@@ -27,6 +27,9 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw" -O Primary_RE_TG.txt && rm -rf /tmp/cookies.txt
 # region set
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1m-0cii1o-K6yCJlOFPo4WklLpBWVB2g3' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1m-0cii1o-K6yCJlOFPo4WklLpBWVB2g3" -O Peaks_0.bed && rm -rf /tmp/cookies.txt
+# TF binding
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=13XOPUw0YY4kTzTLHYovL-qgMsVvdiC-m' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=13XOPUw0YY4kTzTLHYovL-qgMsVvdiC-m" -O TF_binding_f.txt && rm -rf /tmp/cookies.txt
+
 ```
 ##### Prepare. Map the regions to the given regions.
 ```sh
