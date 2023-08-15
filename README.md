@@ -26,7 +26,7 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 #RE-TG
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw" -O Primary_RE_TG.txt && rm -rf /tmp/cookies.txt
 # region set
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1m-0cii1o-K6yCJlOFPo4WklLpBWVB2g3' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1m-0cii1o-K6yCJlOFPo4WklLpBWVB2g3" -O Peaks_0.txt && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1m-0cii1o-K6yCJlOFPo4WklLpBWVB2g3' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1m-0cii1o-K6yCJlOFPo4WklLpBWVB2g3" -O Peaks_0.bed && rm -rf /tmp/cookies.txt
 ```
 #### Step2, gene regulatory network inference
 ##### Input. We need to input the count matrix of single-cell RNA-seq and ATAC-seq, as well as the cluster annotations.
