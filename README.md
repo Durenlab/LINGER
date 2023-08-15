@@ -28,14 +28,16 @@ labels='label.txt'
 ATAC_file='ATAC.txt'
 ```
 ##### cell population level gene regulatory network
-###### 
-5. TF-RE binding. The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding strength.
+1. TF-RE binding. The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding strength.
 ```python
 LL_n.TF_RE_binding(RNA_file, ATAC_file, labels)
 ```
-7. *cis*-regulatory. The output is 'cell_population_cis_regulatory.txt', a list of 3 columns in which the first column is the regulatory element, the second column is the target gene, and the third is the regulatory strength.
+2. *cis*-regulatory. The output is 'cell_population_cis_regulatory.txt', a list of 3 columns in which the first column is the regulatory element, the second column is the target gene, and the third is the regulatory strength.
 ```python
 LL_n.cis_regulatory(RNA_file, ATAC_file, labels)
 ```
-9. *trans*-regulatory
-
+3. *trans*-regulatory. 
+```python
+LL_n.cis_regulatory(RNA_file, ATAC_file, labels)
+```
+##### cell type specific gene regulatory network
