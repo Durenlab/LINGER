@@ -31,6 +31,7 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 1. sc RNA-seq. The row names are gene symbol; the column names are cell barcode; the values are the reads count, representing the gene expression. Here, we use 'RNA.txt' as the name of this file.
 2. sc ATAC-seq. The row names are regulatory element, for example chr1:191491-191736; the column names are cell barcode; the values are the reads count, representing the chromatin accessibility of regulatory element. Here, we use 'ATAC.txt' to represent this file.
 3. Cell annotation.  There is one column in the file, representing the cluster or cell type. Here, we use 'label.txt' to represent this file.
+
 The following Python code demonstrates how to specify the file name:
 ```python
 import LL_net
