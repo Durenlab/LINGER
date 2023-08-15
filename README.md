@@ -36,8 +36,20 @@ LL_n.TF_RE_binding(RNA_file, ATAC_file, labels)
 ```python
 LL_n.cis_regulatory(RNA_file, ATAC_file, labels)
 ```
-3. *trans*-regulatory. 
+3. *trans*-regulatory.  The output is 'cell_population_trans_regulatory.txt', a matrix of the TF-TG *trans*-regulatory strength.
 ```python
 LL_n.trans_regulatory(RNA_file, ATAC_file, labels)
 ```
 ##### cell type specific gene regulatory network
+1. TF-RE binding potential. The output is 'cell_type_specific_TF_RE_binding_{cluster}.txt'. The cell type specific TF-RE binding potential for each {cluster}/{cell type}.
+```python
+LL_n.cell_type_specific_TF_RE_binding(RNA_file, ATAC_file, labels)
+```
+2. Cell type specific *cis*-regulatory potential. The output is 'cell_type_specific_cis_regulatory_{cluster}.txt'.  Each file is a list of 3 columns in which the first column is the regulatory element, the second column is the target gene, and the third is the regulatory strength.
+```python
+LL_n.cell_type_specific_cis_regulatory(RNA_file, ATAC_file, labels)
+```
+3. Cell type specific *trans*-regulatory potential. The output is 'cell_type_specific_trans_regulatory_{cluster}.txt'
+```python
+LL_n.cell_type_specific_trans_regulatory(RNA_file, ATAC_file, labels)
+```
