@@ -38,6 +38,6 @@ LL_n.cis_regulatory(RNA_file, ATAC_file, labels)
 ```
 3. *trans*-regulatory. 
 ```python
-LL_n.cis_regulatory(RNA_file, ATAC_file, labels)
+LL_n.trans_regulatory(RNA_file, ATAC_file, labels)
 ```
 ##### cell type specific gene regulatory network
