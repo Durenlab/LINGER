@@ -13,12 +13,18 @@ cd LINGER
 ```
 Then download the datasets:
 ```sh
-wget https://drive.google.com/file/d/1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r/view?usp=sharing #ATAC-seq
-wget https://drive.google.com/file/d/1Rj7RbzY-8Tc8sRWJ_dfbsUlWTx9PFX1A/view?usp=sharing #RNA-seq
-wget https://drive.google.com/file/d/1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5/view?usp=sharing #label
-wget https://drive.google.com/file/d/1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO/view?usp=sharing #TF-RE
-wget https://drive.google.com/file/d/1OGsdqGupPEN7x7JD4xEbEAxo3bI4giS0/view?usp=sharing #TF-TG
-wget https://drive.google.com/file/d/1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw/view?usp=sharing #RE-TG
+#ATAC-seq
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r" -O ATAC.txt && rm -rf /tmp/cookies.txt
+#RNA-seq
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1Rj7RbzY-8Tc8sRWJ_dfbsUlWTx9PFX1A' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Rj7RbzY-8Tc8sRWJ_dfbsUlWTx9PFX1A" -O RNA.txt && rm -rf /tmp/cookies.txt
+#label
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5" -O label.txt && rm -rf /tmp/cookies.txt
+#TF-RE
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO" -O Primary_TF_RE.txt && rm -rf /tmp/cookies.txt
+#TF-TG
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1OGsdqGupPEN7x7JD4xEbEAxo3bI4giS0' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1OGsdqGupPEN7x7JD4xEbEAxo3bI4giS0" -O Primary_TF_TG.txt && rm -rf /tmp/cookies.txt
+#RE-TG
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw" -O Primary_RE_TG.txt && rm -rf /tmp/cookies.txt
 ```
 #### Step2, gene regulatory network inference
 ##### Input. We need to input the count matrix of single-cell RNA-seq and ATAC-seq, as well as the cluster annotations.
