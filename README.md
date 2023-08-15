@@ -13,12 +13,12 @@ cd LINGER
 ```
 Then download the datasets:
 ```sh
-wget [https://drive.google.com/file/d/1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO/view?usp=sharing](https://drive.google.com/file/d/1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r/view?usp=sharing) #ATAC-seq
-wget [https://drive.google.com/file/d/1Rj7RbzY-8Tc8sRWJ_dfbsUlWTx9PFX1A/view?usp=sharing](https://drive.google.com/file/d/1dP4ITjQZiVDa52xfDTo5c14f9H0MsEGK/view?usp=sharing) #RNA-seq
-wget [https://drive.google.com/file/d/1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5/view?usp=sharing](https://drive.google.com/file/d/1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5/view?usp=sharing) #label
-wget [https://drive.google.com/file/d/1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO/view?usp=sharing](https://drive.google.com/file/d/1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO/view?usp=sharing) #TF-RE
-wget [https://drive.google.com/file/d/1OGsdqGupPEN7x7JD4xEbEAxo3bI4giS0/view?usp=sharing](https://drive.google.com/file/d/1OGsdqGupPEN7x7JD4xEbEAxo3bI4giS0/view?usp=sharing) #TF-TG
-wget [https://drive.google.com/file/d/1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw/view?usp=sharing](https://drive.google.com/file/d/1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw/view?usp=sharing) #RE-TG
+wget https://drive.google.com/file/d/1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r/view?usp=sharing #ATAC-seq
+wget https://drive.google.com/file/d/1Rj7RbzY-8Tc8sRWJ_dfbsUlWTx9PFX1A/view?usp=sharing #RNA-seq
+wget https://drive.google.com/file/d/1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5/view?usp=sharing #label
+wget https://drive.google.com/file/d/1miQkV1mUjBa7wFoPKcKXQwHR9ReCCBfO/view?usp=sharing #TF-RE
+wget https://drive.google.com/file/d/1OGsdqGupPEN7x7JD4xEbEAxo3bI4giS0/view?usp=sharing #TF-TG
+wget https://drive.google.com/file/d/1JK5K3k7bW4Dp2BIDZUB4Inw7HvY41Blw/view?usp=sharing #RE-TG
 ```
 #### Step2, gene regulatory network inference
 ##### Input. We need to input the count matrix of single-cell RNA-seq and ATAC-seq, as well as the cluster annotations.
