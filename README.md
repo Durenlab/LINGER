@@ -33,5 +33,9 @@ ATAC_file='ATAC.txt'
 ```python
 LL_n.TF_RE_binding(RNA_file, ATAC_file, labels)
 ```
-7. *cis*-regulatory
-8. *trans*-regulatory
+7. *cis*-regulatory. The output is 'cell_population_cis_regulatory.txt', a list of 3 columns in which the first column is the regulatory element, the second column is the target gene, and the third is the regulatory strength.
+```python
+LL_n.cis_regulatory(RNA_file, ATAC_file, labels)
+```
+9. *trans*-regulatory
+
