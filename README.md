@@ -28,6 +28,11 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 # region set
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1m-0cii1o-K6yCJlOFPo4WklLpBWVB2g3' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1m-0cii1o-K6yCJlOFPo4WklLpBWVB2g3" -O Peaks_0.bed && rm -rf /tmp/cookies.txt
 ```
+##### Prepare. Map the regions to the given regions.
+```sh
+cat ATAC.txt|cut -f 1 |sed '1d' |sed 's/:/\t/g'| sed 's/-/\t/g' > Region.bed
+bedtools intersect -a Peaks_0.bed -b Region.bed -wa -wb > Region_overlap.bed
+```
 #### Step2, gene regulatory network inference
 ##### Input. We need to input the count matrix of single-cell RNA-seq and ATAC-seq, as well as the cluster annotations.
 1. sc RNA-seq. The row names are gene symbol; the column names are cell barcode; the values are the reads count, representing the gene expression. Here, we use 'RNA.txt' as the name of this file.
@@ -40,11 +45,6 @@ import LL_net
 RNA_file='RNA.txt'
 labels='label.txt'
 ATAC_file='ATAC.txt'
-```
-##### Prepare. Map the regions to the given regions.
-```sh
-cat ATAC.txt|cut -f 1 |sed '1d' |sed 's/:/\t/g'| sed 's/-/\t/g' > Region.bed
-bedtools intersect -a Peaks_0.bed -b Region.bed -wa -wb > Region_overlap.bed
 ```
 ##### cell population level gene regulatory network
 1. TF-RE binding. The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding strength.
