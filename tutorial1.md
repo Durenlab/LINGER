@@ -17,7 +17,7 @@ Then unzip，
 tar -xzf data_bulk.tar.gz
 ```
 ## Prepare the input data
-The input is 
+The input data should be in same directory (Input_dis in this tutorial), which includes: 
 - Single-cell multiome data including gene expression (RNA.txt in our example) and chromatin accessibility (ATAC.txt in our example).
 - Cell annotation/cell type label if you need the cell type specific gene regulatory network (label.txt in our example).
 ### RNA-seq
@@ -33,9 +33,9 @@ The row is cell barcode, which is the same order with RNA-seq data; there is one
 ### Preprocess
 Map the regions to the given regions by running the following code in linux. The output is overlaped region in each chromtin (Region_overlap_chr*.bed) in the same directory of input data.
 ```sh
-Inputdir=/path/to/dir/ # all the input file should be in this directory
+Input_dir=/path/to/dir/ # all the input file should be in this directory
 genome=hg38 # only hg38 and hg19 supported
-cd $Inputdir
+cd $Input_dir
 cat ATAC.txt|cut -f 1 |sed '1d' |sed 's/:/\t/g'| sed 's/-/\t/g' > Region.bed
 GRNdir=$LINGERdir/data_bulk
 $LINGERdir/extract_overlap_regions.sh "$GRNdir" $genome
@@ -45,7 +45,7 @@ cd $LINGERdir
 We load the input data and import the function. The following sections are in python.
 ```python
 import LL_net
-Inputdir='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/version1/Input/'
+Input_dir='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/version1/Input/'
 GRNdir='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/version1/data_bulk/'
 RNA_file='RNA.txt'
 labels='label.txt'
@@ -56,7 +56,7 @@ genome='hg38'
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score.
 ```python
-result=LL_net.TF_RE_binding(Inputdir,GRNdir,RNA_file,ATAC_file,genome)
+result=LL_net.TF_RE_binding(Input_dir,GRNdir,RNA_file,ATAC_file,genome)
 result.to_csv(Input_dir+'cell_population_TF_RE_binding.txt',sep='\t')
 ```
 #### *cis*-regulatory network
