@@ -10,7 +10,7 @@ For the first step, we can download the code by
 git clone https://github.com/Durenlab/LINGER.git
 cd LINGER
 ```
-Then download the datasets, including the test input data () and the  files provided by out method ():
+Then download the example input datasets:
 ```sh
 #ATAC-seq
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r" -O ATAC.txt && rm -rf /tmp/cookies.txt
