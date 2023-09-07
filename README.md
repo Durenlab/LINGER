@@ -8,9 +8,8 @@ torch: 1.13.1+cu117; numpy: 1.23.5; scipy: 1.10.1; pandas: 1.5.3; sklearn: 1.2.1
 For the first step, we can download the code by
 ```sh
 git clone https://github.com/Durenlab/LINGER.git
-cd LINGER
 ```
-Then download the example input datasets:
+Then download the example input datasets into a certain directory. You could also use your datasets (see the Tutorials for detail). 
 ```sh
 #ATAC-seq
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r" -O ATAC.txt && rm -rf /tmp/cookies.txt
