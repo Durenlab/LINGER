@@ -6,7 +6,7 @@ Just as the following figure, we combine the single cell data ($O, E$, and $C$ i
 ![Example Figure](https://github.com/Durenlab/LINGER/blob/main/feature_engineering.jpg)
 In this tutorial, we will 1. load the data we provide, 2. preprocess, 3. prepare the input data. 4. generate the cell population level gene regulatory network, 5. generate the cell type specific gene regulatory network.
 ## Download the the general gene regulatory network 
-We provide the generan gene regulatory network
+We provide the general gene regulatory network
 ```
 LINGERdir=/path/to/LINGER/
 cd $LINGERdir
