@@ -3,7 +3,7 @@
 This tutorial delineates an approach for constructing cell type-specific gene regulatory networks from single-cell data using feature engineering methodology. Rather than directly training models on the single cell data, this workflow offers a rapid approach.
 
 Just as the following figure, we combine the single cell data ($O, E$, and $C$ in the figure) and the prior gene regulatory network structure with the parameter $\alpha,\beta,d,B$, and $\gamma$.
-![Alt text](feature_engineering.jpg)
+![Example Figure](https://github.com/Durenlab/LINGER/blob/main/feature_engineering.jpg)
 In this tutorial, we will 1. load the data we provide, 2. preprocess, 3. prepare the input data. 4. generate the cell population level gene regulatory network, 5. generate the cell type specific gene regulatory network.
 ## Download the the general gene regulatory network 
 We provide the generan gene regulatory network
