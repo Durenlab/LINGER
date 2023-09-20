@@ -8,7 +8,6 @@ Afer constructing the GRNs for cell population, we infer the cell type specific 
 
 ![Image Alt Text](feature_engineering.png)
 
-In this tutorial, we will 1. load the prior data, 2. preprocess, 3. prepare the input data. 4. generate the cell population level gene regulatory network, 5. generate the cell type specific gene regulatory network.
 ## Download the the general gene regulatory network 
 We provide the general gene regulatory network
 ```sh
@@ -84,7 +83,7 @@ There are 2 options:
 ```python
 celltype='0'#use a string to assign your cell type
 ```
-1. infer GRNs for all cell types.
+2. infer GRNs for all cell types.
 ```python
 celltype='all'
 ```
@@ -104,4 +103,6 @@ The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix o
 ```python
 LL_net.cell_type_specific_trans_reg(Input_dir,GRNdir,RNA_file,label_file,ATAC_file,celltype)
 ```
-
+## Note
+1. The cell specific GRN is based on the output of the cell population GRN, which depends on the method we choose.
+2. If we want to try 2 different method options, we can create 2 Input directory.
