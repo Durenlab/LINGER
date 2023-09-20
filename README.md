@@ -21,5 +21,5 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5" -O label.txt && rm -rf /tmp/cookies.txt
 ```
 We provide several tutorials
-- [Construct the gene regulatory netwok by intergrating the general network (no training)](https://github.com/Durenlab/LINGER/blob/main/tutorial1.md)
+- [Construct the gene regulatory network](https://github.com/Durenlab/LINGER/blob/main/tutorial1.md)
 
