@@ -5,7 +5,9 @@ This tutorial delineates an computational framework for constructing gene regula
 ![Image Alt Text](LINGER.png)
 
 Afer constructing the GRNs for cell population, we infer the cell type specific one using the feature engineering approach. Just as the following figure, we combine the single cell data ($O, E$, and $C$ in the figure) and the prior gene regulatory network structure with the parameter $\alpha,\beta,d,B$, and $\gamma$.
+
 ![Image Alt Text](feature_engineering.png)
+
 In this tutorial, we will 1. load the prior data, 2. preprocess, 3. prepare the input data. 4. generate the cell population level gene regulatory network, 5. generate the cell type specific gene regulatory network.
 ## Download the the general gene regulatory network 
 We provide the general gene regulatory network
