@@ -33,7 +33,10 @@ The row of RNA-seq is gene symbol; the column is barcode; the value is the count
 
 ### ATAC-seq
 The row is regulatory element/genomic region; the column is barcode, which is the same order with RNA-seq data; the value is the count matrix. Here is our example:
-![Image Alt Text](ATAC.png)
+<div style="text-align: right">
+  <img src="ATAC.png" alt="Image" width="500">
+</div>
+
 ### Cell annotation/cell type label
 The row is cell barcode, which is the same order with RNA-seq data; there is one column 'Annotation', which is the cell type label. It could be a number or the string. Here is our example:
 ![Image Alt Text](label.png)
