@@ -28,7 +28,7 @@ The input data should be in same directory (Input_dis in this tutorial), which i
 ### RNA-seq
 The row of RNA-seq is gene symbol; the column is barcode; the value is the count matrix. Here is our example:
 <div style="text-align: right">
-  <img src="RNA.png" alt="Image" width="400">
+  <img src="RNA.png" alt="Image" width="500">
 </div>
 ### ATAC-seq
 The row is regulatory element/genomic region; the column is barcode, which is the same order with RNA-seq data; the value is the count matrix. Here is our example:
