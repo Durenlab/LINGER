@@ -41,5 +41,5 @@ t_test_results=master_regulator(regulon_score,Input_dir,labels,celltype)
 t_test_results
 ```
 <div style="text-align: right">
-  <img src="ttest.png" alt="Image" width="500">
+  <img src="ttest.png" alt="Image" width="300">
 </div>
