@@ -27,7 +27,9 @@ The input data should be in same directory (Input_dis in this tutorial), which i
 - Cell annotation/cell type label if you need the cell type specific gene regulatory network (label.txt in our example).
 ### RNA-seq
 The row of RNA-seq is gene symbol; the column is barcode; the value is the count matrix. Here is our example:
-![Image Alt Text](RNA.png)
+<div style="text-align: right">
+  <img src="RNA.png" alt="Image" width="400">
+</div>
 ### ATAC-seq
 The row is regulatory element/genomic region; the column is barcode, which is the same order with RNA-seq data; the value is the count matrix. Here is our example:
 ![Image Alt Text](ATAC.png)
