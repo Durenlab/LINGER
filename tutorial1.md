@@ -106,7 +106,7 @@ LL_net.cell_type_specific_TF_RE_binding(Input_dir,GRNdir,RNA_file,ATAC_file,labe
 ### *cis*-regulatory network
 The output is 'cell_type_specific_cis_regulatory_{*celltype*}.txt' with 3 columns: region, target gene, cis-regulatory score.
 ```python
-LL_net.cell_type_specific_cis_reg(Input_dir,GRNdir,RNA_file,ATAC_file,genome,celltype)
+LL_net.cell_type_specific_cis_reg(Input_dir,GRNdir,RNA_file,ATAC_file,label_file,genome,celltype)
 ```
 ### *trans*-regulatory network
 The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix of the trans-regulatory score.
