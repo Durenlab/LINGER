@@ -22,4 +22,4 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 ```
 We provide several tutorials
 - [Construct the gene regulatory network](https://github.com/Durenlab/LINGER/blob/main/tutorial1.md)
-
+- [Identify driver regulators by TF activity](https://github.com/Durenlab/LINGER/blob/main/tutorial2.md)
