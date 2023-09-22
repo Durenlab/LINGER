@@ -15,7 +15,7 @@ We provide the general gene regulatory network
 LINGERdir=/path/to/LINGER/
 LINGERdir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine
 cd $LINGERdir
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1vM8btN3LWu699YiPH0JyjIV_LZBIxiX_' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1vM8btN3LWu699YiPH0JyjIV_LZBIxiX_" -O data_bulk.tar.gz && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1dzpx2RAeZP6lIh2h0FYgg8kc76i0CY6j' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1dzpx2RAeZP6lIh2h0FYgg8kc76i0CY6j" -O data_bulk.tar.gz && rm -rf /tmp/cookies.txt
 ```
 Then unzip，
 ```sh
