@@ -4,7 +4,7 @@ LINGER (LIfelong neural Network for GEne Regulation)is a novel deep learning-bas
 ## Requirements
 We use the following Python packages with python 3.10.9: 
 torch: 1.13.1+cu117; numpy: 1.23.5; scipy: 1.10.1; pandas: 1.5.3; sklearn: 1.2.1; shap: 0.41.0; joblib: 1.2.0; 
-### install the package
+## Install the package
 For the first step, we can download the code by
 ```sh
 git clone https://github.com/Durenlab/LINGER.git
