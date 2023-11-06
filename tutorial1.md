@@ -9,7 +9,7 @@ Afer constructing the GRNs for cell population, we infer the cell type specific 
 
 ![Image Alt Text](feature_engineering.jpg)
 
-## Download the the general gene regulatory network 
+## Download the general gene regulatory network 
 We provide the general gene regulatory network
 ```sh
 LINGERdir=/path/to/LINGER/
