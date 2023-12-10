@@ -1,6 +1,6 @@
 # LINGER
 ## Introduction
-LINGER (LIfelong neural Network for GEne Regulation)is a novel method to infer GRNs from single-cell multiome data built on top of [PyTorch](https://pytorch.org/).
+LINGER (LIfelong neural Network for GEne Regulation) is a novel method to infer GRNs from single-cell multiome data built on top of [PyTorch](https://pytorch.org/).
 
 LINGER incorporates both 1) atlas-scale external bulk data across diverse cellular contexts and 2) the knowledge of transcription factor (TF) motif matching to cis-regulatory elements as a manifold regularization to address the challenge of limited data and extensive parameter space in GRN inference.
 ## Analysis tasks for single cell multiome data
