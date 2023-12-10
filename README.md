@@ -18,7 +18,7 @@ pip install LINGER==1.0
 ```
 ## Documentation
 
-We provide several tutorials and user guide. If you find it useful for your research, please consider citing the LINGER manuscript.
+We provide several tutorials and user guide. If you find our tool useful for your research, please consider citing the LINGER manuscript.
 
 |                           |                           |                           |
 |:-------------------------:|:-------------------------:|:-------------------------:|
