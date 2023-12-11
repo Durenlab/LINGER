@@ -14,7 +14,7 @@ In the user guide, we provide an overview of each task.
 ## Basic installation
 LINGER can be installed by pip
 ```sh
-pip install LINGER==1.0
+pip install LingerGRN
 ```
 ## Documentation
 
