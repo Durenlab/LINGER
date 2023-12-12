@@ -134,7 +134,7 @@ LL_net.cell_type_specific_cis_reg(Input_dir,GRNdir,RNA_file,ATAC_file,label_file
 #### *trans*-regulatory network
 The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix of the trans-regulatory score.
 ```python
-LL_net.cell_type_specific_trans_reg(Input_dir,GRNdir,RNA_file,label_file,ATAC_file,celltype)
+LL_net.cell_type_specific_trans_reg(Input_dir,GRNdir,RNA_file,label_file,ATAC_file,celltype,outdir)
 ```
 
 ## Note
