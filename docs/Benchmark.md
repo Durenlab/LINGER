@@ -29,10 +29,10 @@ from LingerGRN import Benchmk
 Benchmk.bm_trans(TFName,Method_name,Groundtruth,Infer_trans,outdir,'matrix')
 ```
 <div style="text-align: right">
-  <img src="trans_roc_curveE2F6.pdf" alt="Image" width="500">
+  <img src="trans_roc_curveE2F6.png" alt="Image" width="500">
 </div>
 <div style="text-align: right">
-  <img src="trans_pr_curveE2F6.pdf" alt="Image" width="500">
+  <img src="trans_pr_curveE2F6.png" alt="Image" width="500">
 </div>
 
 The result will be automatically saved in the outdir with name trans_roc_curve+TFName+.pdf and trans_roc_curve+TFName+.pdf.
