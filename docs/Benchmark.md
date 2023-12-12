@@ -14,25 +14,23 @@ You can provide a list of predicted GRN file. We support 2 format:
 </div>
 - matrix: The row is gene name the column is TF name and the value is regulation strength. 
 
-Here, we give 4 cell type specific GRN files as examples (the format here is 'matrix' described above).
+Here, we give cell type specific and cell population GRN files as examples (the format here is 'matrix' described above).
 
 ## Roc and pr curve
 ```python
 outdir='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/LINGER/examples/output/'
-TFName = 'E2F6'
-Method_name=['0','1','2','3']
-outdir=
-Infer_trans=[outdir+'cell_type_specific_trans_regulatory_0.txt',outdir+'cell_type_specific_trans_regulatory_1.txt',outdir+'cell_type_specific_trans_regulatory_2.txt',outdir+'cell_type_specific_trans_regulatory_3.txt']
-
-Groundtruth='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/groundtruth/46177_gene_score_5fold.txt'
+TFName = 'MYC'
+Method_name=['H1','cell population']
+Infer_trans=[outdir+'cell_type_specific_trans_regulatory_0.txt',outdir+'cell_population_trans_regulatory.txt']
+Groundtruth='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/groundtruth/45691_gene_score_5fold.txt'
 from LingerGRN import Benchmk
 Benchmk.bm_trans(TFName,Method_name,Groundtruth,Infer_trans,outdir,'matrix')
 ```
 <div style="text-align: right">
-  <img src="trans_roc_curveE2F6.png" alt="Image" width="300">
+  <img src="trans_roc_curveMYC.png" alt="Image" width="300">
 </div>
 <div style="text-align: right">
-  <img src="trans_pr_curveE2F6.png" alt="Image" width="300">
+  <img src="trans_pr_curveMYC.png" alt="Image" width="300">
 </div>
 
 The result will be automatically saved in the outdir with name trans_roc_curve+TFName+.pdf and trans_roc_curve+TFName+.pdf.
