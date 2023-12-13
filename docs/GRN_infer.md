@@ -23,7 +23,7 @@ tar -xzf data_bulk.tar.gz
 ```
 
 ## Prepare the input data
-The input data should be in same directory (Input_dis in this tutorial), which includes: 
+The input data should be in same directory (Input_dir in this tutorial), which includes: 
 - Single-cell multiome data including gene expression (RNA.txt in our example) and chromatin accessibility (ATAC.txt in our example).
 - Cell annotation/cell type label if you need the cell type specific gene regulatory network (label.txt in our example).
 
@@ -46,7 +46,7 @@ The row is cell barcode, which is the same order with RNA-seq data; there is one
 </div>
 
 ### Provided input example 
-You can download the example input datasets into a certain directory. 
+You can download the example input datasets into a certain directory. This sc multiome data of an in-silico mixture of H1, BJ, GM12878, and K562 cell lines from droplet-based single-nucleus chromatin accessibility and mRNA expression sequencing (SNARE-seq) data.
 
 ```sh
 Input_dir=/path/to/dir/
