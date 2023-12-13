@@ -21,6 +21,7 @@ Then unzip，
 ```sh
 tar -xzf data_bulk.tar.gz
 ```
+
 ## Prepare the input data
 The input data should be in same directory (Input_dis in this tutorial), which includes: 
 - Single-cell multiome data including gene expression (RNA.txt in our example) and chromatin accessibility (ATAC.txt in our example).
@@ -43,6 +44,7 @@ The row is cell barcode, which is the same order with RNA-seq data; there is one
 <div style="text-align: right">
   <img src="label.png" alt="Image" width="300">
 </div>
+
 ### Provided input example 
 You can download the example input datasets into a certain directory. 
 
