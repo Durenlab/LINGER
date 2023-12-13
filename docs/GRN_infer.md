@@ -61,6 +61,7 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 ### Install
 ```sh
 conda create -n LINGER python
+conda activate LINGER
 pip install LingerGRN
 ```
 ### Preprocess
