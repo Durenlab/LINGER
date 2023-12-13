@@ -7,7 +7,6 @@ LINGER incorporates both 1) atlas-scale external bulk data across diverse cellul
 - Infer gene regulatory network
 - Benchmark gene regulatory network
 - Explainable dimensionality reduction (transcription factor activity, availiable for single cell or bulk RNA-seq data)
-- Explain GWAS SNPs
 - In silico pertubation
 
 In the user guide, we provide an overview of each task. 
