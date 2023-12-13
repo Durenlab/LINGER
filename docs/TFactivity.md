@@ -35,7 +35,7 @@ Visualize the TF activity heatmap by cluster. If you want to save the heatmap to
 ```python
 save=True
 labels=Input_dir+'label.txt'
-heatmap_cluster(regulon_score,labels,save,outdir)
+heatmap_cluster(TF_activity,labels,save,outdir)
 ```
 <div style="text-align: right">
   <img src="heatmap_activity.png" alt="Image" width="500">
@@ -51,9 +51,12 @@ celltype='0'
 ```python
 celltype='all'
 ```
+
+For example,
+
 ```python
 celltype='0'
-t_test_results=master_regulator(regulon_score,Input_dir,labels,celltype)
+t_test_results=master_regulator(TF_activity,Input_dir,labels,celltype)
 t_test_results
 ```
 
@@ -69,6 +72,19 @@ datatype='activity'
 celltype1='0'
 celltype2='Others'
 save=True
-box_comp(TFName,celltype1,celltype2,datatype,RNA_file,save,outdir)
+box_comp(TFName,labels,celltype1,celltype2,datatype,RNA_file,TF_activity,save,outdir)
 ```
 
+<div style="text-align: right">
+  <img src="box_plot_ATF1_activity_0_Others.png" alt="Image" width="300">
+</div>
+
+For gene expression data, the boxplot is:
+```python
+datatype='expression'
+box_comp(TFName,labels,celltype1,celltype2,datatype,RNA_file,TF_activity,save,outdir)
+```
+
+<div style="text-align: right">
+  <img src="box_plot_ATF1_expression_0_Others.png" alt="Image" width="300">
+</div>
