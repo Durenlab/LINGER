@@ -23,7 +23,7 @@ We provide several tutorials and user guide. If you find our tool useful for you
 |                           |                           |                           |
 |:-------------------------:|:-------------------------:|:-------------------------:|
 | [User guide](https://github.com/Durenlab/LINGER/blob/main/docs/User_guide.md) | [Construct the gene regulatory network](https://github.com/Durenlab/LINGER/blob/main/docs/GRN_infer.md) | [GRN benchmark](https://example.com) |
-| [Identify driver regulators by TF activity](https://github.com/Durenlab/LINGER/blob/main/tutorial2.md) | [GWAS trait annotation](https://example.com) | [In silico perturbation](https://example.com) |
+| [Identify driver regulators by TF activity](https://github.com/Durenlab/LINGER/blob/main/tutorial2.md) | [In silico perturbation](https://example.com) | [PBMCs data turtorial](https://example.com) |
     
 
 ## Reference
