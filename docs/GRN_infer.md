@@ -5,11 +5,11 @@ This tutorial delineates an computational framework for constructing gene regula
   <img src="LINGER.png" alt="Image" width="400">
 </div>
 
-Afer constructing the GRNs for cell population, we infer the cell type specific one using the feature engineering approach. Just as the following figure, we combine the single cell data ($O, E$, and $C$ in the figure) and the prior gene regulatory network structure with the parameter $\alpha,\beta,d,B$, and $\gamma$.
+After constructing the GRNs for the cell population, we infer the cell type specific one using the feature engineering approach. Just as in the following figure, we combine the single cell data ($O, E$, and $C$ in the figure) and the prior gene regulatory network structure with the parameter $\alpha,\beta,d,B$, and $\gamma$.
 
 ![Image Alt Text](feature_engineering.jpg)
 
-## Download the the general gene regulatory network 
+## Download the general gene regulatory network 
 We provide the general gene regulatory network, please download the data first.
 ```sh
 Datadir=/path/to/LINGER/# the directory to store the data please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
@@ -23,18 +23,18 @@ tar -xzf data_bulk.tar.gz
 ```
 
 ## Prepare the input data
-The input data should be in same directory (Input_dir in this tutorial), which includes: 
+The input data should be in the same directory (Input_dir in this tutorial), which includes: 
 - Single-cell multiome data including gene expression (RNA.txt in our example) and chromatin accessibility (ATAC.txt in our example).
 - Cell annotation/cell type label if you need the cell type specific gene regulatory network (label.txt in our example).
 
 ### RNA-seq
-The row of RNA-seq is gene symbol; the column is barcode; the value is the count matrix. Here is our example:
+The row of RNA-seq is gene symbol; the column is the barcode; the value is the count matrix. Here is our example:
 <div style="text-align: right">
   <img src="RNA.png" alt="Image" width="500">
 </div>
 
 ### ATAC-seq
-The row is regulatory element/genomic region; the column is barcode, which is the same order with RNA-seq data; the value is the count matrix. Here is our example:
+The row is the regulatory element/genomic region; the column is the barcode, which is in the same order as RNA-seq data; the value is the count matrix. Here is our example:
 <div style="text-align: right">
   <img src="ATAC.png" alt="Image" width="500">
 </div>
@@ -67,7 +67,7 @@ conda activate LINGER
 pip install LingerGRN
 ```
 ### Preprocess
-There are 2 options of method we introduced above:
+There are 2 options of the method we introduced above:
 1. baseline;
 ```python
 method='baseline'
@@ -76,12 +76,12 @@ method='baseline'
 ```python
 method='LINGER'
 ```
-Map the regions to the given regions by running the following code in python. 
+Map the regions to the given regions by running the following code in Python. 
 ```python
 RNA_file='RNA.txt'
 ATAC_file='ATAC.txt'
 label_file='label.txt'
-Datadir='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/'# this directory should be the same with Datadir
+Datadir='/path/to/LINGER'# This directory should be the same as Datadir defined above
 GRNdir=Datadir+'data_bulk/'
 Input_dir= '/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/LINGER/examples/'# input data dir
 genome='hg38'
