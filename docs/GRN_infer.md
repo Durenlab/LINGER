@@ -81,11 +81,11 @@ Map the regions to the given regions by running the following code in Python.
 RNA_file='RNA.txt'
 ATAC_file='ATAC.txt'
 label_file='label.txt'
-Datadir='/path/to/LINGER'# This directory should be the same as Datadir defined above
+Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined above
 GRNdir=Datadir+'data_bulk/'
-Input_dir= '/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/LINGER/examples/'# input data dir
+Input_dir= '/path/to/dir/'# input data dir
 genome='hg38'
-outdir='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/LINGER/examples/output/' #output dir
+outdir='/path/to/output/' #output dir
 from LingerGRN.preprocess import *
 preprocess(RNA_file,ATAC_file,label_file,Input_dir,GRNdir,genome,method,outdir)
 ```
