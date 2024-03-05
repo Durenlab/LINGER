@@ -93,7 +93,8 @@ preprocess(RNA_file,ATAC_file,label_file,Input_dir,GRNdir,genome,method,outdir)
 ### Training model
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
-LINGER_tr.training(GRNdir,Input_dir,method,outdir)
+activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
+LINGER_tr.training(GRNdir,Input_dir,method,outdir,activef)
 ```
 
 ### Cell population gene regulatory network
