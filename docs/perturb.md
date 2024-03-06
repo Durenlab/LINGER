@@ -53,7 +53,7 @@ The above result suggests that NANOG expression decreased in H1 cell line after 
 We get the embedding of original and perturbed gene expression to the same embedding space. Then we get the difference of embedding to represent the differentiation prediction after the perturbatiion. The figure will be saved as Kouckout TF+'KO_Differentiation_Umap.png'. The cell types of cluster 0 to 3 are H1, BJ, K562, and GM12878, respectively. 
 ```python
 save=True
-Umap_direct(embedding,D,save)
+Umap_direct(TFko,Input_dir,embedding,D,save,outdir)
 ```
 <div style="text-align: right">
   <img src="POU5F1_KO_Differentiation_Umap.png" alt="Image" width="300">
