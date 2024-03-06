@@ -39,9 +39,9 @@ perturb
 We visualize the differential expression of the target gene. We take the POU5F1's target gene, NANOG, as an example. We set save = True to save the figure to outdir (Kouckout TF+'_KO_Diff_exp_Umap_'+Target gene.png). The cell types of cluster 0 to 3 are H1, BJ, K562, and GM12878, respectively. 
 ```python
 embedding,D=umap_embedding(outdir,Target,original,perturb,Input_dir)
-TFName='NANOG'
+TG='NANOG'
 save=True
-diff_umap(TFName,save,outdir,embedding)
+diff_umap(TFko,TG,save,outdir,embedding,perturb,original,Input_dir)
 ```
 <div style="text-align: right">
   <img src="POU5F1_KO_Diff_exp_Umap_NANOG.png" alt="Image" width="300">
