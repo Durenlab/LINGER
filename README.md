@@ -11,6 +11,10 @@ LINGER incorporates both 1) atlas-scale external bulk data across diverse cellul
 
 In the user guide, we provide an overview of each task. 
 ## Basic installation
+### Requirment
+```sh
+conda install bioconda::bedtools
+```
 LINGER can be installed by pip
 ```sh
 pip install LingerGRN
