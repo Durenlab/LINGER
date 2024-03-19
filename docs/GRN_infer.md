@@ -65,6 +65,7 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 conda create -n LINGER python
 conda activate LINGER
 pip install LingerGRN
+conda install bioconda::bedtools #Requirement
 ```
 ### Preprocess
 There are 2 options of the method we introduced above:
