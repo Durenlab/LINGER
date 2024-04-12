@@ -31,7 +31,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 </div>  
 
 ### sc data
-We download the data in the command line.
+We download the data using shell command line.
 ```sh
 mkdir -p data
 wget -O data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz https://cf.10xgenomics.com/samples/cell-arc/2.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
