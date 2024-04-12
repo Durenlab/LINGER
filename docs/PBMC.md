@@ -27,7 +27,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 - Single-cell multiome data including matrix.mtx.gz, features.tsv.gz, and barcodes.tsv.gz.
 - Cell annotation/cell type label if you need the cell type-specific gene regulatory network (PBMC_label.txt in our example).
 <div style="text-align: right">
-  <img src="label.png" alt="Image" width="100">
+  <img src="label_PBMC.png" alt="Image" width="100">
 </div>  
 
 ### sc data
@@ -47,6 +47,7 @@ conda activate LINGER
 pip install LingerGRN
 conda install bioconda::bedtools #Requirement
 ```
+For the following step, we run the code in python.
 ### Preprocess
 There are 2 options for the method we introduced above:
 1. baseline;
@@ -57,7 +58,9 @@ method='baseline'
 ```python
 method='LINGER'
 ```
-Transfer the sc-multiome data to anndata and filter the cell barcode by the cell type label. 
+#### Transfer the sc-multiome data to anndata  
+
+We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label.
 ```python
 import scanpy as sc
 #set some figure parameters for nice display inside jupyternotebooks.
@@ -72,16 +75,46 @@ matrix=scipy.io.mmread('data/filtered_feature_bc_matrix/matrix.mtx')
 features=pd.read_csv('data/filtered_feature_bc_matrix/features.tsv',sep='\t',header=None)
 barcodes=pd.read_csv('data/filtered_feature_bc_matrix/barcodes.tsv',sep='\t',header=None)
 label=pd.read_csv('data/PBMC_label.txt',sep='\t',header=0)
+from LingerGRN.preprocess import *
+adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
+```
+#### Remove low counts cells and genes
+```python
+import scanpy as sc
+sc.pp.filter_cells(adata_RNA, min_genes=200)
+sc.pp.filter_genes(adata_RNA, min_cells=3)
+sc.pp.filter_cells(adata_ATAC, min_genes=200)
+sc.pp.filter_genes(adata_ATAC, min_cells=3)
+selected_barcode=list(set(adata_RNA.obs['barcode'].values)&set(adata_ATAC.obs['barcode'].values))
+barcode_idx=pd.DataFrame(range(adata_RNA.shape[0]), index=adata_RNA.obs['barcode'].values)
+adata_RNA = adata_RNA[barcode_idx.loc[selected_barcode][0]]
+adata_ATAC = adata_ATAC[barcode_idx.loc[selected_barcode][0]]
+```
+#### Generate the pseudo-bulk/metacell:
+```python
+from pseudo_bulk import *
+adata_RNA,adata_ATAC=find_neighbors(adata_RNA,adata_ATAC)
+samplelist=list(set(adata_ATAC.obs['sample'].values)) # sample is generated from cell barcode 
+tempsample=samplelist[0]
+TG_pseudobulk=pd.DataFrame([])
+RE_pseudobulk=pd.DataFrame([])
+for tempsample in samplelist:
+    TG_pseudobulk_temp,RE_pseudobulk_temp=pseudo_bulk(adata_RNA[adata_RNA.obs['sample']==tempsample],adata_ATAC[adata_ATAC.obs['sample']==tempsample])                
+    TG_pseudobulk=pd.concat([TG_pseudobulk, TG_pseudobulk_temp], axis=1)
+    RE_pseudobulk=pd.concat([RE_pseudobulk, RE_pseudobulk_temp], axis=1)
+    RE_pseudobulk[RE_pseudobulk > 100] = 100
 
-RNA_file='RNA.txt'
-ATAC_file='ATAC.txt'
-label_file='label.txt'
-Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined above
+adata_ATAC.write('data/adata_ATAC.h5ad')
+adata_RNA.write('data/adata_RNA.h5ad')
+adata_ATAC.raw.var['gene_ids'].to_csv('data/Peaks.txt',header=None,index=None)
+TG_pseudobulk.to_csv('data/TG_pseudobulk.tsv')
+RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
+```
+Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
 GRNdir=Datadir+'data_bulk/'
 genome='hg38'
 outdir='/path/to/output/' #output dir
-from LingerGRN.preprocess import *
-preprocess(RNA_file,ATAC_file,label_file,Input_dir,GRNdir,genome,method,outdir)
+
 ```
 
 ### Training model
