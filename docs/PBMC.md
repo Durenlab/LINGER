@@ -113,12 +113,6 @@ RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ```
 ### Training model
 Overlap the region with general GRN:
-
-```python
-import LingerGRN.LINGER_tr as LINGER_tr
-activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
-LINGER_tr.training(GRNdir,Input_dir,method,outdir,activef)
-```
 ```
 from LingerGRN.preprocess import *
 Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
@@ -127,24 +121,31 @@ genome='hg38'
 outdir='/path/to/output/' #output dir
 preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
 ```
+Train for the LINGER model.
+```python
+import LingerGRN.LINGER_tr as LINGER_tr
+activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
+LINGER_tr.training(GRNdir,Input_dir,method,outdir,activef)
+```
+
 
 ### Cell population gene regulatory network
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score.
 ```python
 import LingerGRN.LL_net as LL_net
-LL_net.TF_RE_binding(Input_dir,GRNdir,RNA_file,ATAC_file,genome,method,outdir)
+LL_net.TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir)
 ```
 
 #### *cis*-regulatory network
 The output is 'cell_population_cis_regulatory.txt' with 3 columns: region, target gene, cis-regulatory score.
 ```python
-LL_net.cis_reg(Input_dir,GRNdir,RNA_file,ATAC_file,genome,method,outdir)
+LL_net.cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir)
 ```
 #### *trans*-regulatory network
 The output is 'cell_population_trans_regulatory.txt', a matrix of the trans-regulatory score.
 ```python
-LL_net.trans_reg(Input_dir,GRNdir,RNA_file,ATAC_file,method,outdir)
+LL_net.trans_reg(GRNdir,method,outdir)
 ```
 
 ### Cell type sepecific gene regulaory network
@@ -162,19 +163,19 @@ Please make sure that 'all' is not a cell type in your data.
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding_*celltype*.txt', a matrix of the TF-RE binding potential.
 ```python
-LL_net.cell_type_specific_TF_RE_binding(Input_dir,GRNdir,RNA_file,ATAC_file,label_file,genome,celltype,outdir)
+LL_net.cell_type_specific_TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,celltype,outdir)
 ```
 
 #### *cis*-regulatory network
 The output is 'cell_type_specific_cis_regulatory_{*celltype*}.txt' with 3 columns: region, target gene, cis-regulatory score.
 ```python
-LL_net.cell_type_specific_cis_reg(Input_dir,GRNdir,RNA_file,ATAC_file,label_file,genome,celltype,outdir)
+LL_net.cell_type_specific_cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,celltype,outdir)
 ```
 
 #### *trans*-regulatory network
 The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix of the trans-regulatory score.
 ```python
-LL_net.cell_type_specific_trans_reg(Input_dir,GRNdir,RNA_file,label_file,ATAC_file,celltype,outdir)
+LL_net.cell_type_specific_trans_reg(GRNdir,adata_RNA,ATAC_file,celltype,outdir)
 ```
 
 ## Note
