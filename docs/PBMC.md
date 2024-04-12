@@ -25,41 +25,19 @@ tar -xzf data_bulk.tar.gz
 ## Prepare the input data
 The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
 - Single-cell multiome data including matrix.mtx.gz, features.tsv.gz, and barcodes.tsv.gz.
-- Cell annotation/cell type label if you need the cell type specific gene regulatory network (label.txt in our example).
+- Cell annotation/cell type label if you need the cell type-specific gene regulatory network (PBMC_label.txt in our example).
+<div style="text-align: right">
+  <img src="label.png" alt="Image" width="100">
+</div>  
 
 ### sc data
-```python
-!mkdir -p data
-!wget -O data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz https://cf.10xgenomics.com/samples/cell-arc/2.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
-!tar -xzvf data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
-!mv filtered_feature_bc_matrix data/
-!gzip -d data/filtered_feature_bc_matrix/*
-```
-### ATAC-seq
-The row is the regulatory element/genomic region; the column is the barcode, which is in the same order as RNA-seq data; the value is the count matrix. Here is our example:
-<div style="text-align: right">
-  <img src="ATAC.png" alt="Image" width="500">
-</div>
-
-### Cell annotation/cell type label
-The row is cell barcode, which is the same order with RNA-seq data; there is one column 'Annotation', which is the cell type label. It could be a number or the string. Here is our example:
-<div style="text-align: right">
-  <img src="label.png" alt="Image" width="300">
-</div>
-
-### Provided input example 
-You can download the example input datasets into a certain directory. This sc multiome data of an in-silico mixture of H1, BJ, GM12878, and K562 cell lines from droplet-based single-nucleus chromatin accessibility and mRNA expression sequencing (SNARE-seq) data.
-
+We download the data in the command line.
 ```sh
-Input_dir=/path/to/dir/
-# The input data directory. Example: Input_dir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/LINGER/examples/
-cd $Input_dir
-#ATAC-seq
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1qmMudeixeRbYS8LCDJEuWxlAgeM0hC1r" -O ATAC.txt && rm -rf /tmp/cookies.txt
-#RNA-seq
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1dP4ITjQZiVDa52xfDTo5c14f9H0MsEGK' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1dP4ITjQZiVDa52xfDTo5c14f9H0MsEGK" -O RNA.txt && rm -rf /tmp/cookies.txt
-#label
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1ZeEp5GnWfQJxuAY0uK9o8s_uAvFsNPI5" -O label.txt && rm -rf /tmp/cookies.txt
+mkdir -p data
+wget -O data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz https://cf.10xgenomics.com/samples/cell-arc/2.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
+tar -xzvf data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
+mv filtered_feature_bc_matrix data/
+gzip -d data/filtered_feature_bc_matrix/*
 ```
 ## LINGER 
 ### Install
@@ -70,7 +48,7 @@ pip install LingerGRN
 conda install bioconda::bedtools #Requirement
 ```
 ### Preprocess
-There are 2 options of the method we introduced above:
+There are 2 options for the method we introduced above:
 1. baseline;
 ```python
 method='baseline'
@@ -79,14 +57,27 @@ method='baseline'
 ```python
 method='LINGER'
 ```
-Map the regions to the given regions by running the following code in Python. 
+Transfer the sc-multiome data to anndata and filter the cell barcode by the cell type label. 
 ```python
+import scanpy as sc
+#set some figure parameters for nice display inside jupyternotebooks.
+%matplotlib inline
+sc.settings.set_figure_params(dpi=80, frameon=False, figsize=(5, 5), facecolor='white')
+sc.settings.verbosity = 3  # verbosity: errors (0), warnings (1), info (2), hints (3)
+sc.logging.print_header()
+#results_file = "scRNA/pbmc10k.h5ad"
+import scipy
+import pandas as pd
+matrix=scipy.io.mmread('data/filtered_feature_bc_matrix/matrix.mtx')
+features=pd.read_csv('data/filtered_feature_bc_matrix/features.tsv',sep='\t',header=None)
+barcodes=pd.read_csv('data/filtered_feature_bc_matrix/barcodes.tsv',sep='\t',header=None)
+label=pd.read_csv('data/PBMC_label.txt',sep='\t',header=0)
+
 RNA_file='RNA.txt'
 ATAC_file='ATAC.txt'
 label_file='label.txt'
 Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined above
 GRNdir=Datadir+'data_bulk/'
-Input_dir= '/path/to/dir/'# input data dir
 genome='hg38'
 outdir='/path/to/output/' #output dir
 from LingerGRN.preprocess import *
