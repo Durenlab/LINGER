@@ -1,6 +1,6 @@
 # Construct the gene regulatory network
 ## Instruction
-This tutorial delineates an computational framework for constructing gene regulatory networks (GRNs) from single-cell multiome data. We provide 2 options to do this: '**baseline**' and '**LINGER**'. The first is a naive method combining the prior GRNs and features from the single-cell data, offering a rapid approach. LINGER integrates the comprehensive gene regulatory profile from external bulk data. As the following figure, LINGER use a lifelong machine learning (continuous learning) based on neural network (NN) models, which has been proven to leverage the knowledge learned in previous tasks to help learn the new task better.
+This tutorial delineates a computational framework for constructing gene regulatory networks (GRNs) from single-cell multiome data. We provide 2 options to do this: '**baseline**' and '**LINGER**'. The first is a naive method combining the prior GRNs and features from the single-cell data, offering a rapid approach. LINGER integrates the comprehensive gene regulatory profile from external bulk data. As the following figure, LINGER uses lifelong machine learning (continuous learning) based on neural network (NN) models, which has been proven to leverage the knowledge learned in previous tasks to help learn the new task better.
 <div style="text-align: right">
   <img src="LINGER.png" alt="Image" width="400">
 </div>
@@ -109,19 +109,23 @@ adata_RNA.write('data/adata_RNA.h5ad')
 adata_ATAC.raw.var['gene_ids'].to_csv('data/Peaks.txt',header=None,index=None)
 TG_pseudobulk.to_csv('data/TG_pseudobulk.tsv')
 RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
-```
-Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
-GRNdir=Datadir+'data_bulk/'
-genome='hg38'
-outdir='/path/to/output/' #output dir
 
 ```
-
 ### Training model
+Overlap the region with general GRN:
+
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
 LINGER_tr.training(GRNdir,Input_dir,method,outdir,activef)
+```
+```
+from LingerGRN.preprocess import *
+Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
+GRNdir=Datadir+'data_bulk/'
+genome='hg38'
+outdir='/path/to/output/' #output dir
+preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
 ```
 
 ### Cell population gene regulatory network
