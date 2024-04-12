@@ -44,7 +44,7 @@ gzip -d data/filtered_feature_bc_matrix/*
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.45
+pip install LingerGRN==1.46
 conda install bioconda::bedtools #Requirement
 ```
 For the following step, we run the code in python.
