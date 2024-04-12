@@ -125,7 +125,7 @@ Train for the LINGER model.
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
-LINGER_tr.training(GRNdir,Input_dir,method,outdir,activef)
+LINGER_tr.training(GRNdir,method,outdir,activef)
 ```
 
 
