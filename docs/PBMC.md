@@ -152,7 +152,7 @@ LL_net.trans_reg(GRNdir,method,outdir)
 There are 2 options:
 1. infer GRN for a specific cell type, which is in the label.txt;
 ```python
-celltype='0'#use a string to assign your cell type
+celltype='CD56 (bright) NK cells' #use a string to assign your cell type
 ```
 2. infer GRNs for all cell types.
 ```python
