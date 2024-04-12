@@ -113,7 +113,7 @@ RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ```
 ### Training model
 Overlap the region with general GRN:
-```
+```python
 from LingerGRN.preprocess import *
 Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
 GRNdir=Datadir+'data_bulk/'
