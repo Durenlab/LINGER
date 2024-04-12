@@ -92,7 +92,7 @@ adata_ATAC = adata_ATAC[barcode_idx.loc[selected_barcode][0]]
 ```
 #### Generate the pseudo-bulk/metacell:
 ```python
-from pseudo_bulk import *
+from LingerGRN.pseudo_bulk import *
 adata_RNA,adata_ATAC=find_neighbors(adata_RNA,adata_ATAC)
 samplelist=list(set(adata_ATAC.obs['sample'].values)) # sample is generated from cell barcode 
 tempsample=samplelist[0]
@@ -110,37 +110,41 @@ adata_ATAC.raw.var['gene_ids'].to_csv('data/Peaks.txt',header=None,index=None)
 TG_pseudobulk.to_csv('data/TG_pseudobulk.tsv')
 RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ```
-Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
-GRNdir=Datadir+'data_bulk/'
-genome='hg38'
-outdir='/path/to/output/' #output dir
-
-```
 
 ### Training model
+We first map the PBMCs to the provided general GRN
+```python
+from LingerGRN.preprocess import *
+Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
+GRNdir=Datadir+'data_bulk/' # for example GRNdir='/data2/duren_lab/Kaya/TF_TG_software/code/data_bulk/'
+genome='hg38'
+outdir='/path/to/output/' #output dir, for example outdir='/data2/duren_lab/Kaya/TF_TG_software/code/output/'
+method='LINGER'
+preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
+```
+Then we can train the sc-data
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
-LINGER_tr.training(GRNdir,Input_dir,method,outdir,activef)
+LINGER_tr.training(GRNdir,method,outdir,activef)
 ```
-
 ### Cell population gene regulatory network
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score.
 ```python
 import LingerGRN.LL_net as LL_net
-LL_net.TF_RE_binding(Input_dir,GRNdir,RNA_file,ATAC_file,genome,method,outdir)
+LL_net.TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir)
 ```
 
 #### *cis*-regulatory network
 The output is 'cell_population_cis_regulatory.txt' with 3 columns: region, target gene, cis-regulatory score.
 ```python
-LL_net.cis_reg(Input_dir,GRNdir,RNA_file,ATAC_file,genome,method,outdir)
+LL_net.cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir)
 ```
 #### *trans*-regulatory network
 The output is 'cell_population_trans_regulatory.txt', a matrix of the trans-regulatory score.
 ```python
-LL_net.trans_reg(Input_dir,GRNdir,RNA_file,ATAC_file,method,outdir)
+LL_net.trans_reg(GRNdir,method,outdir)
 ```
 
 ### Cell type sepecific gene regulaory network
@@ -153,24 +157,24 @@ celltype='0'#use a string to assign your cell type
 ```python
 celltype='all'
 ```
-Please make sure that 'all' is not a cell type in your data.
+Please ensure that 'all' is not a cell type in your data.
 
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding_*celltype*.txt', a matrix of the TF-RE binding potential.
 ```python
-LL_net.cell_type_specific_TF_RE_binding(Input_dir,GRNdir,RNA_file,ATAC_file,label_file,genome,celltype,outdir)
+LL_net.cell_type_specific_TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,celltype,outdir)
 ```
 
 #### *cis*-regulatory network
 The output is 'cell_type_specific_cis_regulatory_{*celltype*}.txt' with 3 columns: region, target gene, cis-regulatory score.
 ```python
-LL_net.cell_type_specific_cis_reg(Input_dir,GRNdir,RNA_file,ATAC_file,label_file,genome,celltype,outdir)
+LL_net.cell_type_specific_cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,celltype,outdir)
 ```
 
 #### *trans*-regulatory network
 The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix of the trans-regulatory score.
 ```python
-LL_net.cell_type_specific_trans_reg(Input_dir,GRNdir,RNA_file,label_file,ATAC_file,celltype,outdir)
+LL_net.cell_type_specific_trans_reg(GRNdir,adata_RNA,ATAC_file,celltype,outdir)
 ```
 
 ## Note
