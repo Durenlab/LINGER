@@ -119,7 +119,9 @@ Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined
 GRNdir=Datadir+'data_bulk/'
 genome='hg38'
 outdir='/path/to/output/' #output dir
-preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
+import os
+workdir=os.getcwd()
+preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir,workdir)
 ```
 Train for the LINGER model.
 ```python
