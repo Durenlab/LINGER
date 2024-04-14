@@ -21,20 +21,20 @@ network = '0' # 0 is the name of one cell type
 The input is gene expression data, It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN. The row of gene expresion data is gene, columns is sample and the value is read count (sc) or FPKM/RPKM (bulk).
 
 ```python
-Input_dir= '/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/LINGER/examples/'# input data dir
-RNA_file=Input_dir+'RNA.txt' # This is gene expression data, It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN.
+
 Datadir='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/'# this directory should be the same with Datadir
 GRNdir=Datadir+'data_bulk/'
 genome='hg38'
 from LingerGRN.TF_activity import *
 outdir='/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/LINGER/examples/output/' #output dir
-TF_activity=regulon(Input_dir,RNA_file,GRNdir,network,genome,outdir)
+import anndata
+adata_RNA=anndata.read_h5ad('data/adata_RNA.h5ad')
+TF_activity=regulon(outdir,adata_RNA,GRNdir,network,genome)
 ```
 Visualize the TF activity heatmap by cluster. If you want to save the heatmap to outdit, please set 'save=True'. The output is 'heatmap_activity.png'.
 ```python
 save=True
-labels=Input_dir+'label.txt'
-heatmap_cluster(TF_activity,labels,save,outdir)
+heatmap_cluster(TF_activity,adata_RNA,save,outdir)
 ```
 <div style="text-align: right">
   <img src="heatmap_activity.png" alt="Image" width="500">
@@ -55,7 +55,7 @@ For example,
 
 ```python
 celltype='0'
-t_test_results=master_regulator(TF_activity,Input_dir,labels,celltype)
+t_test_results=master_regulator(TF_activity,adata_RNA,celltype)
 t_test_results
 ```
 
