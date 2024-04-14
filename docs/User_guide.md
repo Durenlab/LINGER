@@ -39,6 +39,6 @@ Assuming the GRN structure is consistent across individuals, we employ LINGER in
 ### In silico pertubation
 We predict the gene expression when knock out one TF or several TFs together. Then we could predict the target gene after the perturbation.
 ## Tutorials
-- PBMCs example
+- [PBMCs](https://github.com/Durenlab/LINGER/blob/main/docs/PBMC.md)
 - H1 cell line
 - Non-human species
