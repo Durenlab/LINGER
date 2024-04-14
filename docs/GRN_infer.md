@@ -1,14 +1,5 @@
 # Construct the gene regulatory network
-## Instruction
-This tutorial delineates an computational framework for constructing gene regulatory networks (GRNs) from single-cell multiome data. We provide 2 options to do this: '**baseline**' and '**LINGER**'. The first is a naive method combining the prior GRNs and features from the single-cell data, offering a rapid approach. LINGER integrates the comprehensive gene regulatory profile from external bulk data. As the following figure, LINGER use a lifelong machine learning (continuous learning) based on neural network (NN) models, which has been proven to leverage the knowledge learned in previous tasks to help learn the new task better.
-<div style="text-align: right">
-  <img src="LINGER.png" alt="Image" width="400">
-</div>
-
-After constructing the GRNs for the cell population, we infer the cell type specific one using the feature engineering approach. Just as in the following figure, we combine the single cell data ($O, E$, and $C$ in the figure) and the prior gene regulatory network structure with the parameter $\alpha,\beta,d,B$, and $\gamma$.
-
-![Image Alt Text](feature_engineering.jpg)
-
+# Load data
 ## Download the general gene regulatory network 
 We provide the general gene regulatory network, please download the data first.
 ```sh
@@ -22,11 +13,10 @@ Then unzip，
 tar -xzf data_bulk.tar.gz
 ```
 
-## Prepare the input data
-The input data should be in the same directory (Input_dir in this tutorial), which includes: 
+## Input data
+The input data is anndata format. In this example, the input data is:
 - Single-cell multiome data including gene expression (RNA.txt in our example) and chromatin accessibility (ATAC.txt in our example).
 - Cell annotation/cell type label if you need the cell type specific gene regulatory network (label.txt in our example).
-
 ### RNA-seq
 The row of RNA-seq is gene symbol; the column is the barcode; the value is the count matrix. Here is our example:
 <div style="text-align: right">
