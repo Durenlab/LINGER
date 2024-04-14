@@ -38,3 +38,7 @@ We systematically assess the performance of the GRN by the metrics, AUC and AUPR
 Assuming the GRN structure is consistent across individuals, we employ LINGER inferred GRNs from sc-multiome data of a single individual to estimated TF activity using gene expression data alone from same or other individuals. By comparing TF activity between cases and controls, we identified driver regulators.
 ### In silico pertubation
 We predict the gene expression when knock out one TF or several TFs together. Then we could predict the target gene after the perturbation.
+## Tutorials
+- PBMCs example
+- H1 cell line
+- Non-human species
