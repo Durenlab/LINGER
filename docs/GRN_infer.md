@@ -32,7 +32,7 @@ The row is the regulatory element/genomic region; the column is the barcode, whi
 ### Cell annotation/cell type label
 The row is cell barcode, which is the same order with RNA-seq data; there is one column 'Annotation', which is the cell type label. It could be a number or the string. Here is our example:
 <div style="text-align: right">
-  <img src="label.png" alt="Image" width="300">
+  <img src="label.png" alt="Image" width="250">
 </div>
 
 ### Provided input example 
