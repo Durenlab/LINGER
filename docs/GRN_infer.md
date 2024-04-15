@@ -52,9 +52,9 @@ wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download
 ## LINGER 
 ### Install
 ```sh
-conda create -n LINGER python
+conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN
+pip install LingerGRN==1.49
 conda install bioconda::bedtools #Requirement
 ```
 ### Preprocess
