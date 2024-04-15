@@ -14,7 +14,7 @@ tar -xzf data_bulk.tar.gz
 ```
 
 ## Input data
-The input data is anndata format. In this example, the input data is:
+The input data should be anndata format. In this example, we need to transfer the following data type to anndata.
 - Single-cell multiome data including gene expression (RNA.txt in our example) and chromatin accessibility (ATAC.txt in our example).
 - Cell annotation/cell type label if you need the cell type specific gene regulatory network (label.txt in our example).
 ### RNA-seq
