@@ -199,7 +199,7 @@ network = 'cell population'
 ```
 3. If your gene expression data are matched with certain cell type, you can set network to the name of this cell type.
 ```python
-network = 'CD56 (bright) NK cells' # 0 is the name of one cell type
+network = 'CD56 (bright) NK cells' # CD56 (bright) NK cells is the name of one cell type
 ```
 
 ### Calculate TF activity
