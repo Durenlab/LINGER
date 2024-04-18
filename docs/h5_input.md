@@ -29,7 +29,9 @@ label
 <div style="text-align: right">
   <img src="label_PBMC.png" alt="Image" width="300">
 </div>
+
 ## get the input data for LINGER
+
 ```python
 import scipy.sparse as sp
 matrix=sp.vstack([adata_RNA.X.T, adata_ATAC.X.T])
