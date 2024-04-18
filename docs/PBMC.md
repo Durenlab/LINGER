@@ -30,7 +30,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
   <img src="label_PBMC.png" alt="Image" width="300">
 </div>  
 
-If the input data is h5ad file, please follow the instruction [h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) 
+If the input data is h5ad file, please follow the instruction [h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
 
 ### sc data
 We download the data using shell command line.
