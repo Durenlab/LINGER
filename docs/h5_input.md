@@ -10,10 +10,18 @@ label=pd.read_csv('label.txt',sep='\t',header=0)
 ```python
 adata_RNA
 ```
-
+<div style="text-align: right">
+  <img src="adata_RNA.png" alt="Image" width="500">
+</div>
 ```python
 adata_RNA
 ```
+<div style="text-align: right">
+  <img src="adata_ATAC" alt="Image" width="500">
+</div>
 ```python
 label
 ```
+<div style="text-align: right">
+  <img src="label_PBMC.png" alt="Image" width="300">
+</div>
