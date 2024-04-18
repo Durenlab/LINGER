@@ -16,11 +16,11 @@ adata_RNA
 </div>
 
 ```python
-adata_RNA
+adata_ATAC
 ```
 
 <div style="text-align: right">
-  <img src="adata_ATAC" alt="Image" width="500">
+  <img src="adata_ATAC.png" alt="Image" width="500">
 </div>
 
 ```python
