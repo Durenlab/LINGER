@@ -49,7 +49,7 @@ mv PBMC_label.txt data/
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.48
+pip install LingerGRN==1.52
 conda install bioconda::bedtools #Requirement
 ```
 For the following step, we run the code in python.
@@ -57,7 +57,7 @@ For the following step, we run the code in python.
 There are 2 options for the method we introduced above:
 1. baseline;
 ```python
-method='baseline'
+method='baseline' # this method is corresponding to bulkNN described in the paper
 ```
 2. LINGER;
 ```python
@@ -124,9 +124,7 @@ Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined
 GRNdir=Datadir+'data_bulk/'
 genome='hg38'
 outdir='/path/to/output/' #output dir
-import os
-workdir=os.getcwd()
-preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir,workdir)
+preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
 ```
 Train for the LINGER model.
 ```python
