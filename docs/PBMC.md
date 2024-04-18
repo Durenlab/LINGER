@@ -180,7 +180,7 @@ LL_net.cell_type_specific_cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,celltype,ou
 #### *trans*-regulatory network
 The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix of the trans-regulatory score.
 ```python
-LL_net.cell_type_specific_trans_reg(GRNdir,adata_RNA,ATAC_file,celltype,outdir)
+LL_net.cell_type_specific_trans_reg(GRNdir,adata_RNA,celltype,outdir)
 ```
 ## Identify driver regulators by TF activity
 ### Instruction
@@ -255,7 +255,7 @@ datatype='activity'
 celltype1='CD56 (bright) NK cells'
 celltype2='Others'
 save=True
-box_comp(TFName,labels,celltype1,celltype2,datatype,RNA_file,TF_activity,save,outdir)
+box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,regulon_score,save,outdir)
 ```
 
 <div style="text-align: right">
@@ -265,7 +265,7 @@ box_comp(TFName,labels,celltype1,celltype2,datatype,RNA_file,TF_activity,save,ou
 For gene expression data, the boxplot is:
 ```python
 datatype='expression'
-box_comp(TFName,labels,celltype1,celltype2,datatype,RNA_file,TF_activity,save,outdir)
+box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,regulon_score,save,outdir)
 ```
 
 <div style="text-align: right">
