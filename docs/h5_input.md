@@ -44,4 +44,4 @@ barcodes=pd.DataFrame(adata_RNA.obs['barcode'].values,columns=[0])
 from LingerGRN.preprocess import *
 adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
 ```
-The you can go back to the PBMC tutorial and continue with the 'Remove low counts cells and genes' step
+Then you could go back to the PBMC tutorial and continue with the 'Remove low counts cells and genes' step.
