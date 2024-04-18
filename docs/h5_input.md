@@ -29,7 +29,7 @@ label
 <div style="text-align: right">
   <img src="label_PBMC.png" alt="Image" width="300">
 </div>
-
+## get the input data for LINGER
 ```python
 import scipy.sparse as sp
 matrix=sp.vstack([adata_RNA.X.T, adata_ATAC.X.T])
@@ -39,4 +39,7 @@ N=K+adata_ATAC.shape[1]
 types = ['Gene Expression' if i <= K else 'Peaks' for i in range(0, N)]
 features[2]=types
 barcodes=pd.DataFrame(adata_RNA.obs['barcode'].values,columns=[0])
+from LingerGRN.preprocess import *
+adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
 ```
+The you can go back to the PBMC tutorial and continue with the 'Remove low counts cells and genes' step
