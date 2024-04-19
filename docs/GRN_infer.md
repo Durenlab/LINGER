@@ -61,7 +61,7 @@ conda install bioconda::bedtools #Requirement
 There are 2 options of the method we introduced above:
 1. baseline;
 ```python
-method='baseline'
+method='baseline' # this is corresponding to bulkNN
 ```
 2. LINGER;
 ```python
@@ -118,12 +118,21 @@ TG_pseudobulk.to_csv('data/TG_pseudobulk.tsv')
 RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ```
 ### Training model
+Overlap the region with general GRN:
+```python
+from LingerGRN.preprocess import *
+Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
+GRNdir=Datadir+'data_bulk/'
+genome='hg38'
+outdir='/path/to/output/' #output dir
+preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
+```
+Train for the LINGER model.
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
-LINGER_tr.training(GRNdir,Input_dir,method,outdir,activef)
+LINGER_tr.training(GRNdir,method,outdir,activef)
 ```
-
 ### Cell population gene regulatory network
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score.
