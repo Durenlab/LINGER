@@ -67,7 +67,25 @@ method='baseline'
 ```python
 method='LINGER'
 ```
-Map the regions to the given regions by running the following code in Python. 
+#### Tansfer sc-multiome data to anndata
+```python
+import pandas as pd
+label=pd.read_csv('data/label.txt',sep='\t',header=0,index_col=None)
+RNA=pd.read_csv('data/RNA.txt',sep='\t',header=0,index_col=0)
+ATAC=pd.read_csv('data/ATAC.txt',sep='\t',header=0,index_col=0)
+from scipy.sparse import csc_matrix
+# Convert the NumPy array to a sparse csc_matrix
+matrix = csc_matrix(pd.concat([RNA,ATAC],axis=0).values)
+features=pd.DataFrame(RNA.index.tolist()+ATAC.index.tolist(),columns=[1])
+K=RNA.shape[0]
+N=K+ATAC.shape[0]
+types = ['Gene Expression' if i <= K else 'Peaks' for i in range(0, N)]
+features[2]=types
+barcodes=pd.DataFrame(RNA.columns.values,columns=[0])
+from LingerGRN.preprocess import *
+adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
+```
+#### Remove low counts cells and genes 
 ```python
 RNA_file='RNA.txt'
 ATAC_file='ATAC.txt'
