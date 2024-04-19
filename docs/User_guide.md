@@ -40,5 +40,5 @@ Assuming the GRN structure is consistent across individuals, we employ LINGER in
 We predict the gene expression when knock out one TF or several TFs together. Then we could predict the target gene after the perturbation.
 ## Tutorials
 - [PBMCs](https://github.com/Durenlab/LINGER/blob/main/docs/PBMC.md)
-- H1 cell line
-- Non-human species
+- [H1 cell line](https://github.com/Durenlab/LINGER/blob/main/docs/GRN_infer.md)
+- [Non-human species](https://github.com/Durenlab/LINGER/blob/main/docs/scNN.md)
