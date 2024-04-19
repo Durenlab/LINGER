@@ -87,18 +87,36 @@ adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and ad
 ```
 #### Remove low counts cells and genes 
 ```python
-RNA_file='RNA.txt'
-ATAC_file='ATAC.txt'
-label_file='label.txt'
-Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined above
-GRNdir=Datadir+'data_bulk/'
-Input_dir= '/path/to/dir/'# input data dir
-genome='hg38'
-outdir='/path/to/output/' #output dir
-from LingerGRN.preprocess import *
-preprocess(RNA_file,ATAC_file,label_file,Input_dir,GRNdir,genome,method,outdir)
+import scanpy as sc
+sc.pp.filter_cells(adata_RNA, min_genes=200)
+sc.pp.filter_genes(adata_RNA, min_cells=3)
+sc.pp.filter_cells(adata_ATAC, min_genes=200)
+sc.pp.filter_genes(adata_ATAC, min_cells=3)
+selected_barcode=list(set(adata_RNA.obs['barcode'].values)&set(adata_ATAC.obs['barcode'].values))
+barcode_idx=pd.DataFrame(range(adata_RNA.shape[0]), index=adata_RNA.obs['barcode'].values)
+adata_RNA = adata_RNA[barcode_idx.loc[selected_barcode][0]]
+adata_ATAC = adata_ATAC[barcode_idx.loc[selected_barcode][0]]
 ```
+#### Generate the pseudo-bulk/metacell
+```python
+from pseudo_bulk import *
+adata_RNA,adata_ATAC=find_neighbors(adata_RNA,adata_ATAC)
+samplelist=list(set(adata_ATAC.obs['sample'].values)) # sample is generated from cell barcode 
+tempsample=samplelist[0]
+TG_pseudobulk=pd.DataFrame([])
+RE_pseudobulk=pd.DataFrame([])
+for tempsample in samplelist:
+    TG_pseudobulk_temp,RE_pseudobulk_temp=pseudo_bulk(adata_RNA[adata_RNA.obs['sample']==tempsample],adata_ATAC[adata_ATAC.obs['sample']==tempsample])                
+    TG_pseudobulk=pd.concat([TG_pseudobulk, TG_pseudobulk_temp], axis=1)
+    RE_pseudobulk=pd.concat([RE_pseudobulk, RE_pseudobulk_temp], axis=1)
+    RE_pseudobulk[RE_pseudobulk > 100] = 100
 
+adata_ATAC.write('data/adata_ATAC.h5ad')
+adata_RNA.write('data/adata_RNA.h5ad')
+adata_ATAC.raw.var['gene_ids'].to_csv('data/Peaks.txt',header=None,index=None)
+TG_pseudobulk.to_csv('data/TG_pseudobulk.tsv')
+RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
+```
 ### Training model
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
