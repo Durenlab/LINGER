@@ -1,6 +1,6 @@
 # h5ad file as input
 ## case1. 10x filtered feature barcode matrix
-### download h5ad file
+### download h5 file
 ```sh
 wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5
 ```
@@ -17,7 +17,8 @@ barcodes=pd.DataFrame(adata.obs_names,columns=[0])
 from LingerGRN.preprocess import *
 adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
 ```
-## Read H5AD file as an AnnData object
+## case2. seperate RNA and ATAC h5ad file
+### Read H5AD file as an AnnData object
 ```python
 import scanpy as sc
 adata_RNA = sc.read_h5ad('rna.h5ad')
@@ -48,7 +49,7 @@ label
   <img src="label_PBMC.png" alt="Image" width="300">
 </div>
 
-## get the input data for LINGER
+### get the input data for LINGER
 
 ```python
 import scipy.sparse as sp
