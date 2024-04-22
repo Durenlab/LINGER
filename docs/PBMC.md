@@ -99,7 +99,7 @@ adata_ATAC = adata_ATAC[barcode_idx.loc[selected_barcode][0]]
 ```
 #### Generate the pseudo-bulk/metacell:
 ```python
-from pseudo_bulk import *
+from LingerGRNpseudo_bulk import *
 adata_RNA,adata_ATAC=find_neighbors(adata_RNA,adata_ATAC)
 samplelist=list(set(adata_ATAC.obs['sample'].values)) # sample is generated from cell barcode 
 tempsample=samplelist[0]
