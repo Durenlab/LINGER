@@ -1,4 +1,22 @@
 # h5ad file as input
+## case1. 10x filtered feature barcode matrix
+### download h5ad file
+```sh
+wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5
+```
+### get the input data for LINGER
+```python
+import scanpy as sc
+adata = scanpy.read_10x_h5('pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5', gex_only=False)
+import scipy.sparse as sp
+import pandas as pd
+matrix=adata.X.T
+features=pd.DataFrame(adata.var['gene_ids'].values.tolist(),columns=[1])
+features[2]=adata.var['feature_types'].values
+barcodes=pd.DataFrame(adata.obs_names,columns=[0])
+from LingerGRN.preprocess import *
+adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
+```
 ## Read H5AD file as an AnnData object
 ```python
 import scanpy as sc
