@@ -11,6 +11,7 @@ adata = scanpy.read_10x_h5('pbmc_granulocyte_sorted_10k_filtered_feature_bc_matr
 import scipy.sparse as sp
 import pandas as pd
 matrix=adata.X.T
+adata.var['gene_ids']=adata.var.index
 features=pd.DataFrame(adata.var['gene_ids'].values.tolist(),columns=[1])
 features[2]=adata.var['feature_types'].values
 barcodes=pd.DataFrame(adata.obs_names,columns=[0])
