@@ -7,7 +7,7 @@ wget https://cf.10xgenomics.com/samples/cell-arc/1.0.0/pbmc_granulocyte_sorted_1
 ### get the input data for LINGER
 ```python
 import scanpy as sc
-adata = scanpy.read_10x_h5('pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5', gex_only=False)
+adata = sc.read_10x_h5('pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.h5', gex_only=False)
 import scipy.sparse as sp
 import pandas as pd
 matrix=adata.X.T
