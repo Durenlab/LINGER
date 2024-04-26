@@ -106,8 +106,11 @@ samplelist=list(set(adata_ATAC.obs['sample'].values)) # sample is generated from
 tempsample=samplelist[0]
 TG_pseudobulk=pd.DataFrame([])
 RE_pseudobulk=pd.DataFrame([])
+singlepseudobulk = (adata_RNA.obs['sample'].unique().shape[0]*adata_RNA.obs['sample'].unique().shape[0]>100)
 for tempsample in samplelist:
-    TG_pseudobulk_temp,RE_pseudobulk_temp=pseudo_bulk(adata_RNA[adata_RNA.obs['sample']==tempsample],adata_ATAC[adata_ATAC.obs['sample']==tempsample])                
+    adata_RNAtemp=adata_RNA[adata_RNA.obs['sample']==tempsample]
+    adata_ATACtemp=adata_ATAC[adata_ATAC.obs['sample']==tempsample]
+    TG_pseudobulk_temp,RE_pseudobulk_temp=pseudo_bulk(adata_RNAtemp,adata_ATACtemp,singlepseudobulk)                
     TG_pseudobulk=pd.concat([TG_pseudobulk, TG_pseudobulk_temp], axis=1)
     RE_pseudobulk=pd.concat([RE_pseudobulk, RE_pseudobulk_temp], axis=1)
     RE_pseudobulk[RE_pseudobulk > 100] = 100
