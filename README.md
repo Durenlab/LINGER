@@ -31,4 +31,4 @@ We provide several tutorials and user guide. If you find our tool useful for you
 ## Reference
 > If you use LINGER, please cite:
 > 
-> [Yuan, Qiuyue, and Zhana Duren. "Continuous lifelong learning for modeling of gene regulation from single cell multiome data by leveraging atlas-scale external data." bioRxiv (2023).](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10418251/)
+> [Yuan, Qiuyue, and Zhana Duren. "Inferring gene regulatory networks from single-cell multiome data using atlas-scale external data." Nature Biotechnology (2024): 1-11.](https://doi.org/10.1038/s41587-024-02182-7)
