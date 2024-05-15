@@ -53,7 +53,7 @@ mv PBMC_label.txt data/
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.56
+pip install LingerGRN==1.62
 conda install bioconda::bedtools #Requirement
 ```
 For the following step, we run the code in python.
@@ -177,7 +177,7 @@ Please make sure that 'all' is not a cell type in your data.
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding_*celltype*.txt', a matrix of the TF-RE binding potential.
 ```python
-LL_net.cell_type_specific_TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,celltype,outdir)
+LL_net.cell_type_specific_TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,celltype,outdir,method)# different from the previous version
 ```
 
 #### *cis*-regulatory network
