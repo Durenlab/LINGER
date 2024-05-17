@@ -278,7 +278,7 @@ box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,regulon_score,save,outdir
 ```
 
 <div style="text-align: right">
-  <img src="box_plot_ATF1_expression_0_Others.png" alt="Image" width="300">
+  <img src="box_plot_ATF1_expression_CD56 (bright) NK cells_Others.png" alt="Image" width="300">
 </div>
 
 ## Note
