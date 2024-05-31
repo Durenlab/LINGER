@@ -121,6 +121,8 @@ if not os.path.exists('data/'):
     os.mkdir('data/')
 adata_ATAC.write('data/adata_ATAC.h5ad')
 adata_RNA.write('data/adata_RNA.h5ad')
+TG_pseudobulk=TG_pseudobulk.fillna(0)
+RE_pseudobulk=RE_pseudobulk.fillna(0)
 pd.DataFrame(adata_ATAC.var['gene_ids']).to_csv('data/Peaks.txt',header=None,index=None)
 TG_pseudobulk.to_csv('data/TG_pseudobulk.tsv')
 RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
