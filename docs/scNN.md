@@ -8,8 +8,14 @@ We support for the following species:
 | dm6|fly|Drosophila_melanogaster|BDGP6|
 | dm3|fly|Drosophila_melanogaster|BDGP5|
 | rheMac8|rhesus|Macaca_mulatta|Mmul_8|
-
-
+|mm10|mouse|Mus_musculus|GRCm38|
+|mm9|mouse|Mus_musculus|NCBIM37|
+|rn5|rat|Rattus_norvegicus|Rnor_5|
+|rn6|rat|Rattus_norvegicus|Rnor_6|
+|susScr3|pig|Sus_scrofa|Sscrofa10|
+|susScr11|pig|Sus_scrofa|Sscrofa11|
+|fr3|fugu|Takifugu_rubripes|FUGU5|
+|xenTro9|frog|Xenopus_tropicalis|Xenopus_tropicalis_v9|
 ## Download the general gene regulatory network 
 We provide the general gene regulatory network, please download the data first.
 ```sh
