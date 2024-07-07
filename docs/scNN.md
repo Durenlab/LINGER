@@ -1,5 +1,14 @@
 # Other species tutorial
 We support for the following species:
+|genome_short  | species | species_ensembl | genome |
+| --- | --- | --- | --- |
+| canFam3 | dog | Canis_lupus_familiaris |CanFam3  | 
+| danRer11|zebrafish|Danio_rerio|GRCz11|
+|danRer10|zebrafish|Danio_rerio|GRCz10|
+| dm6|fly|Drosophila_melanogaster|BDGP6|
+| dm3|fly|Drosophila_melanogaster|BDGP5|
+| rheMac8|rhesus|Macaca_mulatta|Mmul_8|
+
 
 ## Download the general gene regulatory network 
 We provide the general gene regulatory network, please download the data first.
