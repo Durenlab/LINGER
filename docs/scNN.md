@@ -34,7 +34,7 @@ tar -xzf data_bulk.tar.gz
 We take sc data of mm10 as an examle. The data is from the published paper [].
 The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
 - Single-cell multiome data including matrix.mtx.gz, features.tsv.gz, and barcodes.tsv.gz.
-- Cell annotation/cell type label if you need the cell type-specific gene regulatory network (PBMC_label.txt in our example).
+- Cell annotation/cell type label if you need the cell type-specific gene regulatory network (label.txt in our example).
 <div style="text-align: right">
   <img src="label_PBMC.png" alt="Image" width="300">
 </div>  
