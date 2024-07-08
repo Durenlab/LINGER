@@ -16,8 +16,8 @@ We support for the following species:
 |susScr11|pig|Sus_scrofa|Sscrofa11|
 |fr3|fugu|Takifugu_rubripes|FUGU5|
 |xenTro9|frog|Xenopus_tropicalis|Xenopus_tropicalis_v9|
-## Download the general gene regulatory network 
-We provide the general gene regulatory network, please download the data first.
+## Download the provided data 
+We provide the TSS location for the above genome and the motif information.
 ```sh
 Datadir=/path/to/LINGER/# the directory to store the data please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
 mkdir $Datadir
@@ -30,3 +30,15 @@ Then unzip，
 ```sh
 tar -xzf data_bulk.tar.gz
 ```
+## Prepare the input data
+We take sc data of mm10 as an examle. The data is from the published paper [].
+The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
+- Single-cell multiome data including matrix.mtx.gz, features.tsv.gz, and barcodes.tsv.gz.
+- Cell annotation/cell type label if you need the cell type-specific gene regulatory network (PBMC_label.txt in our example).
+<div style="text-align: right">
+  <img src="label_PBMC.png" alt="Image" width="300">
+</div>  
+
+If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
+
+
