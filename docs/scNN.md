@@ -22,16 +22,17 @@ We provide the TSS location for the above genome and the motif information.
 Datadir=/path/to/LINGER/# the directory to store the data please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
 mkdir $Datadir
 cd $Datadir
-wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1lAlzjU5BYbpbr4RHMlAGDOh9KWdCMQpS'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1lAlzjU5BYbpbr4RHMlAGDOh9KWdCMQpS" -O data_bulk.tar.gz && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1rRs98J_t6PjMZM6vVB8R7DiKEAfV7_JD'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1rRs98J_t6PjMZM6vVB8R7DiKEAfV7_JD" -O provide_data.tar.gz && rm -rf /tmp/cookies.txt
 ```
-or use the following link: [https://drive.google.com/file/d/1lAlzjU5BYbpbr4RHMlAGDOh9KWdCMQpS/view?usp=sharing](https://drive.google.com/file/d/1lAlzjU5BYbpbr4RHMlAGDOh9KWdCMQpS/view?usp=sharing)
+or use the following link: [https://drive.google.com/file/d/1rRs98J_t6PjMZM6vVB8R7DiKEAfV7_JD/view?usp=sharing](https://drive.google.com/file/d/1rRs98J_t6PjMZM6vVB8R7DiKEAfV7_JD/view?usp=sharing)
 
 Then unzip，
 ```sh
-tar -xzf data_bulk.tar.gz
+tar -xzf provide_data.tar.gz
 ```
 ## Prepare the input data
-We take sc data of mm10 as an examle. The data is from the published paper [].
+We take sc data of mm10 as an examle. The data is from the published paper (FOXA2 drives lineage plasticity and KIT pathway
+activation in neuroendocrine prostate cancer).
 The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
 - Single-cell multiome data including matrix.mtx.gz, features.tsv.gz, and barcodes.tsv.gz.
 - Cell annotation/cell type label if you need the cell type-specific gene regulatory network (label.txt in our example).
@@ -60,7 +61,7 @@ mv PBMC_label.txt data/
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.67
+pip install LingerGRN==1.87
 conda install bioconda::bedtools #Requirement
 ```
 For the following step, we run the code in python.
