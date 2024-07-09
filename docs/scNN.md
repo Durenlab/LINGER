@@ -303,7 +303,7 @@ box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,TF_activity,save,outdir)
 ```
 
 <div style="text-align: right">
-  <img src="box_plot_ATF1_expression_1_Others.png" alt="Image" width="300">
+  <img src="box_plot_Erg_expression_1_Others.png" alt="Image" width="300">
 </div>
 
 
