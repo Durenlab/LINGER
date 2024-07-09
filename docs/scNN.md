@@ -223,4 +223,87 @@ The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix o
 ```python
 LL_net.cell_type_specific_trans_reg(GRNdir,adata_RNA,celltype,outdir)
 ```
+## Identify driver regulators by TF activity
+### Instruction
+TF activity, focusing on the DNA-binding component of TF proteins in the nucleus, is a more reliable metric than mRNA or whole protein expression for identifying driver regulators. Here, we employed LINGER inferred GRNs from sc-multiome data of a single individual. Assuming the GRN structure is consistent across individuals, we estimated TF activity using gene expression data alone. By comparing TF activity between cases and controls, we identified driver regulators. 
+
+### Prepare
+We need to *trans*-regulatory network, you can choose a network match you data best.
+1. If there is not single cell avaliable to infer the cell population and cell type specific GRN, you can choose a GRN from various tissues.
+```python
+network = 'general'
+```
+2. If your gene expression data are matched with cell population GRN, you can set
+```python
+network = 'cell population'
+```
+3. If your gene expression data are matched with certain cell type, you can set network to the name of this cell type.
+```python
+network = 'CD56 (bright) NK cells' # CD56 (bright) NK cells is the name of one cell type
+```
+
+### Calculate TF activity
+The input is gene expression data, It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN. The row of gene expresion data is gene, columns is sample and the value is read count (sc) or FPKM/RPKM (bulk).
+
+```python
+from LingerGRN.TF_activity import *
+TF_activity=regulon(outdir,adata_RNA,GRNdir,network,genome)
+```
+Visualize the TF activity heatmap by cluster. If you want to save the heatmap to outdit, please set 'save=True'. The output is 'heatmap_activity.png'.
+```python
+save=True
+heatmap_cluster(TF_activity,adata_RNA,save,outdir)
+```
+<div style="text-align: right">
+  <img src="heatmap_activity_mm10.png" alt="Image" width="500">
+</div>
+
+### Identify driver regulator
+We use t-test to find the differential TFs of a certain cell type by the activity. 
+1. You can assign a certain cell type of the gene expression data by
+```python
+celltype='1'
+```
+2. Or, you can obtain the result for all cell types.
+```python
+celltype='all'
+```
+
+For example,
+
+```python
+celltype='1'
+t_test_results=master_regulator(TF_activity,adata_RNA,celltype)
+t_test_results
+```
+
+<div style="text-align: right">
+  <img src="PBMCs_ttest.png" alt="Image" width="300">
+</div>
+
+Visulize the differential activity and expression. You can compare 2 different cell types and one cell type with other cell types. If you want to save the heatmap to outdit, please set 'save=True'. The output is 'box_plot'_+TFName+'_'+datatype+'_'+celltype1+'_'+celltype2+'.png'.
+
+```python
+TFName='ATF1'
+datatype='activity'
+celltype1='CD56 (bright) NK cells'
+celltype2='Others'
+save=True
+box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,regulon_score,save,outdir)
+```
+
+<div style="text-align: right">
+  <img src="PBMCs_box_plot_ATF1_activity_CD56 (bright) NK cells_Others.png" alt="Image" width="300">
+</div>
+
+For gene expression data, the boxplot is:
+```python
+datatype='expression'
+box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,TF_activity,save,outdir)
+```
+
+<div style="text-align: right">
+  <img src="box_plot_ATF1_expression_CD56 (bright) NK cells_Others.png" alt="Image" width="300">
+</div>
+
 
