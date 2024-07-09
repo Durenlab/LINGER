@@ -22,9 +22,9 @@ We provide the TSS location for the above genome and the motif information.
 Datadir=/path/to/LINGER/# the directory to store the data please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
 mkdir $Datadir
 cd $Datadir
-wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1rRs98J_t6PjMZM6vVB8R7DiKEAfV7_JD'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1rRs98J_t6PjMZM6vVB8R7DiKEAfV7_JD" -O provide_data.tar.gz && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1V6Ds2P6SStLQJDpne-Ga-RkRZ9dfUjpR'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1V6Ds2P6SStLQJDpne-Ga-RkRZ9dfUjpR" -O provide_data.tar.gz && rm -rf /tmp/cookies.txt
 ```
-or use the following link: [https://drive.google.com/file/d/1rRs98J_t6PjMZM6vVB8R7DiKEAfV7_JD/view?usp=sharing](https://drive.google.com/file/d/1rRs98J_t6PjMZM6vVB8R7DiKEAfV7_JD/view?usp=sharing)
+or use the following link: [https://drive.google.com/file/d/1V6Ds2P6SStLQJDpne-Ga-RkRZ9dfUjpR/view?usp=sharing](https://drive.google.com/file/d/1V6Ds2P6SStLQJDpne-Ga-RkRZ9dfUjpR/view?usp=sharing)
 
 Then unzip，
 ```sh
@@ -37,7 +37,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 - Single-cell multiome data including matrix.mtx.gz, features.tsv.gz, and barcodes.tsv.gz.
 - Cell annotation/cell type label if you need the cell type-specific gene regulatory network (label.txt in our example).
 <div style="text-align: right">
-  <img src="label_PBMC.png" alt="Image" width="300">
+  <img src="barcode_mm10.png" alt="Image" width="300">
 </div>  
 
 If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
@@ -46,8 +46,9 @@ If the input data is 10X h5 file or h5ad file from scanpy, please follow the ins
 We download the data using shell command line.
 ```sh
 mkdir -p data
-wget -O data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz https://cf.10xgenomics.com/samples/cell-arc/2.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
-tar -xzvf data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
+cd data
+wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1PDOmtO2oL-YVxKQY26jL91SAFedDALA0'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1PDOmtO2oL-YVxKQY26jL91SAFedDALA0" -O mm10_data.tar.gz && rm -rf /tmp/cookies.txt
+tar -xzvf mm10_data.tar.gz
 mv filtered_feature_bc_matrix data/
 gzip -d data/filtered_feature_bc_matrix/*
 ```
