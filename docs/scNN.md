@@ -62,22 +62,11 @@ mv mm10_label.txt data/
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.87
+pip install LingerGRN==1.91
 conda install bioconda::bedtools #Requirement
 ```
 For the following step, we run the code in python.
-### Preprocess
-There are 2 options for the method we introduced above:
-1. baseline;
-```python
-method='baseline' # this method is corresponding to bulkNN described in the paper
-```
-2. LINGER;
-```python
-method='LINGER'
-```
 #### Transfer the sc-multiome data to anndata  
-
 We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label.
 ```python
 import scanpy as sc
@@ -216,3 +205,4 @@ The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix o
 ```python
 LL_net.cell_type_specific_trans_reg(GRNdir,adata_RNA,celltype,outdir)
 ```
+
