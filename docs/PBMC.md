@@ -276,7 +276,7 @@ box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,regulon_score,save,outdir
 For gene expression data, the boxplot is:
 ```python
 datatype='expression'
-box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,regulon_score,save,outdir)
+box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,TF_activity,save,outdir)
 ```
 
 <div style="text-align: right">
