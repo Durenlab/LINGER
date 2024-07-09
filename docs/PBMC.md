@@ -29,7 +29,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 - Single-cell multiome data including matrix.mtx.gz, features.tsv.gz, and barcodes.tsv.gz.
 - Cell annotation/cell type label if you need the cell type-specific gene regulatory network (PBMC_label.txt in our example).
 <div style="text-align: right">
-  <img src="barcode_mm10.png" alt="Image" width="300">
+  <img src="label_PBMC.png" alt="Image" width="300">
 </div>  
 
 If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
@@ -38,16 +38,15 @@ If the input data is 10X h5 file or h5ad file from scanpy, please follow the ins
 We download the data using shell command line.
 ```sh
 mkdir -p data
-cd data
-wget 
-tar -xzvf mm10_data.tar.gz
+wget -O data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz https://cf.10xgenomics.com/samples/cell-arc/2.0.0/pbmc_granulocyte_sorted_10k/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
+tar -xzvf data/pbmc_granulocyte_sorted_10k_filtered_feature_bc_matrix.tar.gz
 mv filtered_feature_bc_matrix data/
 gzip -d data/filtered_feature_bc_matrix/*
 ```
 We provide the cell annotation as following:
 ```sh
-wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=/1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=/1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4" -O mm10_label.txt && rm -rf /tmp/cookies.txt
-mv mm10_label.txt data/
+wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=17PXkQJr8fk0h90dCkTi3RGPmFNtDqHO_' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=17PXkQJr8fk0h90dCkTi3RGPmFNtDqHO_" -O PBMC_label.txt && rm -rf /tmp/cookies.txt
+mv PBMC_label.txt data/
 ```
 ## LINGER 
 ### Install
@@ -81,10 +80,10 @@ sc.logging.print_header()
 #results_file = "scRNA/pbmc10k.h5ad"
 import scipy
 import pandas as pd
-matrix=scipy.io.mmread('data/matrix.mtx')
-features=pd.read_csv('data/features.tsv',sep='\t',header=None)
-barcodes=pd.read_csv('data/barcodes.tsv',sep='\t',header=None)
-label=pd.read_csv('data/mm10_label.txt',sep='\t',header=0)
+matrix=scipy.io.mmread('data/filtered_feature_bc_matrix/matrix.mtx')
+features=pd.read_csv('data/filtered_feature_bc_matrix/features.tsv',sep='\t',header=None)
+barcodes=pd.read_csv('data/filtered_feature_bc_matrix/barcodes.tsv',sep='\t',header=None)
+label=pd.read_csv('data/PBMC_label.txt',sep='\t',header=0)
 from LingerGRN.preprocess import *
 adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
 ```
