@@ -141,7 +141,7 @@ Overlap the region with general GRN:
 ```python
 from LingerGRN.preprocess import *
 Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
-GRNdir=Datadir+'data_bulk/'
+GRNdir=Datadir+'provide_data/'
 genome='hg38'
 outdir='/path/to/output/' #output dir
 preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
