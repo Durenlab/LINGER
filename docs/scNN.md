@@ -278,18 +278,18 @@ t_test_results
 ```
 
 <div style="text-align: right">
-  <img src="PBMCs_ttest.png" alt="Image" width="300">
+  <img src="ttest_mm10.png" alt="Image" width="300">
 </div>
 
 Visulize the differential activity and expression. You can compare 2 different cell types and one cell type with other cell types. If you want to save the heatmap to outdit, please set 'save=True'. The output is 'box_plot'_+TFName+'_'+datatype+'_'+celltype1+'_'+celltype2+'.png'.
 
 ```python
-TFName='ATF1'
+TFName='Erg'
 datatype='activity'
-celltype1='CD56 (bright) NK cells'
+celltype1='1'
 celltype2='Others'
 save=True
-box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,regulon_score,save,outdir)
+box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,TF_activity,save,outdir)
 ```
 
 <div style="text-align: right">
@@ -303,7 +303,7 @@ box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,TF_activity,save,outdir)
 ```
 
 <div style="text-align: right">
-  <img src="box_plot_ATF1_expression_CD56 (bright) NK cells_Others.png" alt="Image" width="300">
+  <img src="box_plot_ATF1_expression_1_Others.png" alt="Image" width="300">
 </div>
 
 
