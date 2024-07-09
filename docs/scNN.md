@@ -89,10 +89,10 @@ sc.logging.print_header()
 #results_file = "scRNA/pbmc10k.h5ad"
 import scipy
 import pandas as pd
-matrix=scipy.io.mmread('data/filtered_feature_bc_matrix/matrix.mtx')
-features=pd.read_csv('data/filtered_feature_bc_matrix/features.tsv',sep='\t',header=None)
-barcodes=pd.read_csv('data/filtered_feature_bc_matrix/barcodes.tsv',sep='\t',header=None)
-label=pd.read_csv('data/PBMC_label.txt',sep='\t',header=0)
+matrix=scipy.io.mmread('data/matrix.mtx')
+features=pd.read_csv('data/features.txt',sep='\t',header=None)
+barcodes=pd.read_csv('data/barcodes.txt',sep='\t',header=None)
+label=pd.read_csv('data/mm10_label.txt',sep='\t',header=0)
 from LingerGRN.preprocess import *
 adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
 ```
