@@ -180,14 +180,21 @@ celltype='all'
 ```
 Please make sure that 'all' is not a cell type in your data.
 #### Motif matching
+##### Install homer
 Check whether homer is installed
 ```sh
 which homer # run this in command line
 ```
 If homer is not installed, use conda to install it
 ```sh
-conda 
+conda install bioconda::homer
 ```
+###### install genome
+```sh
+which homer
+perl /path-to-homer/configureHomer.pl -install mm8
+command='paste data/Peaks.bed data/Peaks.txt > data/region.txt'
+subprocess.run(command, shell=True)
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding_*celltype*.txt', a matrix of the TF-RE binding potential.
 ```python
