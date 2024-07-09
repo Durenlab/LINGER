@@ -139,12 +139,18 @@ RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ### Training model
 Overlap the region with general GRN:
 ```python
-from LingerGRN.preprocess import *
 Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
 GRNdir=Datadir+'provide_data/'
-genome='hg38'
+genome='mm10'
 outdir='/path/to/output/' #output dir
-preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
+activef='ReLU' 
+method='scNN'
+import torch
+import subprocess
+import os
+import LingerGRN.LINGER_tr as LINGER_tr
+LINGER_tr.get_TSS(GRNdir,genome,200000) # Here, 200000 represent the largest distance of regulatory element to the TG. Other distance is supported
+LINGER_tr.RE_TG_dis(outdir)
 ```
 Train for the LINGER model.
 ```python
@@ -170,21 +176,29 @@ LL_net.cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir)
 #### *trans*-regulatory network
 The output is 'cell_population_trans_regulatory.txt', a matrix of the trans-regulatory score.
 ```python
-LL_net.trans_reg(GRNdir,method,outdir)
+LL_net.trans_reg(GRNdir,method,outdir,genome)
 ```
 
 ### Cell type sepecific gene regulaory network
 There are 2 options:
 1. infer GRN for a specific cell type, which is in the label.txt;
 ```python
-celltype='CD56 (bright) NK cells' #use a string to assign your cell type
+celltype='1' #use a string to assign your cell type
 ```
 2. infer GRNs for all cell types.
 ```python
 celltype='all'
 ```
 Please make sure that 'all' is not a cell type in your data.
-
+#### Motif matching
+Check whether homer is installed
+```sh
+which homer # run this in command line
+```
+If homer is not installed, use conda to install it
+```sh
+conda 
+```
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding_*celltype*.txt', a matrix of the TF-RE binding potential.
 ```python
