@@ -22,10 +22,8 @@ We provide the TSS location for the above genome and the motif information.
 Datadir=/path/to/LINGER/# the directory to store the data please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
 mkdir $Datadir
 cd $Datadir
-wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1V6Ds2P6SStLQJDpne-Ga-RkRZ9dfUjpR'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1V6Ds2P6SStLQJDpne-Ga-RkRZ9dfUjpR" -O provide_data.tar.gz && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1Hvy2m1YxNpGmCJD6-hSXbrjIKoqrCKqs'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Hvy2m1YxNpGmCJD6-hSXbrjIKoqrCKqs" -O provide_data.tar.gz && rm -rf /tmp/cookies.txt
 ```
-or use the following link: [https://drive.google.com/file/d/1V6Ds2P6SStLQJDpne-Ga-RkRZ9dfUjpR/view?usp=sharing](https://drive.google.com/file/d/1V6Ds2P6SStLQJDpne-Ga-RkRZ9dfUjpR/view?usp=sharing)
-
 Then unzip，
 ```sh
 tar -xzf provide_data.tar.gz
@@ -64,6 +62,27 @@ conda create -n LINGER python==3.10.0
 conda activate LINGER
 pip install LingerGRN==1.91
 conda install bioconda::bedtools #Requirement
+```
+### Install homer
+Check whether homer is installed
+```sh
+which homer # run this in command line
+```
+If homer is not installed, use conda to install it
+```sh
+conda install bioconda::homer
+```
+#### install genome
+You can check the installed genome
+```sh
+dir=$(which homer)
+dir_path=$(dirname "$dir")
+ls $dir_path/../share/homer/data/genomes/  # this is the installed genomes
+```
+If the genome is not installed, use the following shell script to install.
+```sh
+genome='mm10'
+perl $dir_path/../share/homer/configureHomer.pl -install genome
 ```
 For the following step, we run the code in python.
 #### Transfer the sc-multiome data to anndata  
@@ -147,8 +166,6 @@ import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
 LINGER_tr.training(GRNdir,method,outdir,activef)
 ```
-
-
 ### Cell population gene regulatory network
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score.
@@ -180,21 +197,14 @@ celltype='all'
 ```
 Please make sure that 'all' is not a cell type in your data.
 #### Motif matching
-##### Install homer
-Check whether homer is installed
-```sh
-which homer # run this in command line
-```
-If homer is not installed, use conda to install it
-```sh
-conda install bioconda::homer
-```
-###### install genome
-```sh
-which homer
-perl /path-to-homer/configureHomer.pl -install mm8
 command='paste data/Peaks.bed data/Peaks.txt > data/region.txt'
 subprocess.run(command, shell=True)
+import pandas as pd
+genome_map=pd.read_csv(GRNdir+'genome_map_homer.txt',sep='\t',header=0)
+genome_map.index=genome_map['genome_short']
+command='findMotifsGenome.pl data/region.txt '+'mm10'+' ./. -size given -find '+GRNdir+'all_motif_rmdup_'+genome_map.loc[genome]['Motif']+'> '+outdir+'MotifTarget.bed'
+subprocess.run(command, shell=True)
+Now, you can 
 #### TF binding potential
 The output is 'cell_population_TF_RE_binding_*celltype*.txt', a matrix of the TF-RE binding potential.
 ```python
