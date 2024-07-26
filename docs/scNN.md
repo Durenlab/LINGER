@@ -164,7 +164,10 @@ Train for the LINGER model.
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
-LINGER_tr.training(GRNdir,method,outdir,activef)
+genomemap=pd.read_csv(GRNdir+'genome_map_homer.txt',sep='\t')
+genomemap.index=genomemap['genome_short']
+species=genomemap.loc[genome]['species_ensembl']
+LINGER_tr.training(GRNdir,method,outdir,activef,species)
 ```
 ### Cell population gene regulatory network
 #### TF binding potential
