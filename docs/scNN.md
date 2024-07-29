@@ -232,15 +232,11 @@ TF activity, focusing on the DNA-binding component of TF proteins in the nucleus
 
 ### Prepare
 We need to *trans*-regulatory network, you can choose a network match you data best.
-1. If there is not single cell avaliable to infer the cell population and cell type specific GRN, you can choose a GRN from various tissues.
-```python
-network = 'general'
-```
-2. If your gene expression data are matched with cell population GRN, you can set
+1. If your gene expression data are matched with cell population GRN, you can set
 ```python
 network = 'cell population'
 ```
-3. If your gene expression data are matched with certain cell type, you can set network to the name of this cell type.
+2. If your gene expression data are matched with certain cell type, you can set network to the name of this cell type.
 ```python
 network = 'CD56 (bright) NK cells' # CD56 (bright) NK cells is the name of one cell type
 ```
