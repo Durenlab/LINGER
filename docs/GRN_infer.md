@@ -100,21 +100,28 @@ adata_ATAC = adata_ATAC[barcode_idx.loc[selected_barcode][0]]
 ```
 #### Generate the pseudo-bulk/metacell
 ```python
-from pseudo_bulk import *
-adata_RNA,adata_ATAC=find_neighbors(adata_RNA,adata_ATAC)
+from LingerGRN.pseudo_bulk import *
 samplelist=list(set(adata_ATAC.obs['sample'].values)) # sample is generated from cell barcode 
 tempsample=samplelist[0]
 TG_pseudobulk=pd.DataFrame([])
 RE_pseudobulk=pd.DataFrame([])
+singlepseudobulk = (adata_RNA.obs['sample'].unique().shape[0]*adata_RNA.obs['sample'].unique().shape[0]>100)
 for tempsample in samplelist:
-    TG_pseudobulk_temp,RE_pseudobulk_temp=pseudo_bulk(adata_RNA[adata_RNA.obs['sample']==tempsample],adata_ATAC[adata_ATAC.obs['sample']==tempsample])                
+    adata_RNAtemp=adata_RNA[adata_RNA.obs['sample']==tempsample]
+    adata_ATACtemp=adata_ATAC[adata_ATAC.obs['sample']==tempsample]
+    TG_pseudobulk_temp,RE_pseudobulk_temp=pseudo_bulk(adata_RNAtemp,adata_ATACtemp,singlepseudobulk)                
     TG_pseudobulk=pd.concat([TG_pseudobulk, TG_pseudobulk_temp], axis=1)
     RE_pseudobulk=pd.concat([RE_pseudobulk, RE_pseudobulk_temp], axis=1)
     RE_pseudobulk[RE_pseudobulk > 100] = 100
 
+import os
+if not os.path.exists('data/'):
+    os.mkdir('data/')
 adata_ATAC.write('data/adata_ATAC.h5ad')
 adata_RNA.write('data/adata_RNA.h5ad')
-adata_ATAC.raw.var['gene_ids'].to_csv('data/Peaks.txt',header=None,index=None)
+TG_pseudobulk=TG_pseudobulk.fillna(0)
+RE_pseudobulk=RE_pseudobulk.fillna(0)
+pd.DataFrame(adata_ATAC.var['gene_ids']).to_csv('data/Peaks.txt',header=None,index=None)
 TG_pseudobulk.to_csv('data/TG_pseudobulk.tsv')
 RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ```
