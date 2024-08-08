@@ -95,6 +95,7 @@ sc.pp.filter_genes(adata_ATAC, min_cells=3)
 selected_barcode=list(set(adata_RNA.obs['barcode'].values)&set(adata_ATAC.obs['barcode'].values))
 barcode_idx=pd.DataFrame(range(adata_RNA.shape[0]), index=adata_RNA.obs['barcode'].values)
 adata_RNA = adata_RNA[barcode_idx.loc[selected_barcode][0]]
+barcode_idx=pd.DataFrame(range(adata_ATAC.shape[0]), index=adata_ATAC.obs['barcode'].values)
 adata_ATAC = adata_ATAC[barcode_idx.loc[selected_barcode][0]]
 ```
 #### Generate the pseudo-bulk/metacell
