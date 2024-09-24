@@ -161,7 +161,7 @@ LL_net.cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir)
 #### *trans*-regulatory network
 The output is 'cell_population_trans_regulatory.txt', a matrix of the trans-regulatory score.
 ```python
-LL_net.trans_reg(GRNdir,method,outdir)
+LL_net.trans_reg(GRNdir,method,outdir,genome)
 ```
 
 ### Cell type sepecific gene regulaory network
