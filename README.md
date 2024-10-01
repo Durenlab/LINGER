@@ -15,7 +15,7 @@ LINGER can be installed by pip
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.92
+pip install LingerGRN==1.96
 conda install bioconda::bedtools # Requirment
 ```
 ## Documentation
