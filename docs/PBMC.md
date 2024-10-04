@@ -266,7 +266,7 @@ datatype='activity'
 celltype1='CD56 (bright) NK cells'
 celltype2='Others'
 save=True
-box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,regulon_score,save,outdir)
+box_comp(TFName,adata_RNA,celltype1,celltype2,datatype,TF_activity,save,outdir)
 ```
 
 <div style="text-align: right">
