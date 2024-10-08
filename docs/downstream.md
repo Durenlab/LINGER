@@ -12,7 +12,7 @@ This is an example of the input.
 ```python
 import pandas as pd
 TG_pseudobulk = pd.read_csv('data/TG_pseudobulk.tsv',sep=',',header=0,index_col=0)
-TG_pseudobulk = TG_pseudobulk[~TG_pseudobulk.index.str.startswith('mt-')]
+TG_pseudobulk = TG_pseudobulk[~TG_pseudobulk.index.str.startswith('MT-')] # remove the mitochondrion, if the specie is mouse, replace 'MT-' with 'mt-'
 import scanpy as sc
 adata_RNA = sc.read_h5ad('data/adata_RNA.h5ad')
 label_all = adata_RNA.obs[['barcode','sample','label']]
