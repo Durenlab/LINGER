@@ -19,5 +19,6 @@ label_all=adata_RNA.obs[['barcode','sample','label']]
 label_all.index=label_all['barcode']
 metadata=label_all.loc[TG_pseudobulk.columns]
 metadata.columns=['barcode','group','celltype']
+outdir='output/'
 ```
 ## Driver Score
