@@ -20,5 +20,7 @@ label_all.index=label_all['barcode']
 metadata=label_all.loc[TG_pseudobulk.columns]
 metadata.columns=['barcode','group','celltype']
 outdir='output/'
+GWASfile=['AUD_gene.txt','AUD_gene2.txt']# GWAS file is a gene list with no head (Optional)
 ```
+
 ## Driver Score
