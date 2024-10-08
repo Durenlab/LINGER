@@ -3,10 +3,10 @@
 For this analysis, we first detect key TF-TG subnetworks (modules) from the cell population TF–TG trans-regulation. Then, we identify the differential regulatory modules differentially expressed from the case and control groups.
 ### Detect Module
 #### Input
-- pseudobulk gene expression [TG_pseudobulk], 
-- metadata including case and control['group'], and cell type annotation['celltype'] [metadata],
+- pseudobulk gene expression: [TG_pseudobulk], 
+- metadata including case and control in column 'group' and cell type annotation in column 'celltype': [metadata],
 - LINGER outdir including a trans-regulatory network, 'cell_population_trans_regulatory.txt',
-- GWAS data, which is not necessary.
+- GWAS data file, which is not necessary.
 
 This is an example of the input.
 ```python
@@ -22,5 +22,10 @@ metadata.columns=['barcode','group','celltype']
 outdir='output/'
 GWASfile=['AUD_gene.txt','AUD_gene2.txt']# GWAS file is a gene list with no head (Optional)
 ```
-
+```python
+TG_pseudobulk
+```
+```python
+metadata
+```
 ## Driver Score
