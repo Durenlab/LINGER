@@ -125,8 +125,8 @@ r("pdf('test.pdf',width=1.5+dim(dataP)[2]/3,height=3)")
 r('print(p)')
 r('dev.off()')
 ```
-The 
+The figure is saved to test.pdf.
 <div style="text-align: right">
-  <img src="tvalue_all.png" alt="Image" width="400">
+  <img src="tvalue_all.png" alt="Image" width="300">
 </div>
 ## Driver Score
