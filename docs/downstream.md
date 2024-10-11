@@ -35,7 +35,7 @@ metadata
 <div style="text-align: right">
   <img src="metadata_ds.jpg" alt="Image" width="300">
 </div>
-
+#### output
 ```python
 K=10 #k is the number of modules, a tunning parameter
 Module_result=Module_trans(outdir,metadata,TG_pseudobulk,K,GWASfile)
@@ -61,6 +61,71 @@ Module_result.pvalue_all
 ```python
 Module_result.tvalue_all
 ```
+<div style="text-align: right">
+  <img src="tvalue_all.png" alt="Image" width="400">
+</div>
+
+#### visualize
+Please make sure that the r packages: ggplot2, grid, tidyr, egg are well-installed. Note that 'cutoff' is a parameter, representing the cutoff of -log10(p-value). We suggest 'cutoff = 2' as a default.
+```python
+# Import the rpy2 components needed
+import os
+os.environ['R_HOME'] = '/data2/duren_lab/Kaya/conda_envs/LINGER/lib/R'  # Replace with your actual R home path
+import rpy2.robjects as robjects
+from rpy2.robjects import r
+# Import the R plotting package (ggplot2 as an example)
+r('library(ggplot2)')
+r('library(grid)')
+# Create data in R environment through Python
+r('''
+library(tidyr)
+dataP=read.table('pvalue_all.txt',sep='\t',header=TRUE,row.names=1)
+dataT=read.table('tvalue_all.txt',sep='\t',header=TRUE,row.names=1)
+dataP=-log10(dataP)
+dataP$TF=rownames(dataP)
+dataT$TF=rownames(dataT)
+longdiff0 <- gather(dataP, sample, value,-TF)
+longdiff1 <- gather(dataT, sample, value,-TF)
+colnames(longdiff1)=c('TF','celltype','T')
+longdiff1$P=longdiff0$value
+longdiff1$TF=factor(longdiff1$TF,levels=rev(longdiff1$TF[1:10]))
+print(longdiff1[1:10,])
+''')
+# R code for plotting using ggplot
+r('''
+cutoff=1 # here 
+maxp=ceiling(max(longdiff1$P))
+limits0=c(cutoff,maxp)
+range0=c(1,(maxp-cutoff+1))*4/(maxp-cutoff+1)
+breaks0=(cutoff+1):(maxp-1)
+print(limits0)
+print(range0)
+print(breaks0)
+''')
+
+# Print the plot to display it
+r('''
+library(ggplot2)
+library(egg)
+p=ggplot(longdiff1,aes(x = celltype, y = TF))+
+geom_point(aes(size = P, fill = T), alpha = 1, shape = 21) + 
+  scale_size_continuous(limits = limits0, range = range0, breaks = breaks0) + 
+  labs( x= "cell type", y = "Module", fill = "")  + theme_article()+
+  theme(legend.key=element_blank(), 
+  axis.text.x = element_text(colour = "black", size = 9, face = "bold", angle = 90, vjust = 0.3, hjust = 1), 
+  axis.text.y = element_text(colour = "black", face = "bold", size = 11), 
+  legend.text = element_text(size = 9, face ="bold", colour ="black"), 
+  legend.title = element_text(size = 9, face = "bold"), 
+  panel.background = element_blank(), panel.border = element_rect(colour = "black", fill = NA, size = 1.2), 
+  legend.position = "right") +  
+  scale_fill_gradient2(midpoint=0, low="blue", mid="white",
+                     high="red", space ="Lab" )
+''')
+r("pdf('test.pdf',width=1.5+dim(dataP)[2]/3,height=3)")
+r('print(p)')
+r('dev.off()')
+```
+The 
 <div style="text-align: right">
   <img src="tvalue_all.png" alt="Image" width="400">
 </div>
