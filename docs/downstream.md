@@ -42,6 +42,26 @@ Module_result=Module_trans(outdir,metadata,TG_pseudobulk,K,GWASfile)
 ```
 The output is Module_result object. There are 3 items in this object: 
 - S_TG, which representing the module assigned for eahc gene;
-- pvalue_all is the p-value of the differential module t-test comparing the case and control groups;
-- t_value is the t-value of the t-test, positive value representing group 1 is more active, and negative value representing group 0 is more active.
+- pvalue_all, the p-value of the differential module t-test comparing the case and control groups;
+- t_value, the t-value of the t-test, positive value representing group 1 is more active, and negative value representing group 0 is more active.
+```python
+Module_result.S_TG
+```
+<div style="text-align: right">
+  <img src="S_TG.png" alt="Image" width="100">
+</div>
+
+```python
+Module_result.pvalue_all
+```
+<div style="text-align: right">
+  <img src="pvalue_all.png" alt="Image" width="400">
+</div>
+
+```python
+Module_result.tvalue_all
+```
+<div style="text-align: right">
+  <img src="tvalue_all.png" alt="Image" width="400">
+</div>
 ## Driver Score
