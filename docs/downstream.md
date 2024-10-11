@@ -4,7 +4,7 @@ For this analysis, we first detect key TF-TG subnetworks (modules) from the cell
 ### Detect Module
 #### Input
 - pseudobulk gene expression: [TG_pseudobulk], please make sure the data is after removing batch effect
-- metadata including case and control in column 'group' and cell type annotation in column 'celltype': [metadata],
+- metadata including case and control in column 'group' and cell type annotation in column 'celltype': [metadata]. Note that the case is 1 and the control is 1.
 - LINGER outdir including a trans-regulatory network, 'cell_population_trans_regulatory.txt',
 - GWAS data file, which is not necessary.
 
@@ -30,10 +30,14 @@ TG_pseudobulk
 </div>
 
 ```python
-metadata
+metadata 
 ```
 <div style="text-align: right">
   <img src="metadata_ds.jpg" alt="Image" width="300">
 </div>
-
+```python
+K=10 #k is the number of modules, a tunning parameter
+Module_result=Module_trans(outdir,metadata,TG_pseudobulk,K,GWASfile)
+```
+The output is Module_result object. There are 3 items in this object: S_TG, which representing the module assigned for eahc gene; pvalue_all is the p-value of the differential module test comparing the case and control groups
 ## Driver Score
