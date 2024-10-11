@@ -127,6 +127,6 @@ r('dev.off()')
 ```
 The figure is saved to test.pdf.
 <div style="text-align: right">
-  <img src="tvalue_all.png" alt="Image" width="300">
+  <img src="module_result.png" alt="Image" width="300">
 </div>
 ## Driver Score
