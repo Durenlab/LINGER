@@ -26,12 +26,12 @@ GWASfile = ['AUD_gene.txt','AUD_gene2.txt']# GWAS file is a gene list with no he
 TG_pseudobulk
 ```
 <div style="text-align: right">
-  <img src="RNA_ds.jpg" alt="Image" width="400">
+  <img src="RNA_ds.jpg" alt="Image" width="600">
 </div>
 ```python
 metadata
 ```
 <div style="text-align: right">
-  <img src="metadata_ds.jpg" alt="Image" width="200">
+  <img src="metadata_ds.jpg" alt="Image" width="300">
 </div>
 ## Driver Score
