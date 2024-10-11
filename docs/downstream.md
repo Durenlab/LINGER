@@ -188,9 +188,9 @@ geom_point(aes(size = P, fill = PCC), alpha = 1, shape = 21) +
 
 ''')
 ```
-The figure is saved to buble_RNA_sp.pdf.
+The figure is saved to driver_trans.pdf.
 <div style="text-align: right">
-  <img src="module_result.png" alt="Image" width="300">
+  <img src="driver_trans.png" alt="Image" width="300">
 </div>
 ### Epigenetic driver score
 ```python
