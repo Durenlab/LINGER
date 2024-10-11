@@ -40,5 +40,8 @@ metadata
 K=10 #k is the number of modules, a tunning parameter
 Module_result=Module_trans(outdir,metadata,TG_pseudobulk,K,GWASfile)
 ```
-The output is Module_result object. There are 3 items in this object: S_TG, which representing the module assigned for eahc gene; pvalue_all is the p-value of the differential module test comparing the case and control groups. 
+The output is Module_result object. There are 3 items in this object: 
+- S_TG, which representing the module assigned for eahc gene;
+- pvalue_all is the p-value of the differential module t-test comparing the case and control groups;
+- t_value is the t-value of the t-test, positive value representing group 1 is more active, and negative value representing group 0 is more active.
 ## Driver Score
