@@ -121,11 +121,11 @@ geom_point(aes(size = P, fill = T), alpha = 1, shape = 21) +
   scale_fill_gradient2(midpoint=0, low="blue", mid="white",
                      high="red", space ="Lab" )
 ''')
-r("pdf('test.pdf',width=1.5+dim(dataP)[2]/3,height=3)")
+r("pdf('module_result.pdf',width=1.5+dim(dataP)[2]/3,height=3)")
 r('print(p)')
 r('dev.off()')
 ```
-The figure is saved to test.pdf.
+The figure is saved to module_result.pdf.
 <div style="text-align: right">
   <img src="module_result.png" alt="Image" width="300">
 </div>
@@ -142,6 +142,56 @@ C_result_RNA_sp_r,Q_result_RNA_sp_r=driver_result(C_result_RNA_sp,Q_result_RNA_s
 C_result_RNA_sp_r.to_csv('C_result_RNA_sp_r.txt',sep='\t')
 Q_result_RNA_sp_r.to_csv('Q_result_RNA_sp_r.txt',sep='\t')
 ```
+### visualize
+```python
+import os
+os.environ['R_HOME'] = '/data2/duren_lab/Kaya/conda_envs/LINGER/lib/R'  # Replace with your actual R home path
+import rpy2.robjects as robjects
+from rpy2.robjects import r
+# Import the R plotting package (ggplot2 as an example)
+r('library(ggplot2)')
+r('library(grid)')
+# Create data in R environment through Python
+r('''
+dataP=read.table('Q_result_RNA_sp_r.txt',sep='\t',row.names=1,header=TRUE)
+dataT=read.table('C_result_RNA_sp_r.txt',sep='\t',row.names=1,header=TRUE)
+sort_TF=rownames(dataT)
+library(tidyr)
+dataP=-log10(dataP)
+print(paste0('maxinum of -log10P:',max(dataP)))
+dataP[dataP>40]=40
+dataP1=dataP
+dataP1$TF=rownames(dataP)
+longdiff0 <- gather(dataP1, sample, value,-TF)
+longdiff0_s <- longdiff0[order(longdiff0$TF, longdiff0$sample), ]
+dataT1=dataT
+dataT1$TF=rownames(dataT)
+longdiff1=gather(dataT1, sample, value,-TF)
+longdiff1=longdiff1[order(longdiff1$TF, longdiff1$sample), ]
+colnames(longdiff1)=c('TF','celltype','PCC')
+longdiff1$P=longdiff0_s$value
+longdiff1$TF=factor(longdiff1$TF,levels=rev(sort_TF))
+library(egg)
+limits0=c(2,ceiling(dataP))
+range0 = c(1,4)
+breaks0 = c(2,(ceiling(dataP)-2)*1/4+2,(ceiling(dataP)-2)*2/4+2,(ceiling(dataP)-2)*3/4+2,ceiling(dataP))
+p=ggplot(longdiff1,aes(x = celltype, y = TF))+
+geom_point(aes(size = P, fill = PCC), alpha = 1, shape = 21) + 
+  scale_size_continuous(limits = c(4, 40), range = c(1,5), breaks = c(4,10,20,30,40)) + 
+  labs( x= "cell type", y = "TF", fill = "")  + theme_article()+
+  theme(legend.key=element_blank(), 
+  axis.text.x = element_text( size = 9, face = "bold", angle = 0, vjust = 0.3, hjust = 1), 
+  legend.position = "right") + 
+  scale_fill_gradient2(midpoint=0, low="blue", mid="white",
+                     high="red", space ="Lab" )
+
+
+''')
+```
+The figure is saved to buble_RNA_sp.pdf.
+<div style="text-align: right">
+  <img src="module_result.png" alt="Image" width="300">
+</div>
 ### Epigenetic driver score
 ```python
 RE_pseudobulk=pd.read_csv('data/RE_pseudobulk.tsv',sep=',',header=0,index_col=0)
