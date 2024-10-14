@@ -192,6 +192,7 @@ The figure is saved to driver_trans.pdf.
 <div style="text-align: right">
   <img src="driver_trans.png" alt="Image" width="400">
 </div>
+
 ### Epigenetic driver score
 ```python
 RE_pseudobulk=pd.read_csv('data/RE_pseudobulk.tsv',sep=',',header=0,index_col=0)
