@@ -88,13 +88,12 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 - PWM matrix file of motifs, 'all_motif.txt'
   <div style="text-align: right">
   <img src="PWM.jpg" alt="Image" width="400">
-</div>  
-
+  </div>  
 - Motif-TF match file, 'MotifMatch.txt', mapping motif and TFs
   <div style="text-align: right">
   <img src="motifmatch.png" alt="Image" width="300">
-</div>  
-
+  </div>  
+- genome_map file, 'genome_map_homer_file.txt'
 ### sc data
 If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
 We download the data using the shell command line.
@@ -141,12 +140,19 @@ genome='mm10'
 perl $dir_path/../share/homer/configureHomer.pl -install $genome
 ```
 For the following step, we run the code in python.
+#### Input 
+```python
+GRNdir='path/to/current_dir/' # The dir we currently use; the sc data is in GRNdir/data/
+gtf_file='*.gtf'# gtf, PWM matrix, and Motif-TF match file should be included in the GRNdir
+PWM_file='all_motif.txt'
+MotifMatch_file='MotifMatch.txt'
+genome='mm10' # the genome of your data
+```
 #### Transfer the sc-multiome data to anndata  
 We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label.
 ```python
 import scanpy as sc
-#set some figure parameters for nice display inside jupyternotebooks.
-%matplotlib inline
+#set some figure parameters for nice display inside Jupiter notebooks.
 sc.settings.set_figure_params(dpi=80, frameon=False, figsize=(5, 5), facecolor='white')
 sc.settings.verbosity = 3  # verbosity: errors (0), warnings (1), info (2), hints (3)
 sc.logging.print_header()
@@ -203,9 +209,6 @@ RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ### Training model
 Overlap the region with general GRN:
 ```python
-Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
-GRNdir=Datadir+'provide_data/'
-genome='mm10'
 outdir='/path/to/output/' #output dir
 activef='ReLU' 
 method='scNN'
