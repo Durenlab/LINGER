@@ -206,7 +206,7 @@ subprocess.run(command, shell=True)
 import pandas as pd
 genome_map=pd.read_csv(GRNdir+'genome_map_homer.txt',sep='\t',header=0)
 genome_map.index=genome_map['genome_short']
-command='findMotifsGenome.pl data/region.txt '+'mm10'+' ./. -size given -find '+GRNdir+'all_motif_rmdup_'+genome_map.loc[genome]['Motif']+'> '+outdir+'MotifTarget.bed'
+command='findMotifsGenome.pl data/region.txt '+genome+' ./. -size given -find '+GRNdir+'all_motif_rmdup_'+genome_map.loc[genome]['Motif']+'> '+outdir+'MotifTarget.bed'
 subprocess.run(command, shell=True)
 ```
 #### TF binding potential
