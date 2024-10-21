@@ -19,7 +19,7 @@ We support for the following species:
 ## Download the provided data 
 We provide the TSS location for the above genome and the motif information.
 ```sh
-Datadir=/path/to/LINGER/# the directory to store the data please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
+Datadir=/path/to/LINGER/# the directory to store the data, please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
 mkdir $Datadir
 cd $Datadir
 wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1Hvy2m1YxNpGmCJD6-hSXbrjIKoqrCKqs'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1Hvy2m1YxNpGmCJD6-hSXbrjIKoqrCKqs" -O provide_data.tar.gz && rm -rf /tmp/cookies.txt
@@ -29,7 +29,7 @@ Then unzip，
 tar -xzf provide_data.tar.gz
 ```
 ## Prepare the input data
-We take sc data of mm10 as an examle. The data is from the published paper (FOXA2 drives lineage plasticity and KIT pathway
+We take the sc data of mm10 as an example. The data is from the published paper (FOXA2 drives lineage plasticity and KIT pathway
 activation in neuroendocrine prostate cancer).
 The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
 - Single-cell multiome data including matrix.mtx, features.tsv/features.txt, and barcodes.tsv/barcodes.txt
@@ -41,7 +41,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
 
 ### sc data
-We download the data using shell command line.
+We download the data using the shell command line.
 ```sh
 mkdir -p data
 cd data
@@ -50,7 +50,7 @@ tar -xzvf mm10_data.tar.gz
 mv mm10_data/* ./
 cd ../
 ```
-We provide the cell annotation as following:
+We provide the cell annotation as follows:
 ```sh
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4" -O mm10_label.txt && rm -rf /tmp/cookies.txt
 mv mm10_label.txt data/
@@ -60,15 +60,15 @@ mv mm10_label.txt data/
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.92
+pip install LingerGRN==1.96
 conda install bioconda::bedtools #Requirement
 ```
 ### Install homer
 Check whether homer is installed
 ```sh
-which homer # run this in command line
+which homer # run this in the command line
 ```
-If homer is not installed, use conda to install it
+If homer is not installed, use Conda to install it
 ```sh
 conda install bioconda::homer
 ```
@@ -79,10 +79,10 @@ dir=$(which homer)
 dir_path=$(dirname "$dir")
 ls $dir_path/../data/genomes/  # this is the installed genomes
 ```
-If the genome is not installed, use the following shell script to install.
+If the genome is not installed, use the following shell script to install it.
 ```sh
 genome='mm10'
-perl $dir_path/../configureHomer.pl -install genome
+perl $dir_path/../configureHomer.pl -install $genome
 ```
 For the following step, we run the code in python.
 #### Transfer the sc-multiome data to anndata  
