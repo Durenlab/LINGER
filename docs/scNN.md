@@ -77,7 +77,7 @@ You can check the installed genome
 ```sh
 dir=$(which homer)
 dir_path=$(dirname "$dir")
-ls $dir_path/../data/genomes/  # this is the installed genomes
+ls $dir_path/../share/homer/data/genomes/  # this is the installed genomes, if no genome is installed, there will be an error 'No such file or directory'
 ```
 If the genome is not installed, use the following shell script to install it.
 ```sh
