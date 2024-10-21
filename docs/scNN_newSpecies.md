@@ -1,76 +1,80 @@
 # Other species not in the list
 Here, we provide tutorial for the species which is not included in the given list but in the basic Homer installation:
--	tair10	v6.0	arabidopsis genome and annotation (tair10)
--	dm6	v7.0	fly genome and annotation for UCSC dm6
--	xenTro3	v6.4	frog genome and annotation for UCSC xenTro3
--	danRer11	v7.0	zebrafish genome and annotation for UCSC danRer11
--	rn7	v7.0	rat genome and annotation for UCSC rn7
--	canFam3	v6.4	dog genome and annotation for UCSC canFam3
--	anoGam3	v7.0	mosquito genome and annotation for UCSC anoGam3
--	gorGor3	v6.4	human genome and annotation for UCSC gorGor3
--	strPur2	v7.0	urchin genome and annotation for UCSC strPur2
--	rn5	v6.4	rat genome and annotation for UCSC rn5
--	rheMac10	v7.0	rhesus genome and annotation for UCSC rheMac10
--	danRer7	v6.4	zebrafish genome and annotation for UCSC danRer7
--	canFam5	v7.0	dog genome and annotation for UCSC canFam5
--	gorGor6	v7.0	human genome and annotation for UCSC gorGor6
--	canFam6	v7.0	dog genome and annotation for UCSC canFam6
--	apiMel2	v7.0	bee genome and annotation for UCSC apiMel2
--	gorGor5	v6.4	human genome and annotation for UCSC gorGor5
--	panTro4	v6.4	human genome and annotation for UCSC panTro4
--	xenTro7	v6.4	frog genome and annotation for UCSC xenTro7
--	rheMac2	v6.4	rhesus genome and annotation for UCSC rheMac2
--	gorGor4	v6.4	human genome and annotation for UCSC gorGor4
--	panTro5	v6.4	human genome and annotation for UCSC panTro5
--	panPan2	v6.4	human genome and annotation for UCSC panPan2
--	patens.ASM242v1	v5.10	patens genome and annotation (patens.ASM242v1)
--	panTro6	v7.0	human genome and annotation for UCSC panTro6
--	AGPv3	v5.10	corn genome and annotation (AGPv3)
--	xenTro9	v6.4	frog genome and annotation for UCSC xenTro9
--	papAnu2	v6.4	human genome and annotation for UCSC papAnu2
--	corn.AGPv3	v5.10	corn genome and annotation (corn.AGPv3)
--	petMar2	v6.4	lamprey genome and annotation for UCSC petMar2
--	panPan1	v6.4	human genome and annotation for UCSC panPan1
--	fr3	v7.0	fugu genome and annotation for UCSC fr3
--	sacCer3	v7.0	yeast genome and annotation for UCSC sacCer3
--	mm9	v7.0	mouse genome and annotation for UCSC mm9
--	susScr3	v6.4	pig genome and annotation for UCSC susScr3
--	hg17	v7.0	human genome and annotation for UCSC hg17
--	panTro3	v6.4	human genome and annotation for UCSC panTro3
--	tetNig2	v7.0	fugu genome and annotation for UCSC tetNig2
--	mm10	v7.0	mouse genome and annotation for UCSC mm10
--	taeGut2	v7.0	zebrafinch genome and annotation for UCSC taeGut2
--	hg18	v7.0	human genome and annotation for UCSC hg18
--	susScr11	v7.0	pig genome and annotation for UCSC susScr11
--	galGal5	v6.4	chicken genome and annotation for UCSC galGal5
--	hg38	v7.0	human genome and annotation for UCSC hg38
--	mm8	v6.4	mouse genome and annotation for UCSC mm8
--	xenLae2	v7.0	frog genome and annotation for UCSC xenLae2
--	rn6	v7.0	rat genome and annotation for UCSC rn6
--	ce11	v7.0	worm genome and annotation for UCSC ce11
--	dm3	v7.0	fly genome and annotation for UCSC dm3
--	rheMac3	v6.4	rhesus genome and annotation for UCSC rheMac3
--	rn4	v6.4	rat genome and annotation for UCSC rn4
--	rice.IRGSP-1.0	v5.10	rice genome and annotation (rice.IRGSP-1.0)
--	panPan3	v7.0	human genome and annotation for UCSC panPan3
--	galGal6	v7.0	chicken genome and annotation for UCSC galGal6
--	danRer10	v7.0	zebrafish genome and annotation for UCSC danRer10
--	ci2	v7.0	ciona genome and annotation for UCSC ci2
--	petMar3	v7.0	lamprey genome and annotation for UCSC petMar3
--	sacCer2	v7.0	yeast genome and annotation for UCSC sacCer2
--	hg19	v7.0	human genome and annotation for UCSC hg19
--	xenTro10	v7.0	frog genome and annotation for UCSC xenTro10
--	rheMac8	v6.4	rhesus genome and annotation for UCSC rheMac8
--	mm39	v7.0	mouse genome and annotation for UCSC mm39
--	ce10	v7.0	worm genome and annotation for UCSC ce10
--	aplCal1	v6.4	seahare genome and annotation for UCSC aplCal1
--	xenTro2	v6.4	frog genome and annotation for UCSC xenTro2
--	papAnu4	v7.0	human genome and annotation for UCSC papAnu4
--	ce6	v7.0	worm genome and annotation for UCSC ce6
--	ci3	v7.0	ciona genome and annotation for UCSC ci3
--	apiMel3	v7.0	bee genome and annotation for UCSC apiMel3
--	anoGam1	v7.0	mosquito genome and annotation for UCSC anoGam1
--	galGal4	v6.4	chicken genome and annotation for UCSC galGal4
+
+| **Genome Version**  | **Release** | **Description**                                           |
+|---------------------|-------------|-----------------------------------------------------------|
+| tair10              | v6.0        | Arabidopsis genome and annotation (tair10)                |
+| dm6                 | v7.0        | Fly genome and annotation for UCSC dm6                    |
+| xenTro3             | v6.4        | Frog genome and annotation for UCSC xenTro3               |
+| danRer11            | v7.0        | Zebrafish genome and annotation for UCSC danRer11         |
+| rn7                 | v7.0        | Rat genome and annotation for UCSC rn7                    |
+| canFam3             | v6.4        | Dog genome and annotation for UCSC canFam3                |
+| anoGam3             | v7.0        | Mosquito genome and annotation for UCSC anoGam3           |
+| gorGor3             | v6.4        | Human genome and annotation for UCSC gorGor3              |
+| strPur2             | v7.0        | Urchin genome and annotation for UCSC strPur2             |
+| rn5                 | v6.4        | Rat genome and annotation for UCSC rn5                    |
+| rheMac10            | v7.0        | Rhesus genome and annotation for UCSC rheMac10            |
+| danRer7             | v6.4        | Zebrafish genome and annotation for UCSC danRer7          |
+| canFam5             | v7.0        | Dog genome and annotation for UCSC canFam5                |
+| gorGor6             | v7.0        | Human genome and annotation for UCSC gorGor6              |
+| canFam6             | v7.0        | Dog genome and annotation for UCSC canFam6                |
+| apiMel2             | v7.0        | Bee genome and annotation for UCSC apiMel2                |
+| gorGor5             | v6.4        | Human genome and annotation for UCSC gorGor5              |
+| panTro4             | v6.4        | Human genome and annotation for UCSC panTro4              |
+| xenTro7             | v6.4        | Frog genome and annotation for UCSC xenTro7               |
+| rheMac2             | v6.4        | Rhesus genome and annotation for UCSC rheMac2             |
+| gorGor4             | v6.4        | Human genome and annotation for UCSC gorGor4              |
+| panTro5             | v6.4        | Human genome and annotation for UCSC panTro5              |
+| panPan2             | v6.4        | Human genome and annotation for UCSC panPan2              |
+| patens.ASM242v1     | v5.10       | Patens genome and annotation (patens.ASM242v1)            |
+| panTro6             | v7.0        | Human genome and annotation for UCSC panTro6              |
+| AGPv3               | v5.10       | Corn genome and annotation (AGPv3)                        |
+| xenTro9             | v6.4        | Frog genome and annotation for UCSC xenTro9               |
+| papAnu2             | v6.4        | Human genome and annotation for UCSC papAnu2              |
+| corn.AGPv3          | v5.10       | Corn genome and annotation (corn.AGPv3)                   |
+| petMar2             | v6.4        | Lamprey genome and annotation for UCSC petMar2            |
+| panPan1             | v6.4        | Human genome and annotation for UCSC panPan1              |
+| fr3                 | v7.0        | Fugu genome and annotation for UCSC fr3                   |
+| sacCer3             | v7.0        | Yeast genome and annotation for UCSC sacCer3              |
+| mm9                 | v7.0        | Mouse genome and annotation for UCSC mm9                  |
+| susScr3             | v6.4        | Pig genome and annotation for UCSC susScr3                |
+| hg17                | v7.0        | Human genome and annotation for UCSC hg17                 |
+| panTro3             | v6.4        | Human genome and annotation for UCSC panTro3              |
+| tetNig2             | v7.0        | Fugu genome and annotation for UCSC tetNig2               |
+| mm10                | v7.0        | Mouse genome and annotation for UCSC mm10                 |
+| taeGut2             | v7.0        | Zebrafinch genome and annotation for UCSC taeGut2         |
+| hg18                | v7.0        | Human genome and annotation for UCSC hg18                 |
+| susScr11            | v7.0        | Pig genome and annotation for UCSC susScr11               |
+| galGal5             | v6.4        | Chicken genome and annotation for UCSC galGal5            |
+| hg38                | v7.0        | Human genome and annotation for UCSC hg38                 |
+| mm8                 | v6.4        | Mouse genome and annotation for UCSC mm8                  |
+| xenLae2             | v7.0        | Frog genome and annotation for UCSC xenLae2               |
+| rn6                 | v7.0        | Rat genome and annotation for UCSC rn6                    |
+| ce11                | v7.0        | Worm genome and annotation for UCSC ce11                  |
+| dm3                 | v7.0        | Fly genome and annotation for UCSC dm3                    |
+| rheMac3             | v6.4        | Rhesus genome and annotation for UCSC rheMac3             |
+| rn4                 | v6.4        | Rat genome and annotation for UCSC rn4                    |
+| rice.IRGSP1.0       | v5.10       | Rice genome and annotation (rice.IRGSP1.0)                |
+| panPan3             | v7.0        | Human genome and annotation for UCSC panPan3              |
+| galGal6             | v7.0        | Chicken genome and annotation for UCSC galGal6            |
+| danRer10            | v7.0        | Zebrafish genome and annotation for UCSC danRer10         |
+| ci2                 | v7.0        | Ciona genome and annotation for UCSC ci2                  |
+| petMar3             | v7.0        | Lamprey genome and annotation for UCSC petMar3            |
+| sacCer2             | v7.0        | Yeast genome and annotation for UCSC sacCer2              |
+| hg19                | v7.0        | Human genome and annotation for UCSC hg19                 |
+| xenTro10            | v7.0        | Frog genome and annotation for UCSC xenTro10              |
+| rheMac8             | v6.4        | Rhesus genome and annotation for UCSC rheMac8             |
+| mm39                | v7.0        | Mouse genome and annotation for UCSC mm39                 |
+| ce10                | v7.0        | Worm genome and annotation for UCSC ce10                  |
+| aplCal1             | v6.4        | Seahare genome and annotation for UCSC aplCal1            |
+| xenTro2             | v6.4        | Frog genome and annotation for UCSC xenTro2               |
+| papAnu4             | v7.0        | Human genome and annotation for UCSC papAnu4              |
+| ce6                 | v7.0        | Worm genome and annotation for UCSC ce6                   |
+| ci3                 | v7.0        | Ciona genome and annotation for UCSC ci3                  |
+| apiMel3             | v7.0        | Bee genome and annotation for UCSC apiMel3                |
+| anoGam1             | v7.0        | Mosquito genome and annotation for UCSC anoGam1           |
+| galGal4             | v6.4        | Chicken genome and annotation for UCSC galGal4            |
+
 ## Prepare the input data
 We take the sc data of mm10 as an example. The data is from the published paper (FOXA2 drives lineage plasticity and KIT pathway
 activation in neuroendocrine prostate cancer).
