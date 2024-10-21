@@ -84,7 +84,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
   <img src="barcode_mm10.png" alt="Image" width="300">
 </div>  
 
-- gtf file describing gene annotation, '*.gtf'
+- gtf file or the URL of the gtf file describing gene annotation, '*.gtf'
 - PWM matrix file of motifs, 'all_motif.txt'
   <div style="text-align: right">
   <img src="barcode_mm10.png" alt="Image" width="300">
