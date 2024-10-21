@@ -16,6 +16,7 @@ We support for the following species:
 |susScr11|pig|Sus_scrofa|Sscrofa11|
 |fr3|fugu|Takifugu_rubripes|FUGU5|
 |xenTro9|frog|Xenopus_tropicalis|Xenopus_tropicalis_v9|
+|tair10|Arabidopsis|Arabidopsis_thaliana|Tair10|
 ## Download the provided data 
 We provide the TSS location for the above genome and the motif information.
 ```sh
