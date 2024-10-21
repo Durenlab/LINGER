@@ -80,10 +80,9 @@ activation in neuroendocrine prostate cancer).
 The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
 - Single-cell multiome data including matrix.mtx, features.tsv/features.txt, and barcodes.tsv/barcodes.txt
 - Cell annotation/cell type label if you need the cell type-specific gene regulatory network (label.txt in our example).
-<div style="text-align: right">
-  <img src="barcode_mm10.png" alt="Image" width="300">
-</div>  
-
+  <div style="text-align: right">
+  <img src="barcode_mm10.png" alt="Image" width="200">
+  </div>  
 - gtf file or the URL of the gtf file describing gene annotation, '*.gtf'
 - PWM matrix file of motifs, 'all_motif.txt'
   <div style="text-align: right">
