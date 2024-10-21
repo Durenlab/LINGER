@@ -84,8 +84,16 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
   <img src="barcode_mm10.png" alt="Image" width="300">
 </div>  
 
-- gtf file,
+- gtf file describing gene annotation, '*.gtf'
+- PWM matrix file of motifs, 'all_motif.txt'
+  <div style="text-align: right">
+  <img src="barcode_mm10.png" alt="Image" width="300">
+</div>  
 
+- Motif-TF match file, 'MotifMatch.txt', mapping motif and TFs
+<div style="text-align: right">
+  <img src="barcode_mm10.png" alt="Image" width="300">
+</div>  
 
 ### sc data
 If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
@@ -120,7 +128,7 @@ If homer is not installed, use Conda to install it
 ```sh
 conda install bioconda::homer
 ```
-#### install genome
+#### Install genome
 You can check the installed genome
 ```sh
 dir=$(which homer)
