@@ -100,7 +100,7 @@ cd ../
 We provide the cell annotation as follows:
 ```sh
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4" -O mm10_label.txt && rm -rf /tmp/cookies.txt
-mv mm10_label.txt data/
+mv mm10_label.txt data/label.txt
 ```
 ## LINGER 
 ### Install
@@ -147,7 +147,7 @@ import pandas as pd
 matrix=scipy.io.mmread('data/matrix.mtx')
 features=pd.read_csv('data/features.txt',sep='\t',header=None)
 barcodes=pd.read_csv('data/barcodes.txt',sep='\t',header=None)
-label=pd.read_csv('data/mm10_label.txt',sep='\t',header=0)
+label=pd.read_csv('data/label.txt',sep='\t',header=0)
 from LingerGRN.preprocess import *
 adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
 ```
