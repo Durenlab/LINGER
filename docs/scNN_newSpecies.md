@@ -91,7 +91,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 </div>  
 
 - Motif-TF match file, 'MotifMatch.txt', mapping motif and TFs
-<div style="text-align: right">
+  <div style="text-align: right">
   <img src="motifmatch.png" alt="Image" width="300">
 </div>  
 
