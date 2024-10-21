@@ -82,7 +82,7 @@ ls $dir_path/../share/homer/data/genomes/  # this is the installed genomes, if n
 If the genome is not installed, use the following shell script to install it.
 ```sh
 genome='mm10'
-perl $dir_path/../configureHomer.pl -install $genome
+perl $dir_path/../share/homer/configureHomer.pl -install $genome
 ```
 For the following step, we run the code in python.
 #### Transfer the sc-multiome data to anndata  
