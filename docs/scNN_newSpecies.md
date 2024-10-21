@@ -1,6 +1,5 @@
 # Other species not in the list
-Here, we provide tutorial for the species which is not included in the given list but in the basic Homer installation:
-
+Here, we provide a tutorial for the species not included in the given list but in the basic Homer installation. You can choose one genome version from the following table based on your data.
 | **Genome Version**  | **Release** | **Description**                                           |
 |---------------------|-------------|-----------------------------------------------------------|
 | tair10              | v6.0        | Arabidopsis genome and annotation (tair10)                |
@@ -85,9 +84,11 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
   <img src="barcode_mm10.png" alt="Image" width="300">
 </div>  
 
-If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
+- gtf file,
+
 
 ### sc data
+If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
 We download the data using the shell command line.
 ```sh
 mkdir -p data
