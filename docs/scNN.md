@@ -1,5 +1,5 @@
 # Other species tutorial
-We support for the following species. For other species, we provide another tutorial [https://github.com/Durenlab/LINGER/blob/main/docs/scNN_newSpecies.md].
+We support for the following species. For other species, we provide another [tutorial](https://github.com/Durenlab/LINGER/blob/main/docs/scNN_newSpecies.md).
 |genome_short  | species | species_ensembl | genome |
 | --- | --- | --- | --- |
 | canFam3 | dog | Canis_lupus_familiaris |CanFam3  | 
