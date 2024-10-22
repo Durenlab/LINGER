@@ -109,6 +109,7 @@ mv mm10_label.txt data/label.txt
   <div style="text-align: right">
   <img src="motifmatch.png" alt="Image" width="300">
   </div>  
+
 ## LINGER 
 ### Install
 ```sh
@@ -140,9 +141,10 @@ perl $dir_path/../share/homer/configureHomer.pl -install $genome
 ```
 For the following step, we run the code in python.
 #### Input 
+Note that  PWM_file and MotifMatch_file are located at the GRNdir.
 ```python
-GRNdir='path/to/current_dir/' # The dir we currently use; the sc data is in GRNdir/data/
-gtf_file='*.gtf'# gtf, PWM matrix, and Motif-TF match file should be included in the GRNdir
+GRNdir='/path/to/current_dir/' # The dir we currently use; the sc data is in GRNdir/data/
+gtf_file='/paht/to/gtfdir/*.gtf'# gtf, PWM matrix, and Motif-TF match file should be included in the GRNdir
 PWM_file='all_motif.txt'
 MotifMatch_file='MotifMatch.txt'
 genome='mm10' # the genome of your data
