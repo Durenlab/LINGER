@@ -92,8 +92,10 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
   <div style="text-align: right">
   <img src="motifmatch.png" alt="Image" width="300">
   </div>  
-- genome_map file, 'genome_map_homer_file.txt'
-  
+- genome map file, 'genome_map_homer_file.txt'
+  <div style="text-align: right">
+  <img src="genomemap.jpg" alt="Image" width="300">
+  </div>    
 ### sc data
 If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
 We download the data using the shell command line.
