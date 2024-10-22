@@ -23,7 +23,7 @@ We provide the TSS location for the above genome and the motif information.
 Datadir=/path/to/LINGER/# the directory to store the data, please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
 mkdir $Datadir
 cd $Datadir
-wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1unaXGQWh_6PJyJv2mKZJGtEpMFGDt3pX'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1unaXGQWh_6PJyJv2mKZJGtEpMFGDt3pX" -O provide_data.tar.gz && rm -rf /tmp/cookies.txt
+wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1qd8zi1BHjQzQ6LcYgmHtxiui6jX7ukyF'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1qd8zi1BHjQzQ6LcYgmHtxiui6jX7ukyF" -O provide_data.tar.gz && rm -rf /tmp/cookies.txt
 ```
 Then unzip，
 ```sh
