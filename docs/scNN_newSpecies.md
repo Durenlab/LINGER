@@ -79,21 +79,23 @@ We take the sc data of mm10 as an example. The data is from the published paper 
 activation in neuroendocrine prostate cancer).
 The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
 - Single-cell multiome data including matrix.mtx, features.tsv/features.txt, and barcodes.tsv/barcodes.txt
+
   If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
-We download the data using the shell command line.
-```sh
+  
+  Here, we provide sc-multiome data of mm10. We download the data using the shell command line.
+  ```sh
 mkdir -p data
 cd data
 wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1PDOmtO2oL-YVxKQY26jL91SAFedDALA0'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1PDOmtO2oL-YVxKQY26jL91SAFedDALA0" -O mm10_data.tar.gz && rm -rf /tmp/cookies.txt
 tar -xzvf mm10_data.tar.gz
 mv mm10_data/* ./
 cd ../
-```
+  ```
 We provide the cell annotation as follows:
-```sh
+  ```sh
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4" -O mm10_label.txt && rm -rf /tmp/cookies.txt
 mv mm10_label.txt data/label.txt
-```
+  ```
 - Cell annotation/cell type label if you need the cell type-specific gene regulatory network (label.txt in our example).
   <div style="text-align: right">
   <img src="barcode_mm10.png" alt="Image" width="260">
