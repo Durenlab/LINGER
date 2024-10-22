@@ -81,7 +81,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 - Single-cell multiome data including matrix.mtx, features.tsv/features.txt, and barcodes.tsv/barcodes.txt
 - Cell annotation/cell type label if you need the cell type-specific gene regulatory network (label.txt in our example).
   <div style="text-align: right">
-  <img src="barcode_mm10.png" alt="Image" width="200">
+  <img src="barcode_mm10.png" alt="Image" width="260">
   </div>  
 - gtf file or the URL of the gtf file describing gene annotation, '*.gtf'
 - PWM matrix file of motifs, 'all_motif.txt'
@@ -93,6 +93,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
   <img src="motifmatch.png" alt="Image" width="300">
   </div>  
 - genome_map file, 'genome_map_homer_file.txt'
+  
 ### sc data
 If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
 We download the data using the shell command line.
