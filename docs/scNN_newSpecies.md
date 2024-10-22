@@ -79,25 +79,7 @@ We take the sc data of mm10 as an example. The data is from the published paper 
 activation in neuroendocrine prostate cancer).
 The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
 - Single-cell multiome data including matrix.mtx, features.tsv/features.txt, and barcodes.tsv/barcodes.txt
-- Cell annotation/cell type label if you need the cell type-specific gene regulatory network (label.txt in our example).
-  <div style="text-align: right">
-  <img src="barcode_mm10.png" alt="Image" width="260">
-  </div>  
-- gtf file or the URL of the gtf file describing gene annotation, '*.gtf'
-- PWM matrix file of motifs, 'all_motif.txt'
-  <div style="text-align: right">
-  <img src="PWM.jpg" alt="Image" width="400">
-  </div>  
-- Motif-TF match file, 'MotifMatch.txt', mapping motif and TFs
-  <div style="text-align: right">
-  <img src="motifmatch.png" alt="Image" width="300">
-  </div>  
-- genome map file, 'genome_map_homer_file.txt'
-  <div style="text-align: right">
-  <img src="genomemap.jpg" alt="Image" width="300">
-  </div>    
-### sc data
-If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
+  If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
 We download the data using the shell command line.
 ```sh
 mkdir -p data
@@ -112,6 +94,23 @@ We provide the cell annotation as follows:
 wget --load-cookies /tmp/cookies.txt "https://docs.google.com/uc?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://docs.google.com/uc?export=download&id=1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4' -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1nFm5shjcDuDYhA8YGzAnYoYVQ_29_Yj4" -O mm10_label.txt && rm -rf /tmp/cookies.txt
 mv mm10_label.txt data/label.txt
 ```
+- Cell annotation/cell type label if you need the cell type-specific gene regulatory network (label.txt in our example).
+  <div style="text-align: right">
+  <img src="barcode_mm10.png" alt="Image" width="260">
+  </div>  
+- gtf file or the URL of the gtf file describing gene annotation, '*.gtf'
+- PWM matrix file of motifs, 'all_motif.txt'
+  <div style="text-align: right">
+  <img src="PWM.jpg" alt="Image" width="400">
+  </div>  
+- Motif-TF match file, 'MotifMatch.txt', mapping motif and TFs
+  <div style="text-align: right">
+  <img src="motifmatch.png" alt="Image" width="300">
+  </div>  
+- genome map file, 'genome_map_homer_file.txt'. 
+  <div style="text-align: right">
+  <img src="genomemap.jpg" alt="Image" width="600">
+  </div>    
 ## LINGER 
 ### Install
 ```sh
