@@ -219,6 +219,7 @@ import torch
 import subprocess
 import os
 import LingerGRN.LINGER_tr as LINGER_tr
+LINGER_tr.get_TSS_ensembl(genome,gtf_file)
 LINGER_tr.get_TSS(GRNdir,genome,200000) # Here, 200000 represent the largest distance of regulatory element to the TG. Other distance is supported
 LINGER_tr.RE_TG_dis(outdir)
 ```
