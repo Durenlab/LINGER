@@ -151,6 +151,7 @@ PWM_file='all_motif.txt'
 MotifMatch_file='MotifMatch.txt'
 genome='mm10' # the genome of your data
 outdir='/path/to/output/' #output dir
+species='New'
 ```
 #### Transfer the sc-multiome data to anndata  
 We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label.
