@@ -75,8 +75,8 @@ Here, we provide a tutorial for the species not included in the given list but i
 | galGal4             | v6.4        | Chicken genome and annotation for UCSC galGal4            |
 
 ## Prepare the input data
-We take the sc data of mm10 as an example. The data is from the published paper (FOXA2 drives lineage plasticity and KIT pathway
-activation in neuroendocrine prostate cancer)[https://www.cell.com/cancer-cell/pdf/S1535-6108(22)00502-5.pdf].
+We take the sc data of mm10 as an example. The data is from the published (paper)[https://www.cell.com/cancer-cell/pdf/S1535-6108(22)00502-5.pdf],'FOXA2 drives lineage plasticity and KIT pathway
+activation in neuroendocrine prostate cancer'.
 The input data is the feature matrix from 10x sc-multiome data and Cell annotation/cell type label which includes: 
 - Single-cell multiome data including matrix.mtx, features.tsv/features.txt, and barcodes.tsv/barcodes.txt
 
