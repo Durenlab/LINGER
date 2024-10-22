@@ -147,6 +147,7 @@ gtf_file='*.gtf'# gtf, PWM matrix, and Motif-TF match file should be included in
 PWM_file='all_motif.txt'
 MotifMatch_file='MotifMatch.txt'
 genome='mm10' # the genome of your data
+outdir='/path/to/output/' #output dir
 ```
 #### Transfer the sc-multiome data to anndata  
 We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label.
@@ -209,7 +210,6 @@ RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ### Training model
 Overlap the region with general GRN:
 ```python
-outdir='/path/to/output/' #output dir
 activef='ReLU' 
 method='scNN'
 import torch
