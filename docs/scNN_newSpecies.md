@@ -109,16 +109,12 @@ mv mm10_label.txt data/label.txt
   <div style="text-align: right">
   <img src="motifmatch.png" alt="Image" width="300">
   </div>  
-- genome map file, 'genome_map_homer_file.txt'. 
-  <div style="text-align: right">
-  <img src="genomemap.jpg" alt="Image" width="600">
-  </div>    
 ## LINGER 
 ### Install
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.96
+pip install LingerGRN==1.97
 conda install bioconda::bedtools #Requirement
 ```
 ### Install homer
