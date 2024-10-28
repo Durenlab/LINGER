@@ -67,7 +67,7 @@ Module_result.tvalue_all
 </div>
 
 #### visualize
-Please make sure that the r packages: ggplot2, grid, tidyr, egg are well-installed. Note that 'cutoff' is a parameter, representing the cutoff of -log10(p-value). We suggest 'cutoff = 2' as a default.
+Please ensure that the r packages: ggplot2, grid, tidyr, egg are well-installed. Note that 'cutoff' is a parameter, representing the cutoff of -log10(p-value). We suggest 'cutoff = 2' as a default.
 ```python
 # Import the rpy2 components needed
 import os
@@ -145,13 +145,26 @@ label_all.index = label_all['barcode']
 metadata = label_all.loc[TG_pseudobulk.columns]
 metadata.columns = ['barcode','group','celltype']
 GRN='trans_regulatory'
+adjust_method='bonferroni' 
+corr_method='pearsonr'
 import numpy as np
-C_result_RNA_sp,P_result_RNA_sp,Q_result_RNA_sp=driver_score(TG_pseudobulk,metadata,GRN)
-K=3
+C_result_RNA_sp,P_result_RNA_sp,Q_result_RNA_sp=driver_score(TG_pseudobulk,metadata,GRN,outdir,adjust_method,corr_method)
+K=3 # We choose the top K positive and negative TFs to save to the txt file for visualization purposes.
 C_result_RNA_sp_r,Q_result_RNA_sp_r=driver_result(C_result_RNA_sp,Q_result_RNA_sp,K)
 C_result_RNA_sp_r.to_csv('C_result_RNA_sp_r.txt',sep='\t')
 Q_result_RNA_sp_r.to_csv('Q_result_RNA_sp_r.txt',sep='\t')
 ```
+The adjust_method is the p-value adjust method, you could choose one from the following:
+- bonferroni : one-step correction
+- sidak : one-step correction
+- holm-sidak : step down method using Sidak adjustments
+- holm : step-down method using Bonferroni adjustments
+- simes-hochberg : step-up method (independent)
+- hommel : closed method based on Simes tests (non-negative)
+- fdr_bh : Benjamini/Hochberg (non-negative)
+- fdr_by : Benjamini/Yekutieli (negative)
+- fdr_tsbh : two stage fdr correction (non-negative)
+- fdr_tsbky : two stage fdr correction (non-negative)
 ### visualize
 ```python
 import os
@@ -206,4 +219,12 @@ The figure is saved to driver_trans.pdf.
 ### Epigenetic driver score
 ```python
 RE_pseudobulk=pd.read_csv('data/RE_pseudobulk.tsv',sep=',',header=0,index_col=0)
+K=5
+GRN='TF_RE_binding'
+adjust_method='bonferroni'
+corr_method='pearsonr'
+C_result_RE,P_result_RE,Q_result_RE=driver_score(RE_pseudobulk,metadata,GRN,outdir,adjust_method,corr_method)
+C_result_RE_r,Q_result_RE_r=driver_result(C_result_RE,Q_result_RE,K)
+C_result_RE_r.to_csv('C_result_RE_r.txt',sep='\t')
+Q_result_RE_r.to_csv('Q_result_RE_r.txt',sep='\t')
 ```
