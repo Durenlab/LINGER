@@ -313,7 +313,7 @@ grid.arrange(heatmap_plot, p, ncol = 2,widths = widths)
 dev.off()
 ''')
 ```
-The figure is saved to driver_trans.pdf.
+The figure is saved to driver_epi.pdf.
 <div style="text-align: right">
   <img src="driver_epi.png" alt="Image" width="400">
 </div>
