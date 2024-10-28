@@ -135,6 +135,15 @@ The figure is saved to module_result.pdf.
 We identify driver TFs underlying epigenetic and transcriptomics change between control and AUD using a correlation model. We normalized the GRN and then calculated the Pearson Correlation Coefficient (PCC) between expression or chromatin accessibility fold change and the regulatory strength of TGs or REs for each TF.
 ### Transcriptomics driver score
 ```python
+import pandas as pd
+TG_pseudobulk = pd.read_csv('data/TG_pseudobulk.tsv',sep=',',header=0,index_col=0)
+TG_pseudobulk = TG_pseudobulk[~TG_pseudobulk.index.str.startswith('MT-')] # remove the mitochondrion, if the species is mouse, replace 'MT-' with 'mt-'
+import scanpy as sc
+adata_RNA = sc.read_h5ad('data/adata_RNA.h5ad')
+label_all = adata_RNA.obs[['barcode','sample','label']]
+label_all.index = label_all['barcode']
+metadata = label_all.loc[TG_pseudobulk.columns]
+metadata.columns = ['barcode','group','celltype']
 GRN='trans_regulatory'
 import numpy as np
 C_result_RNA_sp,P_result_RNA_sp,Q_result_RNA_sp=driver_score(TG_pseudobulk,metadata,GRN)
