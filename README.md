@@ -26,7 +26,7 @@ We provide several tutorials and user guide. If you find our tool useful for you
 |:-------------------------:|:-------------------------:|:-------------------------:|
 | [User guide](https://github.com/Durenlab/LINGER/blob/main/docs/User_guide.md) | [PBMCs tutorial](https://github.com/Durenlab/LINGER/blob/main/docs/PBMC.md) |[H1 cell line tutorial](https://github.com/Durenlab/LINGER/blob/main/docs/GRN_infer.md)  |
 |[GRN benchmark](https://github.com/Durenlab/LINGER/blob/main/docs/Benchmark.md)  | [In silico perturbation](https://github.com/Durenlab/LINGER/blob/main/docs/perturb.md) | [Other species](https://github.com/Durenlab/LINGER/blob/main/docs/scNN.md) |
-|[Downstream analysis-Module detection](https://github.com/Durenlab/LINGER/blob/main/docs/downstream.md)|[Downstream analysis-TF Driver score](https://github.com/Durenlab/LINGER/blob/main/docs/downstream.md)||
+|[Downstream analysis-Module detection](https://github.com/Durenlab/LINGER/blob/main/docs/downstream.md)|[Downstream analysis-TF Driver score](https://github.com/Durenlab/LINGER/blob/main/docs/driver.md)||
     
 
 ## Reference
