@@ -39,7 +39,8 @@ metadata
 #### output
 ```python
 K=10 #k is the number of modules, a tunning parameter
-Module_result=Module_trans(outdir,metadata,TG_pseudobulk,K,GWASfile)
+from LingerGRN import Compare
+Module_result=Compare.Module_trans(outdir,metadata,TG_pseudobulk,K,GWASfile)
 ```
 The output is Module_result object. There are 3 items in this object: 
 - S_TG, which representing the module assigned for eahc gene;
