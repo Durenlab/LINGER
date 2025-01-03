@@ -20,9 +20,10 @@ GRN='trans_regulatory'
 adjust_method='bonferroni' 
 corr_method='pearsonr'
 import numpy as np
-C_result_RNA_sp,P_result_RNA_sp,Q_result_RNA_sp=driver_score(TG_pseudobulk,metadata,GRN,outdir,adjust_method,corr_method)
+from LingerGRN import Compare
+C_result_RNA_sp,P_result_RNA_sp,Q_result_RNA_sp=Compare.driver_score(TG_pseudobulk,metadata,GRN,outdir,adjust_method,corr_method)
 K=3 # We choose the top K positive and negative TFs to save to the txt file for visualization purposes.
-C_result_RNA_sp_r,Q_result_RNA_sp_r=driver_result(C_result_RNA_sp,Q_result_RNA_sp,K)
+C_result_RNA_sp_r,Q_result_RNA_sp_r=Compare.driver_result(C_result_RNA_sp,Q_result_RNA_sp,K)
 C_result_RNA_sp_r.to_csv('C_result_RNA_sp_r.txt',sep='\t')
 Q_result_RNA_sp_r.to_csv('Q_result_RNA_sp_r.txt',sep='\t')
 ```
@@ -122,8 +123,8 @@ K=5
 GRN='TF_RE_binding'
 adjust_method='bonferroni'
 corr_method='pearsonr'
-C_result_RE,P_result_RE,Q_result_RE=driver_score(RE_pseudobulk,metadata,GRN,outdir,adjust_method,corr_method)
-C_result_RE_r,Q_result_RE_r=driver_result(C_result_RE,Q_result_RE,K)
+C_result_RE,P_result_RE,Q_result_RE=Compare.driver_score(RE_pseudobulk,metadata,GRN,outdir,adjust_method,corr_method)
+C_result_RE_r,Q_result_RE_r=Compare.driver_result(C_result_RE,Q_result_RE,K)
 C_result_RE_r.to_csv('C_result_RE_r.txt',sep='\t')
 Q_result_RE_r.to_csv('Q_result_RE_r.txt',sep='\t')
 ```
