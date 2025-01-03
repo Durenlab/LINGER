@@ -60,12 +60,6 @@ Module_result.pvalue_all
   <img src="pvalue_all.png" alt="Image" width="400">
 </div>
 
-Save the result to files.
-```python
-Module_result.pvalue_all.to_csv('pvalue_all.txt',sep='\t')
-Module_result.tvalue_all.to_csv('tvalue_all.txt',sep='\t')
-```
-
 ```python
 Module_result.tvalue_all
 ```
@@ -73,7 +67,12 @@ Module_result.tvalue_all
   <img src="tvalue_all.png" alt="Image" width="400">
 </div>
 
-#### visualize
+Save the result to files.
+```python
+Module_result.pvalue_all.to_csv('pvalue_all.txt',sep='\t')
+Module_result.tvalue_all.to_csv('tvalue_all.txt',sep='\t')
+```
+#### Visualize
 Please ensure that the r packages: ggplot2, grid, tidyr, egg are well-installed. Note that 'cutoff' is a parameter, representing the cutoff of -log10(p-value). We suggest 'cutoff = 2' as a default.
 ```python
 # Import the rpy2 components needed
