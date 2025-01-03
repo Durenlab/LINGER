@@ -4,7 +4,7 @@ For this analysis, we first detect key TF-TG subnetworks (modules) from the cell
 ### Detect Module
 #### Input
 - pseudobulk gene expression: [TG_pseudobulk], please make sure the data is after removing batch effect
-- metadata including case and control in column 'group' and cell type annotation in column 'celltype': [metadata]. Note that the case is 1 and the control is 1.
+- metadata including case and control in column 'group' and cell type annotation in column 'celltype': [metadata]. Note that the case is 1 and the control is 0.
 - LINGER outdir including a trans-regulatory network, 'cell_population_trans_regulatory.txt',
 - GWAS data file, which is not necessary.
 
