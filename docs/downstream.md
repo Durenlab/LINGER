@@ -71,6 +71,9 @@ Save the result to files.
 ```python
 Module_result.pvalue_all.to_csv('pvalue_all.txt',sep='\t')
 Module_result.tvalue_all.to_csv('tvalue_all.txt',sep='\t')
+temp=Module_result.S_TG
+temp=temp[temp['Module']>0]
+temp.to_csv('Module.txt',sep='\t')
 ```
 #### Visualize
 Please ensure that the r packages: ggplot2, grid, tidyr, egg are well-installed. Note that 'cutoff' is a parameter, representing the cutoff of -log10(p-value). We suggest 'cutoff = 2' as a default.
