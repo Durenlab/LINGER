@@ -123,7 +123,7 @@ geom_point(aes(size = P, fill = T), alpha = 1, shape = 21) +
   scale_fill_gradient2(midpoint=0, low="blue", mid="white",
                      high="red", space ="Lab" )
 ''')
-r("pdf('module_result.pdf',width=1.5+dim(dataP)[2]/3,height=3)")
+r("pdf('module_result.pdf',width=1.5+dim(dataP)[2]/3,height=3)")# change the height and the width of the figure
 r('print(p)')
 r('dev.off()')
 ```
