@@ -60,6 +60,12 @@ Module_result.pvalue_all
   <img src="pvalue_all.png" alt="Image" width="400">
 </div>
 
+Save the result to files.
+```python
+Module_result.pvalue_all.to_csv('pvalue_all.txt',sep='\t')
+Module_result.tvalue_all.to_csv('tvalue_all.txt',sep='\t')
+```
+
 ```python
 Module_result.tvalue_all
 ```
