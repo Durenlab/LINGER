@@ -3,8 +3,8 @@
 We identify driver TFs underlying epigenetic and transcriptomics change between control and AUD using a correlation model. We normalized the GRN and then calculated the Pearson Correlation Coefficient (PCC) between expression or chromatin accessibility fold change and the regulatory strength of TGs or REs for each TF.
 ### Request
 Please complete the following the following tutorials 
-- PBMC [https://github.com/Durenlab/LINGER/blob/main/docs/downstream.md]
--
+- PBMCs tutorial](https://github.com/Durenlab/LINGER/blob/main/docs/PBMC.md)
+- 
 ### Transcriptomics driver score
 ```python
 import pandas as pd
