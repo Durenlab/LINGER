@@ -82,6 +82,33 @@ geom_point(aes(size = P, fill = PCC), alpha = 1, shape = 21) +
 
 
 ''')
+r('''
+annotation_row=read.table('Module.txt',sep='\t',header=TRUE,row.names=1)
+library(pheatmap)
+anno1=data.frame(annotation_row[match(rownames(dataP), rownames(annotation_row)), ])
+colnames(anno1)=c('TG')
+rownames(anno1)=rownames(dataP)
+anno1[is.na(anno1)]=0
+anno1[,1]=paste0('M',anno1[,1])
+anno1$name=rownames(anno1)
+longdiff0 <- gather(anno1, sample, value,-name)
+longdiff0$name=factor(longdiff0$name,levels=rownames(anno1))
+library("RColorBrewer")
+ann_colors = c('M0'="gray", 'M1'='#ffe901','M2'="#be3223",'M3'='#098ec4','M4'='#ffe901','M5'='#f8c9cb','M6'='#f8c9cb',
+'M7'='#b2d68c','M8'='#f2f1f6','M9'='#c7a7d2','M10'='#fcba5d')
+#ann_colors = list("gray", '#ffe901',"#be3223",'#098ec4','#ffe901','#f8c9cb','#f8c9cb','#b2d68c','#f2f1f6','#c7a7d2','#fcba5d')
+heatmap_plot <- ggplot(longdiff0, aes(x = sample, y =name , fill = value)) +
+  geom_tile(width = 0.9, height = 0.9) + scale_fill_manual(values=ann_colors) +
+  theme_article()+theme(text = element_text(size = 9), legend.position = "left")
+  ''')
+r('''
+widths <- c(4.5, 4.5+dim(dataP)[2]) 
+print(unique(longdiff0$value))
+pdf('driver_trans.pdf',width=6/16*(9+dim(dataP)[2]),height= dim(anno1)[1]/10+0.5)
+#print(heatmap_plot)
+grid.arrange(heatmap_plot, p, ncol = 2,widths = widths)
+dev.off()
+''')
 ```
 The figure is saved to driver_trans.pdf.
 <div style="text-align: right">
