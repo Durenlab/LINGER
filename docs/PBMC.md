@@ -213,7 +213,7 @@ network = 'CD56 (bright) NK cells' # CD56 (bright) NK cells is the name of one c
 ```
 
 ### Calculate TF activity
-The input is gene expression data, It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN. The row of gene expresion data is gene, columns is sample and the value is read count (sc) or FPKM/RPKM (bulk).
+The input is gene expression data. It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN. The row of gene expresion data is gene, columns is sample and the value is read count (sc) or FPKM/RPKM (bulk).
 
 ```python
 
