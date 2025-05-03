@@ -198,7 +198,7 @@ LL_net.cell_type_specific_trans_reg(GRNdir,adata_RNA,celltype,outdir)
 TF activity, focusing on the DNA-binding component of TF proteins in the nucleus, is a more reliable metric than mRNA or whole protein expression for identifying driver regulators. Here, we employed LINGER inferred GRNs from sc-multiome data of a single individual. Assuming the GRN structure is consistent across individuals, we estimated TF activity using gene expression data alone. By comparing TF activity between cases and controls, we identified driver regulators. 
 
 ### Prepare
-We need to *trans*-regulatory network, you can choose a network match you data best.
+You can choose a *trans*-regulatory network that matches your data best.
 1. If there is not single cell avaliable to infer the cell population and cell type specific GRN, you can choose a GRN from various tissues.
 ```python
 network = 'general'
