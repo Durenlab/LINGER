@@ -258,7 +258,7 @@ t_test_results
   <img src="PBMCs_ttest.png" alt="Image" width="300">
 </div>
 
-Visulize the differential activity and expression. You can compare 2 different cell types and one cell type with other cell types. If you want to save the heatmap to outdit, please set 'save=True'. The output is 'box_plot'_+TFName+'_'+datatype+'_'+celltype1+'_'+celltype2+'.png'.
+Visualize the differential activity and expression. You can compare 2 different cell types and one cell type with others. If you want to save the heatmap to output, please set 'save=True'. The output is 'box_plot'_+TFName+'_'+datatype+'_'+celltype1+'_'+celltype2+'.png'.
 
 ```python
 TFName='ATF1'
