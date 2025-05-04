@@ -1,9 +1,9 @@
 # Downstream analysis - Module detection
 ## Regulatory Module
-For this analysis, we first detect key TF-TG subnetworks (modules) from the cell population TF–TG trans-regulation. Then, we identify the differential regulatory modules differentially expressed from the case and control groups.
+For this analysis, we first detect key TF-TG subnetworks (modules) from the cell population TF–TG trans-regulation. Then, we identify the differential regulatory modules that are differentially expressed between the case and control groups.
 ### Detect Module
 #### Input
-- pseudobulk gene expression: [TG_pseudobulk], please make sure the data is after removing batch effect
+- pseudobulk gene expression: [TG_pseudobulk], please make sure the data is after removing the batch effect
 - metadata including case and control in column 'group' and cell type annotation in column 'celltype': [metadata]. Note that the case is 1 and the control is 0.
 - LINGER outdir including a trans-regulatory network, 'cell_population_trans_regulatory.txt',
 - GWAS data file, which is not necessary.
@@ -38,14 +38,14 @@ metadata
 
 #### output
 ```python
-K=10 #k is the number of modules, a tunning parameter
+K=10 #k is the number of modules, a tuning parameter
 from LingerGRN import Compare
 Module_result=Compare.Module_trans(outdir,metadata,TG_pseudobulk,K,GWASfile)
 ```
 The output is Module_result object. There are 3 items in this object: 
-- S_TG, which representing the module assigned for eahc gene;
+- S_TG, which represents the module assigned for each gene;
 - pvalue_all, the p-value of the differential module t-test comparing the case and control groups;
-- t_value, the t-value of the t-test, positive value representing group 1 is more active, and negative value representing group 0 is more active.
+- t_value, the t-value of the t-test, a positive value representing group 1 is more active, and a negative value representing group 0 is more active.
 ```python
 Module_result.S_TG
 ```
