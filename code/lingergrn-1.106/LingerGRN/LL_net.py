@@ -211,7 +211,7 @@ def TF_RE_LINGER_chr(chr,outdir):
     TFindex=idx['TF_id'].values
     REindex=idx['REid'].values
     geneName=idx['gene'].values
-    net_all=torch.load(outdir+"net_"+chr+".pt")
+    net_all=torch.load(outdir+"net_"+chr+".pt", weights_only=False)
     data_merge=pd.read_csv(outdir+'data_merge.txt',sep='\t',header=0,index_col=0)
     data_merge_temp=data_merge[data_merge['chr']==chr].index
     batchsize=50
@@ -219,7 +219,7 @@ def TF_RE_LINGER_chr(chr,outdir):
     N=data_merge_temp.shape[0]
     times=int(np.floor(N/batchsize))
     resultlist=[0 for i in range(times+1)]
-    for ii in tqdm(range(times)):
+    for ii in tqdm(range(times), desc=chr):
         result_all=pd.DataFrame([])
         for j in range(ii*batchsize,(ii+1)*batchsize):
             if (AAA[j]>0)&(AAA[j]<10):
@@ -240,6 +240,14 @@ def TF_RE_LINGER_chr(chr,outdir):
     A=result_all1.groupby(['TF', 'RE'])['score'].max().reset_index()
     mat,REs,TFs=list2mat(A,'RE','TF','score')
     mat=pd.DataFrame(mat,index=REs,columns=TFs)
+    return mat
+
+def _process_TF_RE_LINGER_chr(chrN, outdir, TG_index):
+    import pandas as pd
+    mat = TF_RE_LINGER_chr(chrN, outdir)
+    TFoverlap = list(set(mat.columns) & set(TG_index))
+    mat = mat[TFoverlap]
+    mat.to_csv(outdir + chrN + '_cell_population_TF_RE_binding.txt', sep='\t')
     return mat
 
 def TF_RE_binding_chr(adata_RNA,adata_ATAC,GRNdir,chrN,genome,outdir):
@@ -353,7 +361,6 @@ def load_data_scNN(GRNdir,genome):
     RE_TGlink=RE_TGlink.reset_index(drop=True)
     return Exp,Opn,Target,RE_TGlink  
     
-    
 def TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir):
     from tqdm import tqdm
     import numpy as np
@@ -369,19 +376,19 @@ def TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir):
             out.to_csv(outdir+chrN+'_cell_population_TF_RE_binding.txt',sep='\t')  
         #result=pd.concat([result,out],axis=1).fillna(0)
             result = pd.concat([result, out], join='outer', axis=0)
+
     if method=='LINGER':
-        result=pd.DataFrame()
-        for i in tqdm(range(23)):
-            chrN=chrom[i]
-            print('Generating cellular population TF binding strength for '+chrN)
-            mat=TF_RE_LINGER_chr(chrN,outdir)
-            TFs = mat.columns
-## read the count file.
-            TG=pd.DataFrame(adata_RNA.X.toarray().T,index=adata_RNA.var['gene_ids'].values,columns=adata_RNA.obs['barcode'].values)
-            TFoverlap = list(set(TFs) & set(TG.index))
-            mat = mat[TFoverlap]
-            mat.to_csv(outdir+chrN+'_cell_population_TF_RE_binding.txt',sep='\t')  
-            result = pd.concat([result, mat], join='outer', axis=0)
+        import psutil, os
+        from joblib import Parallel, delayed
+        TG_index = adata_RNA.var['gene_ids'].values.tolist()
+        n_cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', os.cpu_count()))
+        n_jobs = min(n_cpus, 23)     # assuming n_cpus <= n_gb_ram (1GB/worker)
+        results = Parallel(n_jobs=n_jobs, backend='loky', verbose=5)(
+            delayed(_process_TF_RE_LINGER_chr)(chrN, outdir, TG_index)
+            for chrN in chrom
+        )
+        result = pd.concat(results, join='outer', axis=0)
+
     if method=='scNN':
         Exp,Opn,Target,RE_TGlink=load_data_scNN(GRNdir,genome)
         RE_TGlink=pd.read_csv(outdir+'RE_TGlink.txt',sep='\t',header=0)
@@ -581,10 +588,10 @@ def cell_type_specific_TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,celltype
 def load_shap(chr,outdir):
     import torch
     import pandas as pd
-    import numpy as np
+    import numpy as np  
     import csv
     #print('loading shapley value '+chr+' ...')
-    shap_all=torch.load(outdir+"shap_"+chr+".pt")
+    shap_all=torch.load(outdir+"shap_"+chr+".pt", weights_only=False)
     import pandas as pd
     idx_file=outdir+'index.txt'
     TFName=outdir+'TFName.txt'
@@ -618,7 +625,7 @@ def cis_shap(chr,outdir):
     score_2=[]
     data_merge_temp,geneName,REindex,TFindex,shap_all,TFName,REName=load_shap(chr,outdir)
     from tqdm import tqdm
-    for j in tqdm(range(data_merge_temp.shape[0])):
+    for j in tqdm(range(data_merge_temp.shape[0]), desc=chr):
         ii=data_merge_temp.index[j]
         if ii in shap_all.keys():
             AA0=shap_all[ii]
@@ -650,7 +657,7 @@ def trans_shap(chr,outdir):
     score_1=[]
     data_merge_temp,geneName,REindex,TFindex,shap_all,TFName,REName=load_shap(chr,outdir)
     from tqdm import tqdm
-    for j in tqdm(range(data_merge_temp.shape[0])):
+    for j in tqdm(range(data_merge_temp.shape[0]), desc=chr):
         ii=data_merge_temp.index[j]
         if ii in shap_all.keys():
             AA0=shap_all[ii]
@@ -840,11 +847,15 @@ def cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir):
             temp.columns=['RE','TG','Score']
             result=pd.concat([result,temp],axis=0,join='outer')
     if method=='LINGER':
-        result=pd.DataFrame([])
-        for i in tqdm(range(23)):
-            chrN=chrom[i]
-            temp=cis_shap(chrN,outdir)
-            result=pd.concat([result,temp],axis=0,join='outer')
+        import os
+        from joblib import Parallel, delayed
+        n_cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', os.cpu_count()))
+        n_jobs = min(n_cpus, 23)
+        results = Parallel(n_jobs=n_jobs, backend='loky')(
+            delayed(cis_shap)(chrN, outdir)
+            for chrN in chrom
+        )
+        result = pd.concat(results, join='outer', axis=0)
     if method=='scNN':
         Exp,Opn,Target,RE_TGlink=load_data_scNN(GRNdir,genome)
         RE_TGlink=pd.read_csv(outdir+'RE_TGlink.txt',sep='\t',header=0)
@@ -1092,11 +1103,15 @@ def trans_reg(GRNdir,method,outdir,genome):
     elif method=='LINGER':
         chrom=['chr'+str(i+1) for i in range(22)]
         chrom.append('chrX')
-        S=pd.DataFrame([])
-        for i in tqdm(range(23)):
-            chrN=chrom[i]
-            temp=trans_shap(chrN,outdir)
-            S=pd.concat([S,temp],axis=0,join='outer')
+        import os
+        from joblib import Parallel, delayed
+        n_cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', os.cpu_count()))
+        n_jobs = min(n_cpus, 23)
+        results = Parallel(n_jobs=n_jobs, backend='loky')(
+            delayed(trans_shap)(chrN, outdir)
+            for chrN in chrom
+        )
+        S = pd.concat(results, join='outer', axis=0)
     elif method=='scNN':
         Exp,Opn,Target,RE_TGlink=load_data_scNN(GRNdir,genome)
         RE_TGlink=pd.read_csv(outdir+'RE_TGlink.txt',sep='\t',header=0)

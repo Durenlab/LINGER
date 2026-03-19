@@ -96,12 +96,10 @@ def get_simulation(outdir,chrall,data_merge,GRNdir,Exp,Opn,Target,idx):
         print(chr)
         gene_chr=data_merge[data_merge['chr']==chr]
         N=len(gene_chr)
-        netall=torch.load(outdir+'net_'+chr+'.pt')
-        idx_file1=GRNdir+chr+'_index.txt'
-        idx_file_all=GRNdir+chr+'_index_all.txt'
-        idxRE_all=pd.read_csv(idx_file_all,header=None,sep='\t')
-        gene_chr=data_merge[data_merge['chr']==chr]
-        N=len(gene_chr)
+        netall=torch.load(outdir+'net_'+chr+'.pt', weights_only=False)
+        #idx_file1=GRNdir+chr+'_index.txt'
+        #idx_file_all=GRNdir+chr+'_index_all.txt'
+        #idxRE_all=pd.read_csv(idx_file_all,header=None,sep='\t')
         TFindex=idx.values[:,2]
         REindex=idx.values[:,1]
         for ii in tqdm(range(N)):

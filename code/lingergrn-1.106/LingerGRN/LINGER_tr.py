@@ -365,12 +365,89 @@ def RE_TG_dis(outdir):
     temp['distance']=np.abs(a_with_b[7]-a_with_b[1])
     temp.to_csv(current_directory+'/data/RE_gene_distance.txt',sep='\t',index=None)
     
+def get_system_resources():
+    import psutil
+    cpus = psutil.cpu_count(logical=True)
+    ram = psutil.virtual_memory().total
+
+    # Override with SLURM if available
+    cpus = int(os.environ.get('SLURM_CPUS_PER_TASK', cpus))
+    ram_mb = int(os.environ.get('SLURM_MEM_PER_NODE', ram // (1024*1024)))
+    ram_gb = ram_mb / 1024
+
+    return cpus, ram_gb
+
+def _process_chr(chr, GRNdir, outdir, data_merge, idx, Target, adj_matrix_all, Exp, TF_match, Opn, l1_lambda, fisher_w, activef):
+    import warnings
+    import torch
+    import pandas as pd
+    import numpy as np
+    from tqdm import tqdm
+
+    torch.set_num_threads(1) 
+
+    netall_s = {}
+    shapall_s = {}
+    result = np.zeros([data_merge.shape[0], 2])
+    Lossall = np.zeros([data_merge.shape[0], 100])
+
+    #print(chr, flush=True)
+
+    idx_file1   = GRNdir + chr + '_index.txt'
+    idx_file_all = GRNdir + chr + '_index_all.txt'
+    idx_bulk  = pd.read_csv(idx_file1,   header=None, sep='\t')
+    idxRE_all = pd.read_csv(idx_file_all, header=None, sep='\t')
+
+    gene_chr = data_merge[data_merge['chr'] == chr]
+    N = len(gene_chr)
+
+    TFindex           = idx.values[:, 2]
+    REindex           = idx.values[:, 1]
+    REindex_bulk_match = idx.values[:, 3]
+    REindex_bulk      = idxRE_all.values[:, 0]
+    TFindex_bulk      = idx_bulk.values[:, 2]
+    input_size_all    = idx_bulk.values[:, 3]
+    
+    fisherall = torch.load(GRNdir + 'fisher_'     + chr + '.pt', weights_only=False)
+    netall    = torch.load(GRNdir + 'all_models_' + chr + '.pt', weights_only=False)
+
+    for ii in tqdm(range(N), desc=chr):
+        warnings.filterwarnings("ignore")
+        res = sc_nn(
+            ii, gene_chr, TFindex, TFindex_bulk, REindex, REindex_bulk,
+            REindex_bulk_match, Target, netall, adj_matrix_all, Exp,
+            TF_match, input_size_all, fisherall, Opn, l1_lambda, fisher_w, activef
+        )
+        warnings.resetwarnings()
+        index_all = gene_chr.index[ii]
+        if res[4] == 1:
+            result[index_all, 0] = res[2]
+            result[index_all, 1] = res[3]
+            netall_s[index_all]  = res[0]
+            shapall_s[index_all] = res[1]
+            Lossall[index_all, :] = res[5].T
+        else:
+            result[index_all, 0] = -100
+
+    result = pd.DataFrame(result)
+    result.index = data_merge['Symbol'].values
+    genetemp = data_merge[data_merge['chr'] == chr]['Symbol'].values
+    result = result.loc[genetemp]
+    result.to_csv(outdir + 'result_' + chr + '.txt', sep='\t')
+    torch.save(netall_s,  outdir + 'net_'  + chr + '.pt')
+    torch.save(shapall_s, outdir + 'shap_' + chr + '.pt')
+    Lossall = pd.DataFrame(Lossall)
+    Lossall.index = data_merge['Symbol'].values
+    Lossall = Lossall.loc[genetemp]
+    Lossall.to_csv(outdir + 'Loss_' + chr + '.txt', sep='\t')
+
 from tqdm import tqdm
 import warnings
 import time
 import pandas as pd
 import numpy as np
 def training(GRNdir,method,outdir,activef,species):
+    import psutil
     if method=='LINGER':
         hidden_size  = 64
         hidden_size2 = 16
@@ -379,61 +456,32 @@ def training(GRNdir,method,outdir,activef,species):
         alpha_l = 0.01#elastic net parameter
         lambda0 = 0.00 #bulk
         fisher_w=0.1
-        n_jobs=16
+        
+        n_cpus, ram_av = get_system_resources()
+        base_ram = psutil.Process(os.getpid()).memory_info().rss / 1e9
+        #print(f"Base ram : {base_ram_gb:.2f}")
+
+        # available RAM (GB) beyond the base RAM usage and safety RAM (10GB)             
+        ram_free = ram_av - base_ram - 10
+
+        # per worker RAM (load fisherfisher_{chr}.pt, net_{chr}.pt and create shap_{chr}.pt)
+        ram_worker = 5     
+
+        n_jobs = max(1, min(int(ram_free / ram_worker), n_cpus, 23))
+        print(f"With {n_cpus} CPUs, {ram_av:.2f} GB RAM (avail. : {ram_free:.2f} GB), start {n_jobs} workers")
 
         Exp,idx,Opn,adj_matrix_all,Target,data_merge,TF_match=load_data(GRNdir,outdir)
         data_merge.to_csv(outdir+'data_merge.txt',sep='\t')
         chrall=['chr'+str(i+1) for i in range(22)]
         chrall.append('chrX')
-        import warnings
-        import time
-        from tqdm import tqdm
-        for i in range(23):
-            netall_s={}
-            shapall_s={}
-            result=np.zeros([data_merge.shape[0],2])
-            Lossall=np.zeros([data_merge.shape[0],100])
-            chr=chrall[i]
-            print(chr)
-            idx_file1=GRNdir+chr+'_index.txt'
-            idx_file_all=GRNdir+chr+'_index_all.txt'
-            idx_bulk=pd.read_csv(idx_file1,header=None,sep='\t') 
-            idxRE_all=pd.read_csv(idx_file_all,header=None,sep='\t')
-            gene_chr=data_merge[data_merge['chr']==chr]
-            N=len(gene_chr)
-            TFindex=idx.values[:,2]
-            REindex=idx.values[:,1]
-            REindex_bulk_match=idx.values[:,3]
-            REindex_bulk=idxRE_all.values[:,0]
-            TFindex_bulk=idx_bulk.values[:,2]
-            input_size_all=idx_bulk.values[:,3]
-            fisherall = torch.load(GRNdir+'fisher_'+chr+'.pt')
-            netall=torch.load(GRNdir+'all_models_'+chr+'.pt')
-            
-            for ii in tqdm(range(N)):
-                warnings.filterwarnings("ignore")
-                res=sc_nn(ii,gene_chr,TFindex,TFindex_bulk,REindex,REindex_bulk,REindex_bulk_match,Target,netall,adj_matrix_all,Exp,TF_match,input_size_all,fisherall,Opn,l1_lambda,fisher_w,activef)
-                warnings.resetwarnings()
-                index_all=gene_chr.index[ii]
-                if res[4]==1:
-                    result[index_all,0]=res[2]
-                    result[index_all,1]=res[3]
-                    netall_s[index_all]=res[0]
-                    shapall_s[index_all]=res[1]
-                    Lossall[index_all,:]=res[5].T
-                else:
-                    result[index_all,0]=-100
-            result=pd.DataFrame(result)
-            result.index=data_merge['Symbol'].values
-            genetemp=data_merge[data_merge['chr']==chr]['Symbol'].values
-            result=result.loc[genetemp]
-            result.to_csv(outdir+'result_'+chr+'.txt',sep='\t')
-            torch.save(netall_s,outdir+'net_'+chr+'.pt')
-            torch.save(shapall_s,outdir+'shap_'+chr+'.pt')
-            Lossall=pd.DataFrame(Lossall)
-            Lossall.index=data_merge['Symbol'].values
-            Lossall=Lossall.loc[genetemp]
-            Lossall.to_csv(outdir+'Loss_'+chr+'.txt',sep='\t')            
+        Parallel(n_jobs=n_jobs, backend='loky', verbose=10)(
+            delayed(_process_chr)(
+                chr, GRNdir, outdir, data_merge, idx, Target,
+                adj_matrix_all, Exp, TF_match, Opn,
+                l1_lambda, fisher_w, activef
+            )
+            for chr in chrall
+        )  
     if method=='scNN':
         hidden_size  = 64
         hidden_size2 = 16
