@@ -5,8 +5,11 @@
 - tf_tg_melt is your processed long table of TF-TG pairs
 
 ** Read and normalize LINGER result
-#+BEGIN_SRC python
 
+#+BEGIN_SRC python
+import pandas as pd
+import scipy.stats as stats
+import numpy as np
 reg_file = "/path/to/your/LINGER/output/networks/" # something like "output/cell_population_TF_RE_binding.txt" or "/output/cell_type_specific_trans_regulatory_XXX.txt"
 reg = pd.read_csv(reg_file, sep='\t', index_col=0)
 trans_reg = reg.copy()
@@ -17,6 +20,11 @@ R2 = stats.zscore(trans_reg,0);R2[np.isnan(R2)] = 0.0
 Z=(R1+R2)/2
 tf_tg_df= pd.DataFrame(Z,index=TGset,columns=TFset)
 #+END_SRC
+
+#+RESULTS:
+
+
+
 
 
 ** Pick your network threshold : you have 2 options to pick the threshold.
@@ -32,14 +40,53 @@ threshold = 1.96 # you can put z-score threshold like 1.96
 threshold = tf_tg_df.quantile(1-0.01) # this is for top 1%
 #+END_SRC
 
+#+RESULTS:
 
-** Generage your processed networks  
+
+** Generage your processed networks
 #+BEGIN_SRC python
 # tf_tg_df: Index=TF, Columns=Gene (For generaging long table)
 tf_tg_df[tf_tg_df<threshold]=0
-tf_tg_melt = tf_tg_df.reset_index().melt(id_vars='index', var_name='TargetGene', value_name='Score')
-tf_tg_melt.rename(columns={'index': 'TF'}, inplace=True)
+tf_tg_melt = tf_tg_df.reset_index().melt(id_vars='index', var_name='TF', value_name='Score')
+tf_tg_melt.rename(columns={'index': 'TG'}, inplace=True)
 tf_tg_melt = tf_tg_melt[tf_tg_melt['Score'] != 0] # Filter out zero scores
 
 #+END_SRC
+
+#+RESULTS:
+
+* example for the result
+#+BEGIN_SRC python
+from tabulate import tabulate
+print("tf_tg_df shape: ", tf_tg_df.shape)
+print(tabulate(tf_tg_df.iloc[0:5,0:5], headers='keys', tablefmt='psql'))
+print("tf_tg_melt shape: ", tf_tg_melt.shape)
+print(tf_tg_melt['TF'].unique().shape)
+print(tabulate(tf_tg_melt.head(), headers='keys', tablefmt='psql'))
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+tf_tg_df shape:  (16995, 578)
++----------+---------+----------+-------+---------+--------+
+|          |   KLF13 |   ZNF423 |   YY2 |   GLIS2 |   GLI3 |
+|----------+---------+----------+-------+---------+--------|
+| NMNAT1   |       0 |        0 |     0 |       0 |      0 |
+| CTNNBIP1 |       0 |        0 |     0 |       0 |      0 |
+| LZIC     |       0 |        0 |     0 |       0 |      0 |
+| UBE4B    |       0 |        2.|     0 |       0 |      0 |
+| RBP7     |       0 |        0 |     0 |       0 |      0 |
++----------+---------+----------+-------+---------+--------+
+tf_tg_melt shape:  (83014, 3)
+(578,)
++-----+--------+-------+---------+
+|     | TG     | TF    |   Score |
+|-----+--------+-------+---------|
+|  27 | CLSTN1 | KLF13 | 2.      |
+|  28 | KIF1B  | KLF13 | 3.      |
+| 181 | MAGI3  | KLF13 | 3.      |
+| 634 | DCAF6  | KLF13 | 2.      |
+| 644 | ATP1B1 | KLF13 | 2.      |
++-----+--------+-------+---------+
+#+end_example
 
