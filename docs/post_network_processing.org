@@ -61,11 +61,10 @@ from tabulate import tabulate
 print("tf_tg_df shape: ", tf_tg_df.shape)
 print(tabulate(tf_tg_df.iloc[0:5,0:5], headers='keys', tablefmt='psql'))
 print("tf_tg_melt shape: ", tf_tg_melt.shape)
-print(tf_tg_melt['TF'].unique().shape)
 print(tabulate(tf_tg_melt.head(), headers='keys', tablefmt='psql'))
 #+END_SRC
 
-#+RESULTS:
+#+RESULTS
 #+begin_example
 tf_tg_df shape:  (16995, 578)
 +----------+---------+----------+-------+---------+--------+
@@ -78,7 +77,6 @@ tf_tg_df shape:  (16995, 578)
 | RBP7     |       0 |        0 |     0 |       0 |      0 |
 +----------+---------+----------+-------+---------+--------+
 tf_tg_melt shape:  (83014, 3)
-(578,)
 +-----+--------+-------+---------+
 |     | TG     | TF    |   Score |
 |-----+--------+-------+---------|
