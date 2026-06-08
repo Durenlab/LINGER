@@ -4,8 +4,8 @@
 - tf_tg_df is normalized networks matrix
 - tf_tg_melt is your processed long table of TF-TG pairs
 
+** Read and normalize LINGER result
 #+BEGIN_SRC python
-# read and normalize LINGER result
 
 reg_file = "/path/to/your/LINGER/output/networks/" # something like "output/cell_population_TF_RE_binding.txt" or "/output/cell_type_specific_trans_regulatory_XXX.txt"
 reg = pd.read_csv(reg_file, sep='\t', index_col=0)
@@ -18,10 +18,12 @@ Z=(R1+R2)/2
 tf_tg_df= pd.DataFrame(Z,index=TGset,columns=TFset)
 #+END_SRC
 
+
+** Pick your network threshold : you have 2 options to pick the threshold.
+- A: pick a z-score such as 1.96
+- B: pick top X percentile
+
 #+BEGIN_SRC python
-# you network threshold : you have 2 way to pick the threshold.
-# A: pick a z-score such as 1.96
-# B: pick top X percentile
 
 # if you want to use z-score
 threshold = 1.96 # you can put z-score threshold like 1.96
@@ -31,6 +33,7 @@ threshold = tf_tg_df.quantile(1-0.01) # this is for top 1%
 #+END_SRC
 
 
+** Generage your processed networks  
 #+BEGIN_SRC python
 # tf_tg_df: Index=TF, Columns=Gene (For generaging long table)
 tf_tg_df[tf_tg_df<threshold]=0
@@ -39,3 +42,4 @@ tf_tg_melt.rename(columns={'index': 'TF'}, inplace=True)
 tf_tg_melt = tf_tg_melt[tf_tg_melt['Score'] != 0] # Filter out zero scores
 
 #+END_SRC
+
