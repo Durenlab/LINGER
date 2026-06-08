@@ -29,3 +29,13 @@ threshold = 1.96 # you can put z-score threshold like 1.96
 # if you want to use top percentile
 threshold = tf_tg_df.quantile(1-0.01) # this is for top 1%
 #+END_SRC
+
+
+#+BEGIN_SRC python
+# tf_tg_df: Index=TF, Columns=Gene (For generaging long table)
+tf_tg_df[tf_tg_df<threshold]=0
+tf_tg_melt = tf_tg_df.reset_index().melt(id_vars='index', var_name='TargetGene', value_name='Score')
+tf_tg_melt.rename(columns={'index': 'TF'}, inplace=True)
+tf_tg_melt = tf_tg_melt[tf_tg_melt['Score'] != 0] # Filter out zero scores
+
+#+END_SRC
