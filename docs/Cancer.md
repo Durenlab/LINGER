@@ -145,6 +145,12 @@ outdir = '/path/to/output/'   # output dir
 
 preprocess(TG_pseudobulk, RE_pseudobulk, GRNdir, genome, method, outdir)
 ```
+Setting Parallel Computing Environment for Speeding Up. Please notice that parallel computing only work in the conda environment named "106" installed from this folder: root/code/lingergrn-1.106
+```python
+import os
+os.environ['LD_LIBRARY_PATH'] = '/home/qyyuan/.conda/envs/LINGER-Perellel/lib'
+```
+
 Train for the LINGER model.
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
