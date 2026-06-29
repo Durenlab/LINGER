@@ -34,6 +34,7 @@ The input data is the feature matrix from 10x sc-multiome data and Cell annotati
 
 If the input data is 10X h5 file or h5ad file from scanpy, please follow the instruction [h5/h5ad file as input](https://github.com/Durenlab/LINGER/blob/main/docs/h5_input.md) .
 
+If the input data is txt or csv file, please follow the [H1 cell line example](https://github.com/Durenlab/LINGER/blob/main/docs/GRN_infer.md) to read the input.
 ### sc data
 We download the data using shell command line.
 ```sh
