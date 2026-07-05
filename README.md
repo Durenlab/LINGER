@@ -33,3 +33,6 @@ We provide several tutorials and user guide. The PBMC tutorial serves as a compr
 > If you use LINGER, please cite:
 > 
 > [Yuan, Qiuyue, and Zhana Duren. "Inferring gene regulatory networks from single-cell multiome data using atlas-scale external data." Nature Biotechnology (2024): 1-11.](https://doi.org/10.1038/s41587-024-02182-7)
+
+## License
+This project is covered by the MIT license.
