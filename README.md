@@ -20,11 +20,11 @@ conda install bioconda::bedtools # Requirment
 ```
 ## Documentation
 
-We provide several tutorials and user guide. If you find our tool useful for your research, please consider citing the LINGER manuscript.
+We provide several tutorials and user guide. The PBMC tutorial serves as a comprehensive demonstration of the entire workflow.
 
 |                           |                           |                           |
 |:-------------------------:|:-------------------------:|:-------------------------:|
-| [User guide](https://github.com/Durenlab/LINGER/blob/main/docs/User_guide.md) | [PBMCs tutorial](https://github.com/Durenlab/LINGER/blob/main/docs/PBMC.md) |[H1 cell line tutorial](https://github.com/Durenlab/LINGER/blob/main/docs/GRN_infer.md)  |
+| [User guide](https://github.com/Durenlab/LINGER/blob/main/docs/User_guide.md) | [PBMCs tutorial](https://github.com/Durenlab/LINGER/blob/main/docs/PBMC.md) [notebook](https://github.com/Durenlab/LINGER/blob/main/notebooks/data_PBMC-parallel_memory.ipynb) |[H1 cell line tutorial](https://github.com/Durenlab/LINGER/blob/main/docs/GRN_infer.md)  |
 |[GRN benchmark](https://github.com/Durenlab/LINGER/blob/main/docs/Benchmark.md)  | [In silico perturbation](https://github.com/Durenlab/LINGER/blob/main/docs/perturb.md) | [Other species](https://github.com/Durenlab/LINGER/blob/main/docs/scNN.md) |
 |[Downstream analysis-Module detection](https://github.com/Durenlab/LINGER/blob/main/docs/downstream.md)|[Downstream analysis-TF Driver score](https://github.com/Durenlab/LINGER/blob/main/docs/driver.md)|[post network processing](https://github.com/Durenlab/LINGER/blob/cfg824157947-patch-1/docs/post_network_processing.org)|
     
