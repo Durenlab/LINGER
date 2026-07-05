@@ -70,7 +70,7 @@ method='LINGER'
 ```
 #### Transfer the sc-multiome data to anndata  
 
-We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label.
+We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label. (Timing: 5min 8.8s)
 ```python
 import scanpy as sc
 #set some figure parameters for nice display inside jupyternotebooks.
@@ -88,7 +88,7 @@ label=pd.read_csv('data/PBMC_label.txt',sep='\t',header=0)
 from LingerGRN.preprocess import *
 adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
 ```
-#### Remove low counts cells and genes
+#### Remove low counts cells and genes (Timing: 15.3s)
 ```python
 import scanpy as sc
 sc.pp.filter_cells(adata_RNA, min_genes=200)
@@ -101,7 +101,7 @@ adata_RNA = adata_RNA[barcode_idx.loc[selected_barcode][0]]
 barcode_idx=pd.DataFrame(range(adata_ATAC.shape[0]), index=adata_ATAC.obs['barcode'].values)
 adata_ATAC = adata_ATAC[barcode_idx.loc[selected_barcode][0]]
 ```
-#### Generate the pseudo-bulk/metacell:
+#### Generate the pseudo-bulk/metacell (Timing: 1min 18.5s):
 ```python
 from LingerGRN.pseudo_bulk import *
 samplelist=list(set(adata_ATAC.obs['sample'].values)) # sample is generated from cell barcode 
@@ -128,8 +128,8 @@ pd.DataFrame(adata_ATAC.var['gene_ids']).to_csv('data/Peaks.txt',header=None,ind
 TG_pseudobulk.to_csv('data/TG_pseudobulk.tsv')
 RE_pseudobulk.to_csv('data/RE_pseudobulk.tsv')
 ```
-### Training model
-Overlap the region with general GRN:
+### Training model 
+Overlap the region with general GRN (5min 45.3s):
 ```python
 from LingerGRN.preprocess import *
 Datadir='/path/to/LINGER/'# This directory should be the same as Datadir defined in the above 'Download the general gene regulatory network' section
@@ -138,7 +138,7 @@ genome='hg38'
 outdir='/path/to/output/' #output dir
 preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
 ```
-Train for the LINGER model.
+Train for the LINGER model (42min 3.2s).
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
@@ -148,24 +148,26 @@ LINGER_tr.training(GRNdir,method,outdir,activef,'Human')
 
 ### Cell population gene regulatory network
 #### TF binding potential
-The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score.
+The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score. (Timing: 11.96s)
+<img width="432" height="21" alt="image" src="https://github.com/user-attachments/assets/e663e4b1-3b08-4d79-a310-68ec6a3529c6" />
+)
 ```python
 import LingerGRN.LL_net as LL_net
 LL_net.TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir)
 ```
 
-#### *cis*-regulatory network
+#### *cis*-regulatory network (Timing: 1min 5.4s)
 The output is 'cell_population_cis_regulatory.txt' with 3 columns: region, target gene, cis-regulatory score.
 ```python
 LL_net.cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,method,outdir)
 ```
-#### *trans*-regulatory network
+#### *trans*-regulatory network (Timing: 3min 8.7s)
 The output is 'cell_population_trans_regulatory.txt', a matrix of the trans-regulatory score.
 ```python
 LL_net.trans_reg(GRNdir,method,outdir,genome)
 ```
 
-### Cell type specific gene regulatory network
+### Cell type specific gene regulatory network (Timing: 0.5s)
 There are 2 options:
 1. infer GRN for a specific cell type, which is in the label.txt;
 ```python
@@ -178,18 +180,18 @@ celltype='all'
 Please make sure that 'all' is not a cell type in your data.
 
 #### TF binding potential
-The output is 'cell_population_TF_RE_binding_*celltype*.txt', a matrix of the TF-RE binding potential.
+The output is 'cell_population_TF_RE_binding_*celltype*.txt', a matrix of the TF-RE binding potential (Timing: 2min 15.4s).
 ```python
 LL_net.cell_type_specific_TF_RE_binding(GRNdir,adata_RNA,adata_ATAC,genome,celltype,outdir,method)# different from the previous version
 ```
 
-#### *cis*-regulatory network
+#### *cis*-regulatory network (Timing: 2min 11.9s)
 The output is 'cell_type_specific_cis_regulatory_{*celltype*}.txt' with 3 columns: region, target gene, cis-regulatory score.
 ```python
 LL_net.cell_type_specific_cis_reg(GRNdir,adata_RNA,adata_ATAC,genome,celltype,outdir,method)
 ```
 
-#### *trans*-regulatory network
+#### *trans*-regulatory network (Timing: 1min 57.3s)
 The output is 'cell_type_specific_trans_regulatory_{*celltype*}.txt', a matrix of the trans-regulatory score.
 ```python
 LL_net.cell_type_specific_trans_reg(GRNdir,adata_RNA,celltype,outdir)
@@ -214,7 +216,7 @@ network = 'CD56 (bright) NK cells' # CD56 (bright) NK cells is the name of one c
 ```
 
 ### Calculate TF activity
-The input is gene expression data. It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN. The row of gene expresion data is gene, columns is sample and the value is read count (sc) or FPKM/RPKM (bulk).
+The input is gene expression data. It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN. The row of gene expresion data is gene, columns is sample and the value is read count (sc) or FPKM/RPKM (bulk)  (Timing: 3min 50.6ss).
 
 ```python
 
@@ -227,7 +229,7 @@ import anndata
 adata_RNA=anndata.read_h5ad('data/adata_RNA.h5ad')
 TF_activity=regulon(outdir,adata_RNA,GRNdir,network,genome)
 ```
-Visualize the TF activity heatmap by cluster. If you want to save the heatmap to outdit, please set 'save=True'. The output is 'heatmap_activity.png'.
+Visualize the TF activity heatmap by cluster. If you want to save the heatmap to outdit, please set 'save=True'. The output is 'heatmap_activity.png'.  (Timing: 1min 30.6s)
 ```python
 save=True
 heatmap_cluster(TF_activity,adata_RNA,save,outdir)
@@ -259,7 +261,7 @@ t_test_results
   <img src="PBMCs_ttest.png" alt="Image" width="300">
 </div>
 
-Visualize the differential activity and expression. You can compare 2 different cell types and one cell type with others. If you want to save the heatmap to output, please set `save=True`. The output is `box_plot_<TFName>_<datatype>_<celltype1>_<celltype2>.png`.
+Visualize the differential activity and expression. You can compare 2 different cell types and one cell type with others. If you want to save the heatmap to output, please set `save=True`. The output is `box_plot_<TFName>_<datatype>_<celltype1>_<celltype2>.png`  (Timing: 1min 27.4s).
 
 ```python
 TFName='ATF1'
