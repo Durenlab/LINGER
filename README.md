@@ -11,7 +11,7 @@ LINGER incorporates both 1) atlas-scale external bulk data across diverse cellul
 
 In the user guide, we provide an overview of each task. 
 ## Basic installation
-LINGER can be installed by pip
+LINGER can be installed by pip (Time cost: 1min 39s):
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
