@@ -167,7 +167,7 @@ The output is 'cell_population_trans_regulatory.txt', a matrix of the trans-regu
 LL_net.trans_reg(GRNdir,method,outdir,genome)
 ```
 
-### Cell type specific gene regulatory network (Timing: 0.5s)
+### Cell type specific gene regulatory network 
 There are 2 options:
 1. infer GRN for a specific cell type, which is in the label.txt;
 ```python
