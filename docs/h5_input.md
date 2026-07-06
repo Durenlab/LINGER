@@ -16,7 +16,7 @@ features=pd.DataFrame(adata.var['gene_ids'].values.tolist(),columns=[1])
 features[2]=adata.var['feature_types'].values
 barcodes=pd.DataFrame(adata.obs_names,columns=[0])
 from LingerGRN.preprocess import *
-adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label)# adata_RNA and adata_ATAC are scRNA and scATAC
+adata_RNA,adata_ATAC=get_adata(matrix,features,barcodes,label=None)# adata_RNA and adata_ATAC are scRNA and scATAC
 ```
 ## case2. seperate RNA and ATAC h5ad file
 ### Read H5AD file as an AnnData object
