@@ -138,7 +138,7 @@ genome='hg38'
 outdir='/path/to/output/' #output dir
 preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
 ```
-Train for the LINGER model (42min 3.2s).It is important to note that neural network methods inherently involve stochastic elements, such as weight initialization and certain random operations within the optimizer. Consequently, the final model may vary across runs, leading to potential discrepancies in the subsequent gene regulatory network (GRN) inference and downstream applications.
+Train for the LINGER model (42min 3.2s).It is important to note that neural network methods inherently involve stochastic elements, such as weight initialization and certain random operations within the optimizer. Consequently, the final model may vary across runs, leading to potential discrepancies in the subsequent gene regulatory network (GRN) inference and downstream applications. (42min 3.2s)
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
@@ -148,7 +148,7 @@ LINGER_tr.training(GRNdir,method,outdir,activef,'Human')
 
 ### Cell population gene regulatory network
 #### TF binding potential
-The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score. (Timing: 11.96s)
+The output is 'cell_population_TF_RE_binding.txt', a matrix of the TF-RE binding score. (Timing: 1min 10.5s)
 <img width="432" height="21" alt="image" src="https://github.com/user-attachments/assets/e663e4b1-3b08-4d79-a310-68ec6a3529c6" />
 )
 ```python
@@ -216,7 +216,7 @@ network = 'CD56 (bright) NK cells' # CD56 (bright) NK cells is the name of one c
 ```
 
 ### Calculate TF activity
-The input is gene expression data. It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN. The row of gene expresion data is gene, columns is sample and the value is read count (sc) or FPKM/RPKM (bulk)  (Timing: 3min 50.6s).
+The input is gene expression data. It could be the scRNA-seq data from the sc multiome data. It could be other sc or bulk RNA-seq data matches the GRN. The row of gene expresion data is gene, columns is sample and the value is read count (sc) or FPKM/RPKM (bulk)  (Timing: 1min 50.6s).
 
 ```python
 
@@ -261,7 +261,7 @@ t_test_results
   <img src="PBMCs_ttest.png" alt="Image" width="300">
 </div>
 
-Visualize the differential activity and expression. You can compare 2 different cell types and one cell type with others. If you want to save the heatmap to output, please set `save=True`. The output is `box_plot_<TFName>_<datatype>_<celltype1>_<celltype2>.png`  (Timing: 1min 27.4s).
+Visualize the differential activity and expression. You can compare 2 different cell types and one cell type with others. If you want to save the heatmap to output, please set `save=True`. The output is `box_plot_<TFName>_<datatype>_<celltype1>_<celltype2>.png`  (Timing: 57.4s).
 
 ```python
 TFName='ATF1'
