@@ -138,7 +138,7 @@ genome='hg38'
 outdir='/path/to/output/' #output dir
 preprocess(TG_pseudobulk,RE_pseudobulk,GRNdir,genome,method,outdir)
 ```
-Train for the LINGER model (42min 3.2s).
+Train for the LINGER model (42min 3.2s).It is important to note that neural network methods inherently involve stochastic elements, such as weight initialization and certain random operations within the optimizer. Consequently, the final model may vary across runs, leading to potential discrepancies in the subsequent gene regulatory network (GRN) inference and downstream applications.
 ```python
 import LingerGRN.LINGER_tr as LINGER_tr
 activef='ReLU' # active function chose from 'ReLU','sigmoid','tanh'
