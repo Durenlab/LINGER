@@ -40,7 +40,7 @@ metadata
 ```python
 K=10 #k is the number of modules, a tuning parameter
 from LingerGRN import Compare
-Module_result=Compare.Module_trans(outdir,metadata,TG_pseudobulk,K,GWASfile)
+Module_result=Compare.Module_trans(outdir,K,cut_TG=0.9,cut_TF=0.8,TG_pseudobulk=TG_pseudobulk,metadata=metadata,GWASfile=GWASfile)
 ```
 The output is Module_result object. There are 3 items in this object: 
 - S_TG, which represents the module assigned for each gene;
