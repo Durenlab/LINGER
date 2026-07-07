@@ -235,7 +235,7 @@ save=True
 heatmap_cluster(TF_activity,adata_RNA,save,outdir)
 ```
 <div style="text-align: right">
-  <img src="PBMCs_heatmap_activity.png" alt="Image" width="500">
+  <img src="PBMCs_heatmap_activity2.png" alt="Image" width="500">
 </div>
 
 ### Identify driver regulator
