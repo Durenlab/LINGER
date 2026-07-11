@@ -54,7 +54,7 @@ mv PBMC_label.txt data/
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.105
+pip install LingerGRN==1.110
 conda install bioconda::bedtools #Requirement
 ```
 For the following step, we run the code in python.
