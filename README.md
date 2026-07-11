@@ -15,7 +15,7 @@ LINGER can be installed by pip (Time cost: 1min 39s):
 ```sh
 conda create -n LINGER python==3.10.0
 conda activate LINGER
-pip install LingerGRN==1.108
+pip install LingerGRN==1.110
 conda install bioconda::bedtools # Requirment
 ```
 ## Documentation
