@@ -70,7 +70,7 @@ method='LINGER'
 ```
 #### Transfer the sc-multiome data to anndata  
 
-We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label. (Timing: 5min 8.8s)
+We will transfer sc-multiome data to the anndata format and filter the cell barcode by the cell type label. (Timing:  7.7s)
 ```python
 import scanpy as sc
 #set some figure parameters for nice display inside jupyternotebooks.
