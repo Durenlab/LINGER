@@ -15,7 +15,10 @@ We provide the general gene regulatory network, please download the data first.
 Datadir=/path/to/LINGER/# the directory to store the data please use the absolute directory. Example: Datadir=/zfs/durenlab/palmetto/Kaya/SC_NET/code/github/combine/data/
 mkdir $Datadir
 cd $Datadir
-wget --load-cookies /tmp/cookies.txt "https://drive.usercontent.google.com/download?export=download&confirm=$(wget --quiet --save-cookies /tmp/cookies.txt --keep-session-cookies --no-check-certificate 'https://drive.usercontent.google.com/download?id=1jwRgRHPJrKABOk7wImKONTtUupV7yJ9b'  -O- | sed -rn 's/.*confirm=([0-9A-Za-z_]+).*/\1\n/p')&id=1jwRgRHPJrKABOk7wImKONTtUupV7yJ9b" -O data_bulk.tar.gz && rm -rf /tmp/cookies.txt
+zenodo_get 23399091
+sha256sum -c SHA256SUMS.txt # verify download complete
+tar -xzf data_bulk.tar.gz
+
 ```
 or use the following link: [https://drive.google.com/file/d/1jwRgRHPJrKABOk7wImKONTtUupV7yJ9b/view?usp=sharing](https://drive.google.com/file/d/1jwRgRHPJrKABOk7wImKONTtUupV7yJ9b/view?usp=sharing)
 
